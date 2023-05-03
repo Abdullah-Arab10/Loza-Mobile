@@ -62,17 +62,17 @@ Widget _getRowCircles(context, int num) {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SvgPicture.asset(
-          num == 3 ? ImageAssets.ovalCopy2 : ImageAssets.ovalCopy,
+          num == AppConstants.thirdBlackCircle ? ImageAssets.ovalCopy2 : ImageAssets.ovalCopy,
           width: AppSize.s10.w,
           height: AppSize.s10.h,
         ),
         SvgPicture.asset(
-          num == 2 ? ImageAssets.ovalCopy2 : ImageAssets.ovalCopy,
+          num == AppConstants.secondBlackCircle ? ImageAssets.ovalCopy2 : ImageAssets.ovalCopy,
           width: AppSize.s10.w,
           height: AppSize.s10.h,
         ),
         SvgPicture.asset(
-          num == 1 ? ImageAssets.ovalCopy2 : ImageAssets.ovalCopy,
+          num == AppConstants.firstBlackCircle ? ImageAssets.ovalCopy2 : ImageAssets.ovalCopy,
           width: AppSize.s10.w,
           height: AppSize.s10.h,
         ),

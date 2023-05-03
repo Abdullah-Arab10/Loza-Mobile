@@ -43,6 +43,7 @@ ThemeData getApplicationTheme() {
       textStyle:
           getRegularStyle(color: ColorManager.white, fontSize: FontSize.s15),
       backgroundColor: ColorManager.black,
+      disabledBackgroundColor: ColorManager.black.withAlpha(100),
     )),
 
     textTheme: TextTheme(
