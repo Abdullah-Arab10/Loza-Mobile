@@ -8,6 +8,7 @@ class LoZaButtonWidget extends StatelessWidget {
   final TextStyle? textStyle;
   final Color? color;
   final bool? toUpperCase;
+  final AssetImage? image;
 
   const LoZaButtonWidget({
     Key? key,
@@ -16,6 +17,7 @@ class LoZaButtonWidget extends StatelessWidget {
     this.textStyle,
     this.color,
     this.toUpperCase,
+    this.image
   }) : super(key: key);
 
   @override

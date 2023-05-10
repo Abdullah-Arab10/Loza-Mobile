@@ -28,7 +28,7 @@ ThemeData getApplicationTheme() {
         elevation: AppSize.s0,
         shadowColor: ColorManager.grey,
         titleTextStyle:
-            getRegularStyle(fontSize: FontSize.s17, color: ColorManager.black)),
+            getRegularStyle(fontSize: FontSize.fs17, color: ColorManager.black)),
 
     // button theme
     buttonTheme: ButtonThemeData(
@@ -41,40 +41,43 @@ ThemeData getApplicationTheme() {
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
       textStyle:
-          getRegularStyle(color: ColorManager.white, fontSize: FontSize.s15),
+          getRegularStyle(color: ColorManager.white, fontSize: FontSize.fs15),
       backgroundColor: ColorManager.black,
       disabledBackgroundColor: ColorManager.black.withAlpha(100),
     )),
 
     textTheme: TextTheme(
+      labelLarge: getBlackStyle(color: ColorManager.black, fontSize: FontSize.fs25.sp),
         displayLarge:
-            getBlackStyle(color: ColorManager.black, fontSize: FontSize.s33.sp),
+            getBlackStyle(color: ColorManager.black, fontSize: FontSize.fs33.sp),
         displayMedium:
-            getHeavyStyle(color: ColorManager.black, fontSize: FontSize.s24.sp),
+            getHeavyStyle(color: ColorManager.black, fontSize: FontSize.fs24.sp),
         headlineLarge:
-            getHeavyStyle(color: ColorManager.darkGrey, fontSize: FontSize.s16.sp),
+            getHeavyStyle(color: ColorManager.darkGrey, fontSize: FontSize.fs16.sp),
         headlineMedium: getRegularStyle(
-            color: ColorManager.darkGrey, fontSize: FontSize.s14.sp),
+            color: ColorManager.darkGrey, fontSize: FontSize.fs14.sp),
         titleMedium:
-            getHeavyStyle(color: ColorManager.white, fontSize: FontSize.s15.sp),
+            getHeavyStyle(color: ColorManager.white, fontSize: FontSize.fs15.sp),
         titleSmall:
-            getHeavyStyle(color: ColorManager.black, fontSize: FontSize.s15.sp),
+            getHeavyStyle(color: ColorManager.black, fontSize: FontSize.fs15.sp),
         bodyLarge: getBookStyle(color: ColorManager.grey1),
-        bodySmall: getBookStyle(color: ColorManager.grey1),
+        bodySmall: getRegularStyle(color: ColorManager.black,fontSize: FontSize.fs16.sp),
         bodyMedium:
-            getBookStyle(color: ColorManager.black, fontSize: FontSize.s16.sp),
+            getBookStyle(color: ColorManager.black, fontSize: FontSize.fs16.sp),
         labelSmall:
-            getBlackStyle(color: ColorManager.black, fontSize: FontSize.s12.sp)),
+            getBlackStyle(color: ColorManager.black, fontSize: FontSize.fs12.sp),
+        labelMedium:  getRegularStyle(color: ColorManager.black.withAlpha(100),fontSize: FontSize.fs16.sp),
+    ),
 
     // input decoration theme (text form field)
     inputDecorationTheme: InputDecorationTheme(
       // content padding
       contentPadding: const EdgeInsets.all(AppPadding.p8),
       // hint style
-      hintStyle: getBookStyle(color: ColorManager.grey, fontSize: FontSize.s17),
+      hintStyle: getBookStyle(color: ColorManager.grey, fontSize: FontSize.fs17),
       // label style
       labelStyle:
-          getRegularStyle(color: ColorManager.grey, fontSize: FontSize.s17),
+          getRegularStyle(color: ColorManager.grey, fontSize: FontSize.fs17),
       errorStyle: getRegularStyle(color: ColorManager.red),
     ),
   );
