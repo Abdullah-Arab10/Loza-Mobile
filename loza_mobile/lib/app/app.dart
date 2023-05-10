@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loza_mobile/presentation/resources/theme_manager.dart';
@@ -9,7 +8,7 @@ class MyApp extends StatefulWidget {
   MyApp._internal();
 
   static final MyApp _instance =
-  MyApp._internal(); // singleton or single instance
+      MyApp._internal(); // singleton or single instance
 
   factory MyApp() => _instance; // factory
 
@@ -18,6 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

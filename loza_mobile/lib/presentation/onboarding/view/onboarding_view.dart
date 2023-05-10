@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loza_mobile/app/app_prefs.dart';
+import 'package:loza_mobile/app/di.dart';
 import 'package:loza_mobile/presentation/onboarding/viewmodel/onboarding_viewmodel.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/constants.dart';
+import 'package:loza_mobile/presentation/resources/routes_manager.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
-import 'package:loza_mobile/presentation/widgets/loza_button_widget.dart';
+import 'package:loza_mobile/presentation/common/widgets/loza_button_widget.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({Key? key}) : super(key: key);
@@ -20,23 +23,20 @@ class OnBoardingView extends StatefulWidget {
 class _OnBoardingViewState extends State<OnBoardingView> {
   final PageController _pageController = PageController();
   final OnBoardingViewModel _viewModel = OnBoardingViewModel();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
-  // _bind() {
-  //   _appPreferences.setOnBoardingScreenViewed();
-  //   _viewModel.start();
-  // }
-  //
-  // @override
-  // void initState() {
-  //   // _bind();
-  //   super.initState();
-  // }
+  _bind() {
+    _appPreferences.setOnBoardingScreenViewed();
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // return StreamBuilder(
-    //     stream: _viewModel.outputSliderViewObject,
-    //     builder: (context, snapshot) {
     return _getContentWidget();
   }
 
@@ -254,62 +254,62 @@ class OnBoardingPage4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Stack(
-        children: [
-          Image.asset(
-            ImageAssets.onBoardingPhoto4,
-            width: double.infinity,
-            fit: BoxFit.cover,
+    return Stack(
+      children: [
+        Image.asset(
+          ImageAssets.onBoardingPhoto4,
+          width: double.infinity,
+          fit: BoxFit.cover,
+        ),
+        Padding(
+          padding: EdgeInsetsDirectional.only(top: AppPadding.p55.w),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Image.asset(
+              ImageAssets.lozaLogo,
+            ),
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.only(top: AppPadding.p55.w),
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Image.asset(
-                ImageAssets.lozaLogo,
+        ),
+        Padding(
+          padding: EdgeInsetsDirectional.only(
+              bottom: AppPadding.p120.h,
+              start: AppPadding.p40.w,
+              end: AppPadding.p40.w),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: SizedBox(
+              width: double.infinity,
+              height: AppSize.s38.h,
+              child: LoZaButtonWidget(
+                text: AppStrings.signUp,
+                color: ColorManager.white,
+                textStyle: Theme.of(context).textTheme.titleSmall,
+                onPressed: () {},
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.only(
-                bottom: AppPadding.p120.h,
-                start: AppPadding.p40.w,
-                end: AppPadding.p40.w),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                width: double.infinity,
-                height: AppSize.s38.h,
-                child: LoZaButtonWidget(
-                  text: AppStrings.signUp,
-                  color: ColorManager.white,
-                  textStyle: Theme.of(context).textTheme.titleSmall,
-                  onPressed: () {},
-                ),
+        ),
+        Padding(
+          padding: EdgeInsetsDirectional.only(
+              bottom: AppPadding.p70.h,
+              top: AppPadding.p14.h,
+              start: AppPadding.p40.w,
+              end: AppPadding.p40.w),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: SizedBox(
+              width: double.infinity,
+              height: AppSize.s38.h,
+              child: LoZaButtonWidget(
+                text: AppStrings.login,
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.loginRoute);
+                },
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.only(
-                bottom: AppPadding.p70.h,
-                top: AppPadding.p14.h,
-                start: AppPadding.p40.w,
-                end: AppPadding.p40.w),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                width: double.infinity,
-                height: AppSize.s38.h,
-                child: LoZaButtonWidget(
-                  text: AppStrings.login,
-                  onPressed: () {},
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

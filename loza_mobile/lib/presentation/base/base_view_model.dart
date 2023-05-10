@@ -1,16 +1,17 @@
-abstract class BaseViewModel extends BaseViewModelInputs with BaseViewModelOutputs{
-  @override
-  void dispose() {
+import 'dart:async';
 
-  }
-}
-
-abstract class BaseViewModelInputs{
-
-void start();
-
-void dispose();
+abstract class BaseViewModel extends BaseViewModelInputs
+    with BaseViewModelOutputs {
 
 }
 
-abstract class BaseViewModelOutputs{}
+abstract class BaseViewModelInputs {
+  void start();
+
+  void dispose();
+
+}
+
+abstract class BaseViewModelOutputs {
+
+}
