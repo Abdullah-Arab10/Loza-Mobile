@@ -1,9 +1,3 @@
-bool isEmailValid(String email) {
-  return RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-      .hasMatch(email);
-}
-
 final dPassValid = RegExp(r'\d');
 final uPassValid = RegExp(r'[A-Z]');
 final lPassValid = RegExp(r'[a-z]');

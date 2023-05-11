@@ -10,16 +10,31 @@ class AppStrings{
   static const startShopping = 'Start shopping';
   static const signUp = 'Sign up';
   static const login = 'Login';
+  static const register = 'Register';
+  static const personalDetails = 'Personal details';
   static const success = "success";
   static const loading = "loading";
   static const retryAgain = "retry_again";
   static const ok = "ok";
   static const forgetPassword = "Forgot your password?";
   static const registerText = "Don't have an account? Sign Up";
+  static const alreadyHaveAnAccount = "Already have an account? Sign In";
   static const emailError = "Your Email is empty Or Not valid";
   static const passwordError = "Your Password is empty Or Less than 6 characters";
+  static const firstName = 'First Name';
+  static const lastName = 'Last Name';
   static const email = 'Email';
   static const password = 'Password';
+  static const phone = 'Phone';
+  static const address = 'Address';
+  static const dateOfBirth = 'Date of birth';
+  static const invalidEmail = 'Invalid Email';
+  static const invalidFirstName = 'Invalid FirstName';
+  static const invalidLastName = 'Invalid LastName';
+  static const invalidPassword = 'Invalid Password';
+  static const invalidPhoneNumber = 'Invalid Phone Number';
+  static const invalidAddress = 'Address must not be empty';
+  static const invalidDateOfBirth = 'Date Of Birth must not be empty';
 
   // error handler
   static const String badRequestError = "bad_request_error";
