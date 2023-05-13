@@ -11,6 +11,7 @@ class LoZaTextFieldWidget extends StatelessWidget {
   final String label;
   final String? error;
   final VoidCallback? suffixPressed;
+  final VoidCallback? onTap;
   final bool? isPassword;
   final IconData? suffix;
   final String? initial;
@@ -26,7 +27,8 @@ class LoZaTextFieldWidget extends StatelessWidget {
     this.suffix,
     this.suffixPressed,
     this.enable,
-    this.initial
+    this.initial,
+    this.onTap
   }) : super(key: key);
 
   @override
@@ -58,6 +60,7 @@ class LoZaTextFieldWidget extends StatelessWidget {
             ),
           ),
         ),
+        onTap: onTap,
         initialValue: initial,
         enabled: enable,
       ),

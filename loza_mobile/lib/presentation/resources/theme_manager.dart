@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/font_manager.dart';
+import 'package:loza_mobile/presentation/resources/material_colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/styles_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
 
@@ -9,6 +10,8 @@ ThemeData getApplicationTheme() {
   return ThemeData(
     // main colors
     primaryColor: ColorManager.white,
+    colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: buildMaterialColor(ColorManager.black)),
     primaryColorLight: ColorManager.lightGrey,
     primaryColorDark: ColorManager.grey,
     disabledColor: ColorManager.grey1,

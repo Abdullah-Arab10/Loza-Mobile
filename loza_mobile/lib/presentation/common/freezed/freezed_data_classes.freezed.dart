@@ -148,3 +148,244 @@ abstract class _LoginObject implements LoginObject {
   _$$_LoginObjectCopyWith<_$_LoginObject> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$RegisterObject {
+  String get firstName => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  String get dateOfBirth => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RegisterObjectCopyWith<RegisterObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RegisterObjectCopyWith<$Res> {
+  factory $RegisterObjectCopyWith(
+          RegisterObject value, $Res Function(RegisterObject) then) =
+      _$RegisterObjectCopyWithImpl<$Res, RegisterObject>;
+  @useResult
+  $Res call(
+      {String firstName,
+      String lastName,
+      String email,
+      String password,
+      String phoneNumber,
+      String address,
+      String dateOfBirth});
+}
+
+/// @nodoc
+class _$RegisterObjectCopyWithImpl<$Res, $Val extends RegisterObject>
+    implements $RegisterObjectCopyWith<$Res> {
+  _$RegisterObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? email = null,
+    Object? password = null,
+    Object? phoneNumber = null,
+    Object? address = null,
+    Object? dateOfBirth = null,
+  }) {
+    return _then(_value.copyWith(
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      dateOfBirth: null == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_RegisterObjectCopyWith<$Res>
+    implements $RegisterObjectCopyWith<$Res> {
+  factory _$$_RegisterObjectCopyWith(
+          _$_RegisterObject value, $Res Function(_$_RegisterObject) then) =
+      __$$_RegisterObjectCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String firstName,
+      String lastName,
+      String email,
+      String password,
+      String phoneNumber,
+      String address,
+      String dateOfBirth});
+}
+
+/// @nodoc
+class __$$_RegisterObjectCopyWithImpl<$Res>
+    extends _$RegisterObjectCopyWithImpl<$Res, _$_RegisterObject>
+    implements _$$_RegisterObjectCopyWith<$Res> {
+  __$$_RegisterObjectCopyWithImpl(
+      _$_RegisterObject _value, $Res Function(_$_RegisterObject) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? email = null,
+    Object? password = null,
+    Object? phoneNumber = null,
+    Object? address = null,
+    Object? dateOfBirth = null,
+  }) {
+    return _then(_$_RegisterObject(
+      null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RegisterObject implements _RegisterObject {
+  _$_RegisterObject(this.firstName, this.lastName, this.email, this.password,
+      this.phoneNumber, this.address, this.dateOfBirth);
+
+  @override
+  final String firstName;
+  @override
+  final String lastName;
+  @override
+  final String email;
+  @override
+  final String password;
+  @override
+  final String phoneNumber;
+  @override
+  final String address;
+  @override
+  final String dateOfBirth;
+
+  @override
+  String toString() {
+    return 'RegisterObject(firstName: $firstName, lastName: $lastName, email: $email, password: $password, phoneNumber: $phoneNumber, address: $address, dateOfBirth: $dateOfBirth)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RegisterObject &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.dateOfBirth, dateOfBirth) ||
+                other.dateOfBirth == dateOfBirth));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, firstName, lastName, email,
+      password, phoneNumber, address, dateOfBirth);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RegisterObjectCopyWith<_$_RegisterObject> get copyWith =>
+      __$$_RegisterObjectCopyWithImpl<_$_RegisterObject>(this, _$identity);
+}
+
+abstract class _RegisterObject implements RegisterObject {
+  factory _RegisterObject(
+      final String firstName,
+      final String lastName,
+      final String email,
+      final String password,
+      final String phoneNumber,
+      final String address,
+      final String dateOfBirth) = _$_RegisterObject;
+
+  @override
+  String get firstName;
+  @override
+  String get lastName;
+  @override
+  String get email;
+  @override
+  String get password;
+  @override
+  String get phoneNumber;
+  @override
+  String get address;
+  @override
+  String get dateOfBirth;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RegisterObjectCopyWith<_$_RegisterObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}

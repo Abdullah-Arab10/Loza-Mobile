@@ -8,7 +8,9 @@ import 'package:loza_mobile/data/data_source/remote_data_source.dart';
 import 'package:loza_mobile/data/repository/repository_impl.dart';
 import 'package:loza_mobile/domain/repository/repository.dart';
 import 'package:loza_mobile/domain/usecase/login_usecase.dart';
+import 'package:loza_mobile/domain/usecase/register_usecase.dart';
 import 'package:loza_mobile/presentation/login/viewmodel/login_viewmodel.dart';
+import 'package:loza_mobile/presentation/register/viewmodel/register_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/network/dio_factory.dart';
@@ -55,5 +57,14 @@ initLoginModule() {
   if (!GetIt.I.isRegistered<LoginUseCase>()) {
     instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+  }
+}
+
+initRegisterModule() {
+  if (!GetIt.I.isRegistered<RegisterUseCase>()) {
+    instance
+        .registerFactory<RegisterUseCase>(() => RegisterUseCase(instance()));
+    instance.registerFactory<RegisterViewModel>(
+            () => RegisterViewModel(instance()));
   }
 }
