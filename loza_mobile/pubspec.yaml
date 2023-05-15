@@ -88,6 +88,15 @@ flutter:
     - assets/json/error1.json
     - assets/json/empty.json
     - assets/json/success.json
+    - assets/images/favouriteIcon.svg
+    - assets/images/maskCopy.png
+    - assets/images/menu.svg
+    - assets/images/shopIcon.svg
+    - assets/images/Mask.png
+    -  assets/images/Heart.svg
+    -  assets/images/HeartBorder.svg
+    - assets/images/arrow.svg
+    - assets/images/chair.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

@@ -10,6 +10,15 @@ class ImageAssets{
   static const String onBoardingPhoto4 = '$imagePath/onboarding_photo4.png';
   static const String lozaLogo = '$imagePath/loza_logo.png';
   static const String close = '$imagePath/Close.png';
+  static const String favouriteIcon = '$imagePath/favouriteIcon.svg';
+  static const String maskCopy = '$imagePath/maskCopy.png';
+  static const String menu = '$imagePath/menu.svg';
+  static const String shopIcon = '$imagePath/shopIcon.svg';
+  static const String mask = '$imagePath/Mask.png';
+  static const String heart = '$imagePath/Heart.svg';
+  static const String heartBorder = '$imagePath/HeartBorder.svg';
+  static const String arrow = '$imagePath/arrow.svg';
+  static const String chair = '$imagePath/chair.png';
 }
 
 class JsonAssets {

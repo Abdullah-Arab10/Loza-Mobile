@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:loza_mobile/app/di.dart';
 import 'package:loza_mobile/presentation/forgot_password/view/forgot_password_view.dart';
+import 'package:loza_mobile/presentation/home_layout/view/home_layout_view.dart';
 import 'package:loza_mobile/presentation/login/view/login_view.dart';
 import 'package:loza_mobile/presentation/onboarding/view/onboarding_view.dart';
 import 'package:loza_mobile/presentation/register/view/register_view.dart';
@@ -12,7 +13,7 @@ class Routes {
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
   static const String forgotPasswordRoute = "/forgotPassword";
-  static const String mainRoute = "/main";
+  static const String homeLayoutRoute = "/homeLayout";
   static const String storeDetailsRoute = "/storeDetails";
 }
 
@@ -29,6 +30,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgotPasswordRoute:
         return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
+      case Routes.homeLayoutRoute:
+        return MaterialPageRoute(builder: (_) => const HomeLayoutView());
       default:
         return unDefinedRoute();
     }

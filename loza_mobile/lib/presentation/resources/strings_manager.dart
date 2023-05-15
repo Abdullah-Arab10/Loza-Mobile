@@ -35,6 +35,16 @@ class AppStrings{
   static const invalidPhoneNumber = 'Invalid Phone Number';
   static const invalidAddress = 'Address must not be empty';
   static const invalidDateOfBirth = 'Date Of Birth must not be empty';
+  static const blackFridays = 'Black Fridays';
+  static const saleUp = 'Sale Up';
+  static const to70Off = 'To 70% Off';
+  static const shopNow = 'Shop now';
+  static const arrivals = 'New Arrivals';
+  static const bestSellers = 'Best Sellers';
+  static const  nancyChair =  'Nancy Chair';
+  static const p29_00 = '29.00';
+  static const showAll = 'Show all';
+  static const houndstoothSideZipper = 'Houndstooth Side Zipper';
 
   // error handler
   static const String badRequestError = "bad_request_error";
