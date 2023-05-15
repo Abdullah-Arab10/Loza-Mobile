@@ -45,6 +45,11 @@ class AppStrings{
   static const p29_00 = '29.00';
   static const showAll = 'Show all';
   static const houndstoothSideZipper = 'Houndstooth Side Zipper';
+  static const lamps = 'Lamps';
+  static const justoGravidaSemper = 'Justo gravida semper';
+  static const description = 'Description';
+  static const review = 'Review';
+  static const additionalInformation = 'Additional information';
 
   // error handler
   static const String badRequestError = "bad_request_error";

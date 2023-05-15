@@ -123,7 +123,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 40,
+            height: MediaQuery.of(context).size.height / AppSize.s40,
           ),
           _getSection(AppStrings.arrivals),
           _getNewArrivalsWidget(),

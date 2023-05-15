@@ -5,6 +5,7 @@ import 'package:loza_mobile/presentation/forgot_password/view/forgot_password_vi
 import 'package:loza_mobile/presentation/home_layout/view/home_layout_view.dart';
 import 'package:loza_mobile/presentation/login/view/login_view.dart';
 import 'package:loza_mobile/presentation/onboarding/view/onboarding_view.dart';
+import 'package:loza_mobile/presentation/product_details/view/product_details_view.dart';
 import 'package:loza_mobile/presentation/register/view/register_view.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 
@@ -14,7 +15,7 @@ class Routes {
   static const String registerRoute = "/register";
   static const String forgotPasswordRoute = "/forgotPassword";
   static const String homeLayoutRoute = "/homeLayout";
-  static const String storeDetailsRoute = "/storeDetails";
+  static const String productDetailsRoute = "/productDetails";
 }
 
 class RouteGenerator {
@@ -32,6 +33,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
       case Routes.homeLayoutRoute:
         return MaterialPageRoute(builder: (_) => const HomeLayoutView());
+      case Routes.productDetailsRoute:
+        return MaterialPageRoute(builder: (_) => const ProductDetailsView());
       default:
         return unDefinedRoute();
     }

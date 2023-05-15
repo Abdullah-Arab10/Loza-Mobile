@@ -97,6 +97,10 @@ flutter:
     -  assets/images/HeartBorder.svg
     - assets/images/arrow.svg
     - assets/images/chair.png
+    - assets/images/leftArrow.svg
+    - assets/images/stars.svg
+    - assets/images/justoGravidaSemper.png
+    - assets/images/rectangularArrow.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
