@@ -19,6 +19,10 @@ class ImageAssets{
   static const String heartBorder = '$imagePath/HeartBorder.svg';
   static const String arrow = '$imagePath/arrow.svg';
   static const String chair = '$imagePath/chair.png';
+  static const String leftArrow = '$imagePath/leftArrow.svg';
+  static const String stars = '$imagePath/stars.svg';
+  static const String justoGravidaSemper = '$imagePath/justoGravidaSemper.png';
+  static const String rectangularArrow = '$imagePath/rectangularArrow.png';
 }
 
 class JsonAssets {

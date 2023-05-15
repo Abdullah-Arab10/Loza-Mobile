@@ -70,6 +70,7 @@ ThemeData getApplicationTheme() {
         labelSmall:
             getBlackStyle(color: ColorManager.black, fontSize: FontSize.fs12.sp),
         labelMedium:  getRegularStyle(color: ColorManager.black.withAlpha(100),fontSize: FontSize.fs16.sp),
+      titleLarge: getBlackStyle(color: ColorManager.black,fontSize: FontSize.fs15.sp),
     ),
 
     // input decoration theme (text form field)
