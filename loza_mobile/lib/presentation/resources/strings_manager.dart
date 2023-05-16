@@ -50,6 +50,13 @@ class AppStrings{
   static const description = 'Description';
   static const review = 'Review';
   static const additionalInformation = 'Additional information';
+  static const categories = 'Categories';
+  static const decoration = 'Decoration';
+  static const filters = 'Filters';
+  static const ceiling = 'Ceiling';
+  static const floor = 'Floor';
+  static const furniture = 'Furniture';
+  static const wooden = 'Wooden';
 
   // error handler
   static const String badRequestError = "bad_request_error";

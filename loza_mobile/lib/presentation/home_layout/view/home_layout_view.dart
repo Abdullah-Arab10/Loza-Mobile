@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_best_seller_card.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_button_widget.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_new_arrivals_card.dart';
+import 'package:loza_mobile/presentation/common/widgets/loza_separator_widget.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/font_manager.dart';
@@ -145,7 +146,12 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
         height: MediaQuery.of(context).size.height / AppSize.s3_9,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) => const LoZaNewArrivalsCard(),
+          itemBuilder: (context, index) => LoZaNewArrivalsCard(
+            width: AppSize.s140.w,
+            height: AppSize.s197.h,
+            imageWidth: AppSize.s112.h,
+            imageHeight: AppSize.s112.h,
+          ),
           itemCount: 5,
           separatorBuilder: (BuildContext context, int index) => SizedBox(
             width: AppSize.s6.w,
@@ -195,7 +201,11 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
       ),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemBuilder: (context, index) => const LoZaBestSellerWidget(),
+      itemBuilder: (context, index) => const LoZaBestSellerWidget(
+        image: ImageAssets.mask,
+        text1: AppStrings.justoGravidaSemper,
+        text2: AppStrings.p29_00,
+      ),
       itemCount: 5,
       separatorBuilder: (BuildContext context, int index) => Padding(
         padding: EdgeInsetsDirectional.only(
@@ -203,10 +213,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
           top: AppPadding.p9.h,
           bottom: AppPadding.p9.h,
         ),
-        child: Container(
-          color: ColorManager.grey,
-          height: AppSize.s1.h,
-        ),
+        child: const LoZaSeparatorWidget(),
       ),
     );
   }

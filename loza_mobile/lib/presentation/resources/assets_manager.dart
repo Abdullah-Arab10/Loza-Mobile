@@ -23,6 +23,12 @@ class ImageAssets{
   static const String stars = '$imagePath/stars.svg';
   static const String justoGravidaSemper = '$imagePath/justoGravidaSemper.png';
   static const String rectangularArrow = '$imagePath/rectangularArrow.png';
+  static const String ceiling = '$imagePath/ceiling.png';
+  static const String decoration = '$imagePath/decoration.png';
+  static const String floor = '$imagePath/floor.png';
+  static const String furniture = '$imagePath/Furniture.png';
+  static const String lamps = '$imagePath/Lamps.png';
+  static const String wooden = '$imagePath/Wooden.png';
 }
 
 class JsonAssets {
