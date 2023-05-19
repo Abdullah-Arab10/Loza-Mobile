@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
+import 'package:loza_mobile/presentation/resources/constants.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
 
@@ -42,6 +43,8 @@ class LoZaBestSellerWidget extends StatelessWidget {
                 children: [
                   Text(
                     text1,
+                    maxLines: AppConstants.maxLines,
+                    overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   SizedBox(
@@ -49,6 +52,8 @@ class LoZaBestSellerWidget extends StatelessWidget {
                   ),
                   Text(
                     text2,
+                    maxLines: AppConstants.maxLines,
+                    overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ],

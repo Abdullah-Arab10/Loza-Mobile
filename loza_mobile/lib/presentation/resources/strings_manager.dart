@@ -57,6 +57,9 @@ class AppStrings{
   static const floor = 'Floor';
   static const furniture = 'Furniture';
   static const wooden = 'Wooden';
+  static const reviews = 'Reviews';
+  static const reply = 'Reply';
+  static const addAComment = 'Add a comment ...';
 
   // error handler
   static const String badRequestError = "bad_request_error";

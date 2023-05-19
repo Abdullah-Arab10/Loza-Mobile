@@ -10,6 +10,7 @@ import 'package:loza_mobile/presentation/onboarding/view/onboarding_view.dart';
 import 'package:loza_mobile/presentation/product_details/view/product_details_view.dart';
 import 'package:loza_mobile/presentation/register/view/register_view.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
+import 'package:loza_mobile/presentation/review/view/review_view.dart';
 
 class Routes {
   static const String onBoardingRoute = "/";
@@ -20,6 +21,7 @@ class Routes {
   static const String productDetailsRoute = "/productDetails";
   static const String categoriesRoute = "/categories";
   static const String collectionRoute = "/collection";
+  static const String reviewRoute = "/review";
 }
 
 class RouteGenerator {
@@ -43,6 +45,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const CategoriesView());
       case Routes.collectionRoute:
         return MaterialPageRoute(builder: (_) => const CollectionView());
+      case Routes.reviewRoute:
+        return MaterialPageRoute(builder: (_) => const ReviewView());
       default:
         return unDefinedRoute();
     }

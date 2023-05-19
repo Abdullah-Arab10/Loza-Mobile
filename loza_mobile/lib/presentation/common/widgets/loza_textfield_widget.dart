@@ -16,11 +16,12 @@ class LoZaTextFieldWidget extends StatelessWidget {
   final IconData? suffix;
   final String? initial;
   final bool? enable;
+  final TextStyle? textStyle;
 
   const LoZaTextFieldWidget({
     Key? key,
     required this.label,
-    required this.error,
+    this.error,
     this.controller,
     this.keyboardType,
     this.isPassword = false,
@@ -28,7 +29,8 @@ class LoZaTextFieldWidget extends StatelessWidget {
     this.suffixPressed,
     this.enable,
     this.initial,
-    this.onTap
+    this.onTap,
+    this.textStyle,
   }) : super(key: key);
 
   @override
@@ -42,7 +44,7 @@ class LoZaTextFieldWidget extends StatelessWidget {
         cursorColor: ColorManager.black,
         decoration: InputDecoration(
           labelText: label,
-          labelStyle: Theme.of(context).textTheme.labelMedium,
+          labelStyle: textStyle ?? Theme.of(context).textTheme.labelMedium,
           errorText: error,
           suffixIcon: suffix != null
               ? IconButton(onPressed: suffixPressed, icon: Icon(suffix))

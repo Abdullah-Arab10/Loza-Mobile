@@ -107,6 +107,10 @@ flutter:
     - assets/images/Furniture.png
     - assets/images/Lamps.png
     - assets/images/Wooden.png
+    - assets/images/userpic.png
+    - assets/images/starOfRating.svg
+    - assets/images/plane.svg
+    - assets/images/pencil.svg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
