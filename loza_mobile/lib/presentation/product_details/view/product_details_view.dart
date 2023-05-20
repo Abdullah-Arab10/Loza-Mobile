@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_button_widget.dart';
+import 'package:loza_mobile/presentation/common/widgets/loza_separator_widget.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/constants.dart';
@@ -81,7 +82,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
             SizedBox(
               height: MediaQuery.of(context).size.height / AppSize.s150,
             ),
-            _getSeparator(),
+            const LoZaSeparatorWidget(),
             Padding(
               padding: EdgeInsetsDirectional.only(
                 top: AppPadding.p9.h,
@@ -141,7 +142,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
             Stack(
               alignment: Alignment.bottomCenter,
               children: [
-              _getSeparator(),
+              const LoZaSeparatorWidget(),
               TabBar(
                   indicatorColor: ColorManager.black,
                   labelStyle: Theme.of(context).textTheme.titleLarge,
@@ -184,14 +185,6 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _getSeparator() {
-    return Container(
-      width: double.infinity,
-      height: AppSize.s1.h,
-      color: ColorManager.veryLightGrey,
     );
   }
 }

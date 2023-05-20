@@ -1,3 +1,14 @@
+// categories model
+
+class CategoriesObject{
+  bool isArrow;
+  String imagePath;
+  String text1;
+  String text2;
+
+  CategoriesObject(this.isArrow,this.imagePath,this.text1,this.text2);
+}
+
 // login models
 
 class Data{

@@ -101,6 +101,12 @@ flutter:
     - assets/images/stars.svg
     - assets/images/justoGravidaSemper.png
     - assets/images/rectangularArrow.png
+    - assets/images/ceiling.png
+    - assets/images/decoration.png
+    - assets/images/floor.png
+    - assets/images/Furniture.png
+    - assets/images/Lamps.png
+    - assets/images/Wooden.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

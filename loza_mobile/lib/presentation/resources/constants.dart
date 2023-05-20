@@ -6,4 +6,5 @@ static const int secondBlackCircle = 2;
 static const int thirdBlackCircle = 3;
 static const int withAlpha = 100;
 static const int lengthOfTabs = 3;
+static const int itemCount = 6;
 }

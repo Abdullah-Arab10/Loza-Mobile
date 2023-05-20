@@ -15,7 +15,7 @@ ThemeData getApplicationTheme() {
     primaryColorLight: ColorManager.lightGrey,
     primaryColorDark: ColorManager.grey,
     disabledColor: ColorManager.grey1,
-    splashColor: ColorManager.grey1,
+    splashColor: ColorManager.veryLightGrey,
     // ripple effect color
 
     // cardView theme
