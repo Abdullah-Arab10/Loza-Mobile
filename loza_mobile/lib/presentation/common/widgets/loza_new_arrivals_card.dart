@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
+import 'package:loza_mobile/presentation/resources/constants.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
 
@@ -55,10 +56,14 @@ class LoZaNewArrivalsCard extends StatelessWidget {
             ),
             Text(
              AppStrings.nancyChair,
+              maxLines: AppConstants.maxLines,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.titleSmall,
             ),
             Text(
               AppStrings.p29_00,
+              maxLines: AppConstants.maxLines,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],

@@ -50,6 +50,7 @@ ThemeData getApplicationTheme() {
     )),
 
     textTheme: TextTheme(
+      displaySmall: getHeavyStyle(color: ColorManager.black, fontSize: FontSize.fs30.sp),
       labelLarge: getBlackStyle(color: ColorManager.black, fontSize: FontSize.fs25.sp),
         displayLarge:
             getBlackStyle(color: ColorManager.black, fontSize: FontSize.fs33.sp),
