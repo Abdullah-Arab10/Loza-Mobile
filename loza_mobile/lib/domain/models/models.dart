@@ -1,5 +1,7 @@
 // categories model
 
+import 'package:flutter/material.dart';
+
 class CategoriesObject{
   bool isArrow;
   String imagePath;
@@ -31,4 +33,14 @@ class Authentication{
   String totalCount;
 
   Authentication(this.statusCode,this.isError,this.data,this.error,this.totalCount);
+}
+
+// Filters model
+
+class FiltersObject{
+  double min;
+  double max;
+  RangeValues rangeValues;
+
+  FiltersObject(this.min,this.max,this.rangeValues);
 }

@@ -60,6 +60,13 @@ class AppStrings{
   static const reviews = 'Reviews';
   static const reply = 'Reply';
   static const addAComment = 'Add a comment ...';
+  static const filterByPrice = 'Filter By Price';
+  static const brand = 'Brand';
+  static const cancel = 'Cancel';
+  static const submit = 'Submit';
+  static const selectBrand = 'Select Brand';
+  static const colors = 'Colors';
+  static const apply = 'Apply';
 
   // error handler
   static const String badRequestError = "bad_request_error";

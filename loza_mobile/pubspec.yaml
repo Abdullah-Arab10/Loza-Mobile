@@ -82,7 +82,7 @@ flutter:
     - assets/images/onboarding_photo3.png
     - assets/images/onboarding_photo4.png
     - assets/images/loza_logo.png
-    - assets/images/Close.png
+    - assets/images/Close.svg
     - assets/json/loading.json
     - assets/json/error.json
     - assets/json/error1.json
@@ -111,6 +111,7 @@ flutter:
     - assets/images/starOfRating.svg
     - assets/images/plane.svg
     - assets/images/pencil.svg
+    - assets/images/hollow_circle.svg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

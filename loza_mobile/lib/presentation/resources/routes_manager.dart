@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loza_mobile/app/di.dart';
 import 'package:loza_mobile/presentation/categories/view/categories_view.dart';
 import 'package:loza_mobile/presentation/collection/view/collection_view.dart';
+import 'package:loza_mobile/presentation/filters/view/filters_view.dart';
 import 'package:loza_mobile/presentation/forgot_password/view/forgot_password_view.dart';
 import 'package:loza_mobile/presentation/home_layout/view/home_layout_view.dart';
 import 'package:loza_mobile/presentation/login/view/login_view.dart';
@@ -22,6 +23,7 @@ class Routes {
   static const String categoriesRoute = "/categories";
   static const String collectionRoute = "/collection";
   static const String reviewRoute = "/review";
+  static const String filtersRoute = "filters";
 }
 
 class RouteGenerator {
@@ -47,6 +49,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const CollectionView());
       case Routes.reviewRoute:
         return MaterialPageRoute(builder: (_) => const ReviewView());
+      case Routes.filtersRoute:
+        return MaterialPageRoute(builder: (_) => const FiltersView());
       default:
         return unDefinedRoute();
     }
