@@ -25,7 +25,9 @@ class LoZaButtonWidget extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-
+        shape: const ContinuousRectangleBorder(
+          borderRadius: BorderRadius.zero
+        ),
         backgroundColor: color ?? ColorManager.black,
       ),
       child: Text(

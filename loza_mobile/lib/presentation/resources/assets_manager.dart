@@ -9,7 +9,7 @@ class ImageAssets{
   static const String onBoardingPhoto3 = '$imagePath/onboarding_photo3.png';
   static const String onBoardingPhoto4 = '$imagePath/onboarding_photo4.png';
   static const String lozaLogo = '$imagePath/loza_logo.png';
-  static const String close = '$imagePath/Close.png';
+  static const String close = '$imagePath/Close.svg';
   static const String favouriteIcon = '$imagePath/favouriteIcon.svg';
   static const String maskCopy = '$imagePath/maskCopy.png';
   static const String menu = '$imagePath/menu.svg';
@@ -33,6 +33,7 @@ class ImageAssets{
   static const String starOfRating = '$imagePath/starOfRating.svg';
   static const String plane = '$imagePath/plane.svg';
   static const String pencil = '$imagePath/pencil.svg';
+  static const hollowCircle = '$imagePath/hollow_circle.svg';
 }
 
 class JsonAssets {
