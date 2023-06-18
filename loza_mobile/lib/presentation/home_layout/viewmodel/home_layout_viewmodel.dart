@@ -1,18 +1,14 @@
 import 'package:loza_mobile/presentation/base/base_view_model.dart';
 
-class HomeLayoutViewModel extends BaseViewModel{
+class HomeLayoutViewModel extends BaseViewModel
+    with HomeLayoutViewModelInputs, HomeLayoutViewModelOutputs {
   @override
-  void dispose() {
-
-  }
+  void dispose() {}
 
   @override
-  void start() {
-
-  }
-
+  void start() {}
 }
 
-class HomeLayoutViewModelInputs{}
+class HomeLayoutViewModelInputs {}
 
-class HomeLayoutViewModelOutputs{}
+class HomeLayoutViewModelOutputs {}

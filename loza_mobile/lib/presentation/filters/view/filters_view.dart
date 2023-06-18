@@ -229,7 +229,7 @@ class _FiltersViewState extends State<FiltersView> {
               alignment: Alignment.bottomCenter,
               child: SizedBox(
                 width: double.infinity,
-                height: AppSize.s80.h,
+                height: AppSize.s60.h,
                 child: LoZaButtonWidget(
                   text: AppStrings.apply,
                   toUpperCase: true,

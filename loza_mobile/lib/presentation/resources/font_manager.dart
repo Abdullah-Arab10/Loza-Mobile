@@ -23,6 +23,7 @@ class FontSize {
   static const double fs15 = 15.0;
   static const double fs17 = 17.0;
   static const double fs18 = 18.0;
+  static const double fs19 = 19.0;
   static const double fs20 = 20.0;
   static const double fs22 = 22.0;
   static const double fs24 = 24.0;
