@@ -44,3 +44,14 @@ class FiltersObject{
 
   FiltersObject(this.min,this.max,this.rangeValues);
 }
+
+// Shopping model
+
+class ShoppingCartObject{
+
+  String image;
+  String text1;
+  String text2;
+
+  ShoppingCartObject(this.image,this.text1,this.text2);
+}

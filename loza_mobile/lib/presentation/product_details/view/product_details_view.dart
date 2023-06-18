@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_button_widget.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_separator_widget.dart';
+import 'package:loza_mobile/presentation/product_details/viewmodel/product_details_viewmodel.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/constants.dart';
@@ -19,6 +20,19 @@ class ProductDetailsView extends StatefulWidget {
 }
 
 class _ProductDetailsViewState extends State<ProductDetailsView> {
+
+  final ProductDetailsViewModel _viewModel = ProductDetailsViewModel();
+
+  _bind(){
+    _viewModel.start();
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,10 +59,15 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                 children: [
                   Align(
                     alignment: Alignment.topLeft,
-                    child: SvgPicture.asset(
-                      ImageAssets.leftArrow,
-                      width: AppSize.s26.w,
-                      height: AppSize.s26.w,
+                    child: InkWell(
+                      onTap: () {
+                        //Navigator.pop(context);
+                      },
+                      child: SvgPicture.asset(
+                        ImageAssets.leftArrow,
+                        width: AppSize.s26.w,
+                        height: AppSize.s26.w,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -139,9 +158,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
               width: double.infinity,
               fit: BoxFit.cover,
             ),
-            Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
+            Stack(alignment: Alignment.bottomCenter, children: [
               const LoZaSeparatorWidget(),
               TabBar(
                   indicatorColor: ColorManager.black,
@@ -182,6 +199,38 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                 ],
               ),
             ),
+            Padding(
+              padding: EdgeInsetsDirectional.only(
+                top: AppPadding.p18.h,
+                bottom: AppPadding.p18.h,
+                start: AppPadding.p15.w,
+                end: AppPadding.p15.w,
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      height: AppSize.s38.h,
+                      child: LoZaButtonWidget(
+                        onPressed: () {
+                          _viewModel.showAdditionalDetails(context);
+                        },
+                        text: 'add to cart',
+                        toUpperCase: true,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / AppSize.s30,
+                  ),
+                  Image.asset(
+                    ImageAssets.rectangularArrow,
+                    width: AppSize.s40.h,
+                    height: AppSize.s40.h,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -190,6 +239,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
 }
 
 class DescriptionPage extends StatelessWidget {
+
   const DescriptionPage({Key? key}) : super(key: key);
 
   @override
@@ -256,34 +306,6 @@ class DescriptionPage extends StatelessWidget {
                   ],
                 ),
               ],
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.only(
-                top: AppPadding.p18.h,
-                bottom: AppPadding.p18.h,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: AppSize.s38.h,
-                      child: LoZaButtonWidget(
-                        onPressed: (){},
-                        text: 'add to cart',
-                        toUpperCase: true,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / AppSize.s30,
-                  ),
-                  Image.asset(
-                    ImageAssets.rectangularArrow,
-                    width: AppSize.s40.h,
-                    height: AppSize.s40.h,
-                  ),
-                ],
-              ),
             ),
           ],
         ),

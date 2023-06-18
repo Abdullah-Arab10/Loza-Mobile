@@ -70,6 +70,10 @@ class AppStrings {
   static const selectBrand = 'select_brand';
   static const colors = 'colors';
   static const apply = 'apply';
+  static const edit = 'Edit';
+  static const shoppingCart = 'Shopping cart';
+  static const items = 'items';
+  static const checkout = 'Checkout';
 
   // error handler
   static const String badRequestError = "bad_request_error";

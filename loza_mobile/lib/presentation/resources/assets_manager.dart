@@ -33,7 +33,9 @@ class ImageAssets{
   static const String starOfRating = '$imagePath/starOfRating.svg';
   static const String plane = '$imagePath/plane.svg';
   static const String pencil = '$imagePath/pencil.svg';
-  static const hollowCircle = '$imagePath/hollow_circle.svg';
+  static const String hollowCircle = '$imagePath/hollow_circle.svg';
+  static const String delete = '$imagePath/delete.svg';
+  static const String shop = '$imagePath/shop.png';
 }
 
 class JsonAssets {

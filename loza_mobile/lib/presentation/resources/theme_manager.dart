@@ -64,7 +64,7 @@ ThemeData getApplicationTheme() {
             getHeavyStyle(color: ColorManager.white, fontSize: FontSize.fs15.sp),
         titleSmall:
             getHeavyStyle(color: ColorManager.black, fontSize: FontSize.fs15.sp),
-        bodyLarge: getBookStyle(color: ColorManager.black.withAlpha(100),fontSize: FontSize.fs13.sp),
+        bodyLarge: getBookStyle(color: ColorManager.black.withAlpha(100),fontSize: FontSize.fs14.sp),
         bodySmall: getRegularStyle(color: ColorManager.black,fontSize: FontSize.fs16.sp),
         bodyMedium:
             getBookStyle(color: ColorManager.black, fontSize: FontSize.fs16.sp),

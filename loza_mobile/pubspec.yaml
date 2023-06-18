@@ -48,6 +48,7 @@ dependencies:
   rxdart: ^0.27.7
   email_validator: '^2.1.16'
   intl: ^0.18.1
+  sqflite: ^2.2.8+4
 
 dev_dependencies:
   flutter_test:
@@ -112,6 +113,8 @@ flutter:
     - assets/images/plane.svg
     - assets/images/pencil.svg
     - assets/images/hollow_circle.svg
+    - assets/images/delete.svg
+    - assets/images/shop.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
