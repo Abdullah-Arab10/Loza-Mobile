@@ -74,6 +74,7 @@ class AppStrings {
   static const shoppingCart = 'Shopping cart';
   static const items = 'items';
   static const checkout = 'Checkout';
+  static const myAccount = 'My Account';
 
   // error handler
   static const String badRequestError = "bad_request_error";

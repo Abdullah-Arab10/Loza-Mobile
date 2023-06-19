@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.shoppingCartRoute,
+          initialRoute: Routes.myAccountRoute,
           theme: getApplicationTheme(),
         );
       },
