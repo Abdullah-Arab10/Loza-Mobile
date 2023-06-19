@@ -7,6 +7,7 @@ import 'package:loza_mobile/presentation/filters/view/filters_view.dart';
 import 'package:loza_mobile/presentation/forgot_password/view/forgot_password_view.dart';
 import 'package:loza_mobile/presentation/home_layout/view/home_layout_view.dart';
 import 'package:loza_mobile/presentation/login/view/login_view.dart';
+import 'package:loza_mobile/presentation/my_account/view/my_account_view.dart';
 import 'package:loza_mobile/presentation/onboarding/view/onboarding_view.dart';
 import 'package:loza_mobile/presentation/product_details/view/product_details_view.dart';
 import 'package:loza_mobile/presentation/register/view/register_view.dart';
@@ -26,6 +27,7 @@ class Routes {
   static const String reviewRoute = "/review";
   static const String filtersRoute = "filters";
   static const String shoppingCartRoute = "shoppingCart";
+  static const String myAccountRoute = "myAccount";
 }
 
 class RouteGenerator {
@@ -55,6 +57,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const FiltersView());
       case Routes.shoppingCartRoute:
         return MaterialPageRoute(builder: (_) => const ShoppingCartView());
+      case Routes.myAccountRoute:
+        return MaterialPageRoute(builder: (_) => const MyAccountView());
       default:
         return unDefinedRoute();
     }

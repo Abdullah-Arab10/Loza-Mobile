@@ -5,8 +5,10 @@ import 'package:loza_mobile/presentation/common/widgets/loza_best_seller_card.da
 import 'package:loza_mobile/presentation/common/widgets/loza_button_widget.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_new_arrivals_card.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_separator_widget.dart';
+import 'package:loza_mobile/presentation/home_layout/viewmodel/home_layout_viewmodel.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
+import 'package:loza_mobile/presentation/resources/constants.dart';
 import 'package:loza_mobile/presentation/resources/font_manager.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/resources/styles_manager.dart';
@@ -20,11 +22,112 @@ class HomeLayoutView extends StatefulWidget {
 }
 
 class _HomeLayoutViewState extends State<HomeLayoutView> {
+
+  final HomeLayoutViewModel _viewModel = HomeLayoutViewModel();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: ColorManager.white,
+        drawer: _getDrawerWidget(),
         body: _getContentWidget());
+  }
+
+  Widget _getDrawerWidget(){
+    return Drawer(
+      backgroundColor: ColorManager.white,
+      elevation: AppConstants.elevation,
+      child: Padding(
+        padding: EdgeInsetsDirectional.only(
+          top: AppSize.s30.h,
+          end: AppSize.s18.w
+        ),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: SvgPicture.asset(
+                ImageAssets.close,
+                width: AppSize.s28.w,
+                height: AppSize.s28.w,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.only(
+                top: AppSize.s44.h,
+                start: AppSize.s28.w,
+              ),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: AppSize.s30.w,
+                    backgroundImage: const AssetImage(
+                      ImageAssets.personalPhoto,
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / AppSize.s30,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Garrett Miller',
+                        maxLines: AppConstants.maxLines,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / AppSize.s309,
+                      ),
+                      Text(
+                        'samir.runte@newell.org',
+                        maxLines: AppConstants.maxLines,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / AppSize.s14,
+            ),
+            Column(
+              children: List.generate(AppConstants.itemCount, (index) {
+                return Padding(
+                  padding: EdgeInsetsDirectional.only(
+                    start: AppSize.s36.w,
+                    top: AppSize.s30.h,
+                  ),
+                  child: _getCardsOfDrawer(_viewModel.drawer[index], _viewModel.icons[index]),
+                );
+              }),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _getCardsOfDrawer(String nameOfCard, String icon){
+    return Row(
+      children: [
+        SvgPicture.asset(
+            icon
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width / AppSize.s30,
+        ),
+        Text(
+            nameOfCard,
+          style: getRegularStyle(
+              color: ColorManager.black, fontSize: FontSize.fs18.sp),
+        ),
+      ],
+    );
   }
 
   Widget _getContentWidget() {
@@ -46,10 +149,19 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
                       Expanded(
                         child: Align(
                           alignment: Alignment.topLeft,
-                          child: SvgPicture.asset(
-                            ImageAssets.menu,
-                            width: AppSize.s26.w,
-                            height: AppSize.s26.w,
+                          child: Builder(
+                            builder: (context) {
+                              return InkWell(
+                                onTap: (){
+                                  Scaffold.of(context).openDrawer();
+                                },
+                                child: SvgPicture.asset(
+                                  ImageAssets.menu,
+                                  width: AppSize.s26.w,
+                                  height: AppSize.s26.w,
+                                ),
+                              );
+                            }
                           ),
                         ),
                       ),

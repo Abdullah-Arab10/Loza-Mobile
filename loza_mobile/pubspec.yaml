@@ -115,6 +115,15 @@ flutter:
     - assets/images/hollow_circle.svg
     - assets/images/delete.svg
     - assets/images/shop.png
+    - assets/images/arrowOfAccount.svg
+    - assets/images/personalPhoto.png
+    - assets/images/editorsPicks.svg
+    - assets/images/home.svg
+    - assets/images/newCollections.svg
+    - assets/images/notifications.svg
+    - assets/images/settings.svg
+    - assets/images/topDeals.svg
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

@@ -36,6 +36,14 @@ class ImageAssets{
   static const String hollowCircle = '$imagePath/hollow_circle.svg';
   static const String delete = '$imagePath/delete.svg';
   static const String shop = '$imagePath/shop.png';
+  static const String arrowOfAccount = '$imagePath/arrowOfAccount.svg';
+  static const String personalPhoto = '$imagePath/personalPhoto.png';
+  static const String editorsPicks = '$imagePath/editorsPicks.svg';
+  static const String home = '$imagePath/home.svg';
+  static const String notifications = '$imagePath/notifications.svg';
+  static const String settings = '$imagePath/settings.svg';
+  static const String topDeals = '$imagePath/topDeals.svg';
+  static const String newCollections = '$imagePath/newCollections.svg';
 }
 
 class JsonAssets {

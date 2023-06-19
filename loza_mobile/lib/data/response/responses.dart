@@ -59,3 +59,14 @@ class AuthenticationResponse extends BaseResponse {
   // to json
   Map<String, dynamic> toJson() => _$AuthenticationResponseToJson(this);
 }
+/*
+* {
+*  "statusCode" : 200,
+*  "data" : {
+*   "token" : "",
+*  },
+*  "error" : {
+*   "message" : "" ,
+* }
+* }
+*/
