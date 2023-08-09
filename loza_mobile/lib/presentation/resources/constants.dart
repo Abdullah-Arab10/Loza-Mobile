@@ -10,4 +10,5 @@ static const int lengthOfTabs = 3;
 static const int itemCount = 6;
 static const int circleAvatarCount = 7;
 static const int maxLines = 1;
+static const double elevation = 0.0;
 }

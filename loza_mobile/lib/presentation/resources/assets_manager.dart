@@ -2,6 +2,7 @@ const String imagePath = 'assets/images';
 const String jsonPath = "assets/json";
 
 class ImageAssets{
+  static const String splashLogo = "$imagePath/splash_logo.png";
   static const String onBoardingPhoto1 = '$imagePath/onboarding_photo1.png';
   static const String ovalCopy = '$imagePath/oval_copy.svg';
   static const String ovalCopy2 = '$imagePath/oval_copy2.svg';
@@ -36,6 +37,14 @@ class ImageAssets{
   static const String hollowCircle = '$imagePath/hollow_circle.svg';
   static const String delete = '$imagePath/delete.svg';
   static const String shop = '$imagePath/shop.png';
+  static const String arrowOfAccount = '$imagePath/arrowOfAccount.svg';
+  static const String personalPhoto = '$imagePath/personalPhoto.png';
+  static const String editorsPicks = '$imagePath/editorsPicks.svg';
+  static const String home = '$imagePath/home.svg';
+  static const String notifications = '$imagePath/notifications.svg';
+  static const String settings = '$imagePath/settings.svg';
+  static const String topDeals = '$imagePath/topDeals.svg';
+  static const String newCollections = '$imagePath/newCollections.svg';
 }
 
 class JsonAssets {

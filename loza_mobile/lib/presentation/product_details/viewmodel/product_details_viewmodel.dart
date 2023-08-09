@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:loza_mobile/presentation/base/base_view_model.dart';
+
 import 'package:loza_mobile/presentation/product_details/view/add_details_view.dart';
 
-class ProductDetailsViewModel extends BaseViewModel
-    with ProductDetailsViewModelInputs, ProductDetailsViewModelOutputs {
+class ProductDetailsViewModel extends
+     ProductDetailsViewModelInputs with ProductDetailsViewModelOutputs {
 
   @override
   void dispose() {}

@@ -10,8 +10,8 @@ extension NonNullString on String? {
   }
 }
 
-extension NonNullInteger on int? {
-  int orZero() {
+extension NonNullInteger on dynamic {
+  dynamic orZero() {
     if (this == null) {
       return Constants.zero;
     } else {

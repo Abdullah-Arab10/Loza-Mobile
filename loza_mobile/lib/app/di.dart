@@ -7,8 +7,10 @@ import 'package:loza_mobile/data/network/network_info.dart';
 import 'package:loza_mobile/data/data_source/remote_data_source.dart';
 import 'package:loza_mobile/data/repository/repository_impl.dart';
 import 'package:loza_mobile/domain/repository/repository.dart';
+import 'package:loza_mobile/domain/usecase/home_usecase.dart';
 import 'package:loza_mobile/domain/usecase/login_usecase.dart';
 import 'package:loza_mobile/domain/usecase/register_usecase.dart';
+import 'package:loza_mobile/presentation/home_layout/viewmodel/home_layout_viewmodel.dart';
 import 'package:loza_mobile/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:loza_mobile/presentation/register/viewmodel/register_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -66,5 +68,12 @@ initRegisterModule() {
         .registerFactory<RegisterUseCase>(() => RegisterUseCase(instance()));
     instance.registerFactory<RegisterViewModel>(
             () => RegisterViewModel(instance()));
+  }
+}
+
+initHomeModule() {
+  if (!GetIt.I.isRegistered<HomeUseCase>()) {
+    instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
+    instance.registerFactory<HomeLayoutViewModel>(() => HomeLayoutViewModel(instance()));
   }
 }

@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:loza_mobile/presentation/base/base_view_model.dart';
 
-class MultiSelectViewModel extends BaseViewModel with MultiSelectViewModelInputs, MultiSelectViewModelOutputs{
+
+class MultiSelectViewModel extends   MultiSelectViewModelInputs with MultiSelectViewModelOutputs{
 
   final StreamController _isSelectedStreamController = StreamController<List<String>>();
 

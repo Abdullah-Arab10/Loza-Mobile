@@ -1,7 +1,7 @@
-import 'package:loza_mobile/presentation/base/base_view_model.dart';
 
-class ShoppingCartViewModel extends BaseViewModel
-    with ShoppingCartViewModelInputs, ShoppingCartViewModelOutputs {
+
+class ShoppingCartViewModel extends
+     ShoppingCartViewModelInputs with ShoppingCartViewModelOutputs {
 
   @override
   void dispose() {}

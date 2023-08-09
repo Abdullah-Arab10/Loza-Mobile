@@ -1,13 +1,14 @@
 import 'dart:async';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:loza_mobile/app/functions.dart';
 import 'package:loza_mobile/domain/usecase/register_usecase.dart';
-import 'package:loza_mobile/presentation/base/base_view_model.dart';
+
 import 'package:loza_mobile/presentation/common/freezed/freezed_data_classes.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 
-class RegisterViewModel extends BaseViewModel
-    with RegisterViewModelInput, RegisterViewModelOutput {
+class RegisterViewModel extends RegisterViewModelInput
+    with RegisterViewModelOutput {
   StreamController firstNameStreamController =
       StreamController<String>.broadcast();
   StreamController lastNameStreamController =
@@ -82,7 +83,11 @@ class RegisterViewModel extends BaseViewModel
             registerObject.phoneNumber,
             registerObject.address,
             registerObject.dateOfBirth)))
-        .fold((failure) => {}, (data) {});
+        .fold((failure) {
+          isUserRegisteredInSuccessfullyStreamController.add(false);
+    }, (data) {
+      isUserRegisteredInSuccessfullyStreamController.add(true);
+    });
   }
 
   @override
@@ -183,8 +188,8 @@ class RegisterViewModel extends BaseViewModel
       .map((firstName) => _isFirstNameValid(firstName));
 
   @override
-  Stream<String?> get outputErrorFirstName => outputIsFirstNameValid
-      .map((isFirstName) => isFirstName ? null : AppStrings.invalidFirstName);
+  Stream<String?> get outputErrorFirstName => outputIsFirstNameValid.map(
+      (isFirstName) => isFirstName ? null : AppStrings.invalidFirstName.tr());
 
   @override
   Stream<bool> get outputIsEmailValid =>
@@ -192,23 +197,26 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outputErrorEmail => outputIsEmailValid
-      .map((isEmailValid) => isEmailValid ? null : AppStrings.invalidEmail);
+      .map((isEmailValid) => isEmailValid ? null : AppStrings.emailError.tr());
 
   @override
   Stream<bool> get outputIsLastNameValid => lastNameStreamController.stream
       .map((lastName) => _isLastNameValid(lastName));
 
   @override
-  Stream<String?> get outputErrorLastName => outputIsLastNameValid.map(
-      (isLastNameValid) => isLastNameValid ? null : AppStrings.invalidLastName);
+  Stream<String?> get outputErrorLastName =>
+      outputIsLastNameValid.map((isLastNameValid) =>
+          isLastNameValid ? null : AppStrings.invalidLastName.tr());
 
   @override
   Stream<bool> get outputIsPasswordValid => passwordStreamController.stream
       .map((password) => _isPasswordValid(password));
 
   @override
-  Stream<String?> get outputErrorPassword => outputIsPasswordValid.map(
-      (isPasswordValid) => isPasswordValid ? null : AppStrings.invalidPassword);
+  Stream<String?> get outputErrorPassword =>
+      outputIsPasswordValid.map((isPasswordValid) => isPasswordValid
+          ? null
+          : '${AppStrings.passwordError1.tr()}\n${AppStrings.passwordError2.tr()}');
 
   @override
   Stream<bool> get outputPhoneNumber => phoneNumberStreamController.stream
@@ -216,16 +224,18 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outputErrorPhoneNumber =>
-      outputPhoneNumber.map((isPhoneNumberValid) =>
-          isPhoneNumberValid ? null : AppStrings.invalidPhoneNumber);
+      outputPhoneNumber.map((isPhoneNumberValid) => isPhoneNumberValid
+          ? null
+          : '${AppStrings.invalidPhoneNumber.tr()}\n${AppStrings.characters.tr()}');
 
   @override
   Stream<bool> get outputAddress =>
       addressStreamController.stream.map((address) => _isAddressValid(address));
 
   @override
-  Stream<String?> get outputErrorAddress => outputAddress.map(
-      (isAddressValid) => isAddressValid ? null : AppStrings.invalidAddress);
+  Stream<String?> get outputErrorAddress =>
+      outputAddress.map((isAddressValid) =>
+          isAddressValid ? null : AppStrings.invalidAddress.tr());
 
   @override
   Stream<bool> get outputDateOfBirth => dateOfBirthStreamController.stream
@@ -234,7 +244,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   Stream<String?> get outputErrorDateOfBirth =>
       outputDateOfBirth.map((isDateOfBirthValid) =>
-          isDateOfBirthValid ? null : AppStrings.invalidDateOfBirth);
+          isDateOfBirthValid ? null : AppStrings.invalidDateOfBirth.tr());
 
   @override
   Stream<bool> get outputAreAllInputsValid =>
@@ -243,17 +253,18 @@ class RegisterViewModel extends BaseViewModel
   // --  private functions
 
   bool _isFirstNameValid(String firstName) {
-    return firstName.length >= 6;
+    return firstName.length >= 3;
   }
 
   bool _isLastNameValid(String lastName) {
-    return lastName.length >= 6;
+    return lastName.length >= 3;
   }
 
   bool _isPasswordValid(String password) {
     if (password.isNotEmpty &&
         password.length >= 6 &&
         isDigitPasswordValid(password) &&
+        isSymbolPasswordValid(password) &&
         isUpperCasePasswordValid(password) &&
         isLowerCasePasswordValid(password)) {
       return true;
@@ -271,11 +282,11 @@ class RegisterViewModel extends BaseViewModel
   }
 
   bool _isPhoneNumberValid(String phoneNumber) {
-    return phoneNumber.length >= 6 && phoneNumber.isNotEmpty;
+    return phoneNumber.length >= 10 && phoneNumber.isNotEmpty;
   }
 
   bool _isAddressValid(String address) {
-    return address.isNotEmpty;
+    return address.length >= 5 && address.isNotEmpty;
   }
 
   bool _isDateOfBirthValid(String dateOfBirth) {

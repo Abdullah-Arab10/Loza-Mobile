@@ -6,6 +6,8 @@ abstract class RemoteDataSource {
   Future<AuthenticationResponse> login(LoginRequest loginRequest);
 
   Future<AuthenticationResponse> register(RegisterRequest registerRequest);
+
+  Future<HomeResponse> getNewestData(int userId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -31,4 +33,11 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         registerRequest.address,
         registerRequest.dateOfBirth);
   }
+
+  @override
+  Future<HomeResponse> getNewestData(int userId) async{
+    return await _appServiceClient.getNewestData(userId);
+  }
+
+
 }

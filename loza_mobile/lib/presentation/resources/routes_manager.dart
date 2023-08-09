@@ -7,15 +7,18 @@ import 'package:loza_mobile/presentation/filters/view/filters_view.dart';
 import 'package:loza_mobile/presentation/forgot_password/view/forgot_password_view.dart';
 import 'package:loza_mobile/presentation/home_layout/view/home_layout_view.dart';
 import 'package:loza_mobile/presentation/login/view/login_view.dart';
+import 'package:loza_mobile/presentation/my_account/view/my_account_view.dart';
 import 'package:loza_mobile/presentation/onboarding/view/onboarding_view.dart';
 import 'package:loza_mobile/presentation/product_details/view/product_details_view.dart';
 import 'package:loza_mobile/presentation/register/view/register_view.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/review/view/review_view.dart';
 import 'package:loza_mobile/presentation/shopping_cart/view/shopping_cart_view.dart';
+import 'package:loza_mobile/presentation/splash/splash_view.dart';
 
 class Routes {
-  static const String onBoardingRoute = "/";
+  static const String splashRoute = "/";
+  static const String onBoardingRoute = "/onBoarding";
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
   static const String forgotPasswordRoute = "/forgotPassword";
@@ -26,11 +29,14 @@ class Routes {
   static const String reviewRoute = "/review";
   static const String filtersRoute = "filters";
   static const String shoppingCartRoute = "shoppingCart";
+  static const String myAccountRoute = "myAccount";
 }
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
+      case Routes.splashRoute:
+        return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
       case Routes.loginRoute:
@@ -42,6 +48,7 @@ class RouteGenerator {
       case Routes.forgotPasswordRoute:
         return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
       case Routes.homeLayoutRoute:
+        initHomeModule();
         return MaterialPageRoute(builder: (_) => const HomeLayoutView());
       case Routes.productDetailsRoute:
         return MaterialPageRoute(builder: (_) => const ProductDetailsView());
@@ -55,6 +62,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const FiltersView());
       case Routes.shoppingCartRoute:
         return MaterialPageRoute(builder: (_) => const ShoppingCartView());
+      case Routes.myAccountRoute:
+        return MaterialPageRoute(builder: (_) => const MyAccountView());
       default:
         return unDefinedRoute();
     }

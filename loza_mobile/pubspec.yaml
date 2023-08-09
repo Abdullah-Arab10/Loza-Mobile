@@ -47,8 +47,11 @@ dependencies:
   lottie: ^2.3.2
   rxdart: ^0.27.7
   email_validator: '^2.1.16'
-  intl: ^0.18.1
-  sqflite: ^2.2.8+4
+  intl: ^0.17.0
+  jwt_decoder: ^2.0.1
+  fluttertoast: ^8.2.2
+  easy_localization: ^3.0.2
+  flutter_phoenix: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +79,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/splash_logo.png
     - assets/images/onboarding_photo1.png
     - assets/images/oval_copy.svg
     - assets/images/oval_copy2.svg
@@ -115,6 +119,17 @@ flutter:
     - assets/images/hollow_circle.svg
     - assets/images/delete.svg
     - assets/images/shop.png
+    - assets/images/arrowOfAccount.svg
+    - assets/images/personalPhoto.png
+    - assets/images/editorsPicks.svg
+    - assets/images/home.svg
+    - assets/images/newCollections.svg
+    - assets/images/notifications.svg
+    - assets/images/settings.svg
+    - assets/images/topDeals.svg
+    - assets/translations/ar-SA.json
+    - assets/translations/en-US.json
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

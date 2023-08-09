@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://loza-api.azurewebsites.net';
+    baseUrl ??= 'http://10.0.2.2:5052';
   }
 
   final Dio _dio;
@@ -40,7 +40,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/Auth/Login',
+              '/api/Auth/Login',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -79,12 +79,46 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/Auth/Register',
+              '/api/Auth/Register',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = AuthenticationResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  Map<int, bool> favorites = {};
+
+  @override
+  Future<HomeResponse> getNewestData(int userId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<HomeResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/Product/Newest?userId=$userId',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = HomeResponse.fromJson(_result.data!);
+
+    if(value.dataResponse != null && value.dataResponse?.newest != null){
+      for (var element in value.dataResponse!.newest!) {
+        favorites.addAll({
+          element['id'] : element['isFavorite'],
+        });
+      }
+    }
+
     return value;
   }
 
