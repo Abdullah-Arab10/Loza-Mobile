@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:email_validator/email_validator.dart';
+import 'package:loza_mobile/app/app_prefs.dart';
+import 'package:loza_mobile/app/di.dart';
 import 'package:loza_mobile/app/functions.dart';
 import 'package:loza_mobile/domain/usecase/login_usecase.dart';
-import 'package:loza_mobile/presentation/base/base_view_model.dart';
+import 'package:loza_mobile/presentation/base/base_viewmodel.dart';
 import 'package:loza_mobile/presentation/common/freezed/freezed_data_classes.dart';
 
 class LoginViewModel extends BaseViewModel
@@ -13,6 +15,11 @@ class LoginViewModel extends BaseViewModel
       StreamController<String>.broadcast();
   final StreamController _areAllInputsValidStreamController =
       StreamController<void>.broadcast();
+
+  StreamController isUserLoggedInSuccessfullyStreamController =
+      StreamController<int>();
+
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   var loginObject = LoginObject("", "");
 
@@ -25,12 +32,11 @@ class LoginViewModel extends BaseViewModel
     _emailStreamController.close();
     _passwordStreamController.close();
     _areAllInputsValidStreamController.close();
+    isUserLoggedInSuccessfullyStreamController.close();
   }
 
   @override
-  void start() {
-    //inputState.add(ContentState());
-  }
+  void start() {}
 
   @override
   setPassword(String password) {
@@ -50,7 +56,18 @@ class LoginViewModel extends BaseViewModel
   login() async {
     (await _loginUseCase.execute(
             LoginUseCaseInput(loginObject.email, loginObject.password)))
-        .fold((failure) => {}, (data) => {});
+        .fold((failure) {
+          if(failure.statusCode == 400){
+            isUserLoggedInSuccessfullyStreamController.add(2);
+          }else if(failure.statusCode == 401){
+            isUserLoggedInSuccessfullyStreamController.add(3);
+          }else{
+            isUserLoggedInSuccessfullyStreamController.add(4);
+          }
+    }, (data) {
+      _appPreferences.setToken(data.data!.token);
+      isUserLoggedInSuccessfullyStreamController.add(1);
+    });
   }
 
   @override

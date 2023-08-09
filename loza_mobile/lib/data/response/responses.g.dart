@@ -43,7 +43,6 @@ AuthenticationResponse _$AuthenticationResponseFromJson(
       json['errors'] == null
           ? null
           : ErrorResponse.fromJson(json['errors'] as Map<String, dynamic>),
-      json['totalCount'] as String?,
     )..statusCode = json['statusCode'] as int?;
 
 Map<String, dynamic> _$AuthenticationResponseToJson(
@@ -53,5 +52,34 @@ Map<String, dynamic> _$AuthenticationResponseToJson(
       'isError': instance.isError,
       'data': instance.dataResponse,
       'errors': instance.errorResponse,
-      'totalCount': instance.totalCount,
+    };
+
+HomeDataResponse _$HomeDataResponseFromJson(Map<String, dynamic> json) =>
+    HomeDataResponse(
+      (json['Newest'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+    );
+
+Map<String, dynamic> _$HomeDataResponseToJson(HomeDataResponse instance) =>
+    <String, dynamic>{
+      'Newest': instance.newest,
+    };
+
+HomeResponse _$HomeResponseFromJson(Map<String, dynamic> json) => HomeResponse(
+      json['isError'] as bool?,
+      json['data'] == null
+          ? null
+          : HomeDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+      json['errors'] == null
+          ? null
+          : ErrorResponse.fromJson(json['errors'] as Map<String, dynamic>),
+    )..statusCode = json['statusCode'] as int?;
+
+Map<String, dynamic> _$HomeResponseToJson(HomeResponse instance) =>
+    <String, dynamic>{
+      'statusCode': instance.statusCode,
+      'isError': instance.isError,
+      'data': instance.dataResponse,
+      'errors': instance.errorResponse,
     };

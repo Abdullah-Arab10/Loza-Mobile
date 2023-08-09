@@ -22,8 +22,9 @@ class AppStrings {
   static const registerText = "don't_have_an_account?_Sign_Up";
   static const alreadyHaveAnAccount = "already_have_an_account?_Sign_In";
   static const emailError = "your_email_is_empty_or_not_valid";
-  static const passwordError =
-      "your_password_is_empty_or_less_than_6_characters";
+  static const passwordError1 =
+      "password_Error1";
+  static const passwordError2 = "password_Error2";
   static const firstName = 'first_name';
   static const lastName = 'last_name';
   static const email = 'email';
@@ -31,11 +32,10 @@ class AppStrings {
   static const phone = 'phone';
   static const address = 'address';
   static const dateOfBirth = 'date_of_birth';
-  static const invalidEmail = 'invalid_email';
   static const invalidFirstName = 'invalid_firstName';
   static const invalidLastName = 'invalid_lastName';
-  static const invalidPassword = 'invalid_password';
   static const invalidPhoneNumber = 'invalid_phone_number';
+  static const characters = 'characters';
   static const invalidAddress = 'address_must_not_be_empty';
   static const invalidDateOfBirth = 'date_of_birth_must_not_be_empty';
   static const blackFridays = 'black_fridays';
@@ -70,6 +70,12 @@ class AppStrings {
   static const selectBrand = 'select_brand';
   static const colors = 'colors';
   static const apply = 'apply';
+  static const loggedInSuccessfully = 'Logged_in_successfully';
+  static const theEmailOrPasswordIsIncorrect = 'The_email_or_password_is_incorrect';
+  static const thePasswordIsIncorrect = 'The_password_is_incorrect';
+  static const pleaseTryAgainLater = 'Please_try_again_later';
+  static const accountSuccessfullyCreated = 'Account_successfully_created';
+  static const theEmailAlreadyExist = 'The_email_already_exist';
   static const edit = 'Edit';
   static const shoppingCart = 'Shopping cart';
   static const items = 'items';

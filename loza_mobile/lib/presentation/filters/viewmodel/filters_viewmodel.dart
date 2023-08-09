@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:loza_mobile/presentation/base/base_view_model.dart';
+
 import 'package:loza_mobile/presentation/filters/view/multi_select_view.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 
-class FiltersViewModel extends BaseViewModel with FiltersViewModelInputs, FiltersViewModelOutputs{
+class FiltersViewModel extends   FiltersViewModelInputs with FiltersViewModelOutputs{
 
   final StreamController _rangeValuesStreamController = StreamController<RangeValues>();
   final StreamController _selectedBrandsStreamController =  StreamController<List<String>>();

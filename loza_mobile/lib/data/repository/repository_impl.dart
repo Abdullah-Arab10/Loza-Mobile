@@ -33,10 +33,10 @@ class RepositoryImpl implements Repository {
           return Left(Failure(ApiInternalStatus.FAILURE,
               response.errorResponse?.message ?? ResponseMessage.DEFAULT));
         }
-      } catch (error) {
+       } catch (error) {
         return Left(ErrorHandler.handle(error).failure);
       }
-    } else {
+     } else {
 
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
@@ -68,4 +68,31 @@ class RepositoryImpl implements Repository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
-}
+
+  @override
+  Future<Either<Failure, HomeObject>> getNewestData(int userId) async{
+      if (await _networkInfo.isConnected) {
+
+        try {
+          final response = await _remoteDataSource.getNewestData(userId);
+
+          if (response.statusCode == ApiInternalStatus.SUCCESS) {
+
+            return Right(response.toDomain());
+          } else {
+
+            return Left(Failure(ApiInternalStatus.FAILURE,
+                response.errorResponse?.message ?? ResponseMessage.DEFAULT));
+          }
+        } catch (error) {
+          return Left(ErrorHandler
+              .handle(error)
+              .failure);
+        }
+      } else {
+
+        return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+      }
+    }
+  }
+

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loza_mobile/app/di.dart';
+import 'package:loza_mobile/domain/models/models.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_best_seller_card.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_button_widget.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_new_arrivals_card.dart';
@@ -22,8 +24,17 @@ class HomeLayoutView extends StatefulWidget {
 }
 
 class _HomeLayoutViewState extends State<HomeLayoutView> {
+  final HomeLayoutViewModel _viewModel = instance<HomeLayoutViewModel>();
 
-  final HomeLayoutViewModel _viewModel = HomeLayoutViewModel();
+  _bind() {
+    _viewModel.start();
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +44,13 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
         body: _getContentWidget());
   }
 
-  Widget _getDrawerWidget(){
+  Widget _getDrawerWidget() {
     return Drawer(
       backgroundColor: ColorManager.white,
       elevation: AppConstants.elevation,
       child: Padding(
-        padding: EdgeInsetsDirectional.only(
-          top: AppSize.s30.h,
-          end: AppSize.s18.w
-        ),
+        padding:
+            EdgeInsetsDirectional.only(top: AppSize.s30.h, end: AppSize.s18.w),
         child: Column(
           children: [
             Align(
@@ -79,7 +88,8 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height / AppSize.s309,
+                        height:
+                            MediaQuery.of(context).size.height / AppSize.s309,
                       ),
                       Text(
                         'samir.runte@newell.org',
@@ -102,7 +112,8 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
                     start: AppSize.s36.w,
                     top: AppSize.s30.h,
                   ),
-                  child: _getCardsOfDrawer(_viewModel.drawer[index], _viewModel.icons[index]),
+                  child: _getCardsOfDrawer(
+                      _viewModel.drawer[index], _viewModel.icons[index]),
                 );
               }),
             ),
@@ -112,17 +123,15 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
     );
   }
 
-  Widget _getCardsOfDrawer(String nameOfCard, String icon){
+  Widget _getCardsOfDrawer(String nameOfCard, String icon) {
     return Row(
       children: [
-        SvgPicture.asset(
-            icon
-        ),
+        SvgPicture.asset(icon),
         SizedBox(
           width: MediaQuery.of(context).size.width / AppSize.s30,
         ),
         Text(
-            nameOfCard,
+          nameOfCard,
           style: getRegularStyle(
               color: ColorManager.black, fontSize: FontSize.fs18.sp),
         ),
@@ -131,123 +140,138 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
   }
 
   Widget _getContentWidget() {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            color: ColorManager.veryLightGrey,
-            child: Padding(
-              padding: EdgeInsetsDirectional.only(
-                top: AppPadding.p52.h,
-                start: AppPadding.p15.w,
-              ),
+    return StreamBuilder<HomeViewObject>(
+        stream: _viewModel.outputHomeData,
+        builder: (context, snapshot) {
+          var homeViewObject = snapshot.data;
+          if (homeViewObject != null) {
+            return SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Builder(
-                            builder: (context) {
-                              return InkWell(
-                                onTap: (){
-                                  Scaffold.of(context).openDrawer();
-                                },
-                                child: SvgPicture.asset(
-                                  ImageAssets.menu,
-                                  width: AppSize.s26.w,
-                                  height: AppSize.s26.w,
+                  Container(
+                    color: ColorManager.veryLightGrey,
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.only(
+                        top: AppPadding.p52.h,
+                        start: AppPadding.p15.w,
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Builder(builder: (context) {
+                                    return InkWell(
+                                      onTap: () {
+                                        Scaffold.of(context).openDrawer();
+                                      },
+                                      child: SvgPicture.asset(
+                                        ImageAssets.menu,
+                                        width: AppSize.s26.w,
+                                        height: AppSize.s26.w,
+                                      ),
+                                    );
+                                  }),
                                 ),
-                              );
-                            }
+                              ),
+                              SvgPicture.asset(
+                                ImageAssets.shopIcon,
+                                width: AppSize.s26.w,
+                                height: AppSize.s26.w,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width /
+                                    AppSize.s30,
+                              ),
+                              SvgPicture.asset(
+                                ImageAssets.favouriteIcon,
+                                width: AppSize.s26.w,
+                                height: AppSize.s26.w,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width /
+                                    AppSize.s30,
+                              ),
+                            ],
                           ),
-                        ),
-                      ),
-                      SvgPicture.asset(
-                        ImageAssets.shopIcon,
-                        width: AppSize.s26.w,
-                        height: AppSize.s26.w,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / AppSize.s30,
-                      ),
-                      SvgPicture.asset(
-                        ImageAssets.favouriteIcon,
-                        width: AppSize.s26.w,
-                        height: AppSize.s26.w,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / AppSize.s30,
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      Image.asset(
-                        ImageAssets.maskCopy,
-                        width: double.infinity,
-                        height: AppSize.s220.h,
-                        fit: BoxFit.cover,
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.only(
-                          top: AppPadding.p20.h,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              AppStrings.blackFridays,
-                              style: Theme.of(context).textTheme.labelMedium,
-                            ),
-                            Text(
-                              AppStrings.saleUp,
-                              style: Theme.of(context).textTheme.displayLarge,
-                            ),
-                            Text(
-                              AppStrings.to70Off,
-                              style: Theme.of(context).textTheme.displayLarge,
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                top: AppPadding.p12.h,
+                          Stack(
+                            children: [
+                              Image.asset(
+                                ImageAssets.maskCopy,
+                                width: double.infinity,
+                                height: AppSize.s220.h,
+                                fit: BoxFit.cover,
                               ),
-                              child: SizedBox(
-                                width: AppSize.s112,
-                                height: AppSize.s34,
-                                child: LoZaButtonWidget(
-                                  onPressed: () {},
-                                  text: AppStrings.shopNow,
-                                  textStyle: getBookStyle(
-                                      color: ColorManager.veryLightGrey,
-                                      fontSize: FontSize.fs15.sp),
+                              Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                  top: AppPadding.p20.h,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      AppStrings.blackFridays,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium,
+                                    ),
+                                    Text(
+                                      AppStrings.saleUp,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displayLarge,
+                                    ),
+                                    Text(
+                                      AppStrings.to70Off,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displayLarge,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.only(
+                                        top: AppPadding.p12.h,
+                                      ),
+                                      child: SizedBox(
+                                        width: AppSize.s112,
+                                        height: AppSize.s34,
+                                        child: LoZaButtonWidget(
+                                          onPressed: () {},
+                                          text: AppStrings.shopNow,
+                                          textStyle: getBookStyle(
+                                              color: ColorManager.veryLightGrey,
+                                              fontSize: FontSize.fs15.sp),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / AppSize.s40,
+                  ),
+                  _getSection(AppStrings.arrivals),
+                  _getNewArrivalsWidget(homeViewObject.newest),
+                  _getSection(AppStrings.bestSellers),
+                  _getBestSellerWidget()
                 ],
               ),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / AppSize.s40,
-          ),
-          _getSection(AppStrings.arrivals),
-          _getNewArrivalsWidget(),
-          _getSection(AppStrings.bestSellers),
-          _getBestSellerWidget()
-        ],
-      ),
-    );
+            );
+          } else {
+            return Container();
+          }
+        });
   }
 
-  Widget _getNewArrivalsWidget() {
+  Widget _getNewArrivalsWidget(List<Map<String, dynamic>> newest) {
     return Padding(
       padding: EdgeInsetsDirectional.only(
         top: AppSize.s3.h,
@@ -259,12 +283,15 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => LoZaNewArrivalsCard(
+            image: newest[index]['productImage'],
+            name: newest[index]['name'],
+            price: newest[index]['price'],
             width: AppSize.s140.w,
             height: AppSize.s197.h,
             imageWidth: AppSize.s112.h,
             imageHeight: AppSize.s112.h,
           ),
-          itemCount: 5,
+          itemCount: newest.length,
           separatorBuilder: (BuildContext context, int index) => SizedBox(
             width: AppSize.s6.w,
           ),
@@ -308,9 +335,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
   Widget _getBestSellerWidget() {
     return ListView.separated(
       padding: EdgeInsetsDirectional.only(
-        start: AppPadding.p11.w,
-        top: AppSize.s3.h
-      ),
+          start: AppPadding.p11.w, top: AppSize.s3.h),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) => const LoZaBestSellerWidget(

@@ -1,7 +1,7 @@
-import 'package:loza_mobile/presentation/base/base_view_model.dart';
 
-class MyAccountViewModel extends BaseViewModel
-    with MyAccountViewModelInputs, MyAccountViewModelOutputs {
+
+class MyAccountViewModel extends
+     MyAccountViewModelInputs with MyAccountViewModelOutputs {
 
   List<String> profile = [
     'Wishlist',

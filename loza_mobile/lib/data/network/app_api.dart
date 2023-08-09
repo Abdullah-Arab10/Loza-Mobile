@@ -8,11 +8,11 @@ part 'app_api.g.dart';
 abstract class AppServiceClient {
   factory AppServiceClient(Dio dio, {String baseUrl}) = _AppServiceClient;
 
-  @POST('/Auth/Login')
+  @POST('/api/Auth/Login')
   Future<AuthenticationResponse> login(
       @Field('email') String email, @Field('password') String password);
 
-  @POST("/Auth/Register")
+  @POST("/api/Auth/Register")
   Future<AuthenticationResponse> register(
       @Field("firstName") String firstName,
       @Field("lastName") String lastName,
@@ -21,4 +21,7 @@ abstract class AppServiceClient {
       @Field("phoneNumber") String phoneNumber,
       @Field("address") String address,
       @Field("dateOfBirth") String dateOfBirth);
+
+  @GET("/api/Product/Newest?userId=")
+  Future<HomeResponse> getNewestData(int userId);
 }

@@ -9,6 +9,9 @@ import 'package:loza_mobile/presentation/resources/values_manager.dart';
 
 class LoZaNewArrivalsCard extends StatelessWidget {
 
+  final String image;
+  final String name;
+  final double price;
   final double width;
   final double height;
   final double imageWidth;
@@ -16,6 +19,9 @@ class LoZaNewArrivalsCard extends StatelessWidget {
 
   const LoZaNewArrivalsCard({
     Key? key,
+    required this.image,
+    required this.name,
+    required this.price,
     required this.width,
     required this.height,
     required this.imageWidth,
@@ -37,8 +43,8 @@ class LoZaNewArrivalsCard extends StatelessWidget {
               Container(
                 width: double.infinity,
                 color: ColorManager.veryLightGrey,
-                child: Image.asset(
-                  ImageAssets.mask,
+                child: Image.network(
+                  image,
                   width: imageWidth,
                   height: imageHeight,
                 ),
@@ -55,13 +61,13 @@ class LoZaNewArrivalsCard extends StatelessWidget {
               height: MediaQuery.of(context).size.height / AppSize.s70,
             ),
             Text(
-             AppStrings.nancyChair,
+             name,
               maxLines: AppConstants.maxLines,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.titleSmall,
             ),
             Text(
-              AppStrings.p29_00,
+              '$price',
               maxLines: AppConstants.maxLines,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.bodyLarge,

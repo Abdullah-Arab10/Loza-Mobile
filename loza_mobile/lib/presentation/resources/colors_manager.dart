@@ -14,6 +14,7 @@ class ColorManager{
   static Color softBlue = const Color(0xff5AC8FA);
   static Color orange = const Color(0xffFF9500);
   static Color yellow = const Color(0xffFFCC00);
+  static Color green = const Color(0xff32CD32);
   static Color softOrange = const Color(0xffDDB692);
   static Color red = const Color(0xffFF2D55);
 }

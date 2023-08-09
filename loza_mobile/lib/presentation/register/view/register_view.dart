@@ -1,7 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:loza_mobile/app/di.dart';
+import 'package:loza_mobile/presentation/common/widgets/flutter_toast_widget.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_button_widget.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_textfield_widget.dart';
 import 'package:loza_mobile/presentation/register/viewmodel/register_viewmodel.dart';
@@ -43,8 +47,34 @@ class _RegisterViewState extends State<RegisterView> {
         .addListener(() => _viewModel.setPhoneNumber(_phoneController.text));
     _addressController
         .addListener(() => _viewModel.setAddress(_addressController.text));
-    _dateOfBirthController
-        .addListener(() => _viewModel.setDateOfBirth(_dateOfBirthController.text));
+    _dateOfBirthController.addListener(
+        () => _viewModel.setDateOfBirth(_dateOfBirthController.text));
+
+    _viewModel.isUserRegisteredInSuccessfullyStreamController.stream
+        .listen((isRegistered) {
+          if(isRegistered){
+            loZaToastWidget(
+                msg: AppStrings.accountSuccessfullyCreated.tr(),
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 3,
+                backgroundColor: ColorManager.green,
+                textColor: ColorManager.white,
+                fontSize: 15
+            );
+            Navigator.of(context).pushReplacementNamed(Routes.loginRoute);
+          }else{
+            loZaToastWidget(
+                msg: AppStrings.theEmailAlreadyExist.tr(),
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 3,
+                backgroundColor: ColorManager.red,
+                textColor: ColorManager.white,
+                fontSize: 15
+            );
+          }
+    });
   }
 
   @override
@@ -62,160 +92,191 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   Widget _getContentWidget() {
-    return Container(
-      padding: EdgeInsets.only(
-        top: AppPadding.p42.h,
-        left: AppPadding.p32.w,
-        right: AppPadding.p32.w,
-      ),
+    return Center(
       child: SingleChildScrollView(
         child: Form(
           key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: Image.asset(
-                  ImageAssets.close,
-                ),
-              ),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height / AppSize.s30),
-              Text(
-                AppStrings.personalDetails.toUpperCase(),
-                style: Theme.of(context).textTheme.labelLarge,
-              ),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height / AppPadding.p12),
-              StreamBuilder<String?>(
-                stream: _viewModel.outputErrorFirstName,
-                builder: (context, snapshot) {
-                  return LoZaTextFieldWidget(
-                    controller: _firstNameController,
-                    label: AppStrings.firstName,
-                    error: snapshot.data,
-                  );
-                },
-              ),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height / AppPadding.p33),
-              StreamBuilder<String?>(
-                stream: _viewModel.outputErrorLastName,
-                builder: (context, snapshot) {
-                  return LoZaTextFieldWidget(
-                    controller: _lastNameController,
-                    label: AppStrings.lastName,
-                    error: snapshot.data,
-                  );
-                },
-              ),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height / AppPadding.p33),
-              StreamBuilder<String?>(
-                stream: _viewModel.outputErrorEmail,
-                builder: (context, snapshot) {
-                  return LoZaTextFieldWidget(
-                    controller: _emailController,
-                    label: AppStrings.email,
-                    error: snapshot.data,
-                  );
-                },
-              ),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height / AppPadding.p33),
-              StreamBuilder<String?>(
-                stream: _viewModel.outputErrorPassword,
-                builder: (context, snapshot) {
-                  return LoZaTextFieldWidget(
-                    controller: _passwordController,
-                    label: AppStrings.password,
-                    error: snapshot.data,
-                  );
-                },
-              ),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height / AppPadding.p33),
-              StreamBuilder<String?>(
-                stream: _viewModel.outputErrorPhoneNumber,
-                builder: (context, snapshot) {
-                  return LoZaTextFieldWidget(
-                    controller: _phoneController,
-                    label: AppStrings.phone,
-                    error: snapshot.data,
-                  );
-                },
-              ),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height / AppPadding.p33),
-              StreamBuilder<String?>(
-                stream: _viewModel.outputErrorAddress,
-                builder: (context, snapshot) {
-                  return LoZaTextFieldWidget(
-                    controller: _addressController,
-                    label: AppStrings.address,
-                    error: snapshot.data,
-                  );
-                },
-              ),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height / AppPadding.p33),
-              StreamBuilder<String?>(
-                stream: _viewModel.outputErrorDateOfBirth,
-                builder: (context, snapshot) {
-                  return LoZaTextFieldWidget(
-                    controller: _dateOfBirthController,
-                    label: AppStrings.dateOfBirth,
-                    error: snapshot.data,
-                    onTap: (){
-                      showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime.parse('2024-12-31'),
-                      ).then((value) {
-                        _dateOfBirthController.text = DateFormat.yMd().format(value!);
-                      });
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: AppPadding.p45.h,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: AppPadding.p12.w,
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
                     },
-                  );
-                },
-              ),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height / AppPadding.p7_5),
-              StreamBuilder<bool>(
-                stream: _viewModel.outputAreAllInputsValid,
-                builder: (context, snapshot) {
-                  return SizedBox(
-                    width: double.infinity,
-                    height: AppSize.s38.h,
-                    child: LoZaButtonWidget(
-                      text: AppStrings.register,
-                      onPressed: (snapshot.data ?? false)
-                          ? () {
-                        _viewModel.register();
-                      }
-                          : null,
+                    child: SvgPicture.asset(
+                      ImageAssets.close,
+                      width: AppSize.s26.w,
+                      height: AppSize.s26.w,
                     ),
-                  );
-                },
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height / AppSize.s6),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(
-                        context, Routes.loginRoute);
-                  },
-                  child: Text(
-                    AppStrings.alreadyHaveAnAccount,
-                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-              ),
-            ],
+                Container(
+                  padding: EdgeInsets.only(
+                    left: AppPadding.p32.w,
+                    right: AppPadding.p32.w,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                          height:
+                              MediaQuery.of(context).size.height / AppSize.s30),
+                      Text(
+                        AppStrings.personalDetails.tr().toUpperCase(),
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height /
+                              AppPadding.p12),
+                      StreamBuilder<String?>(
+                        stream: _viewModel.outputErrorFirstName,
+                        builder: (context, snapshot) {
+                          return LoZaTextFieldWidget(
+                            controller: _firstNameController,
+                            label: AppStrings.firstName.tr(),
+                            error: snapshot.data,
+                          );
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height /
+                              AppPadding.p33),
+                      StreamBuilder<String?>(
+                        stream: _viewModel.outputErrorLastName,
+                        builder: (context, snapshot) {
+                          return LoZaTextFieldWidget(
+                            controller: _lastNameController,
+                            label: AppStrings.lastName.tr(),
+                            error: snapshot.data,
+                          );
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height /
+                              AppPadding.p33),
+                      StreamBuilder<String?>(
+                        stream: _viewModel.outputErrorEmail,
+                        builder: (context, snapshot) {
+                          return LoZaTextFieldWidget(
+                            controller: _emailController,
+                            label: AppStrings.email.tr(),
+                            error: snapshot.data,
+                          );
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height /
+                              AppPadding.p33),
+                      StreamBuilder<String?>(
+                        stream: _viewModel.outputErrorPassword,
+                        builder: (context, snapshot) {
+                          return LoZaTextFieldWidget(
+                            controller: _passwordController,
+                            label: AppStrings.password.tr(),
+                            error: snapshot.data,
+                          );
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height /
+                              AppPadding.p33),
+                      StreamBuilder<String?>(
+                        stream: _viewModel.outputErrorPhoneNumber,
+                        builder: (context, snapshot) {
+                          return LoZaTextFieldWidget(
+                            controller: _phoneController,
+                            keyboardType: TextInputType.number,
+                            label: AppStrings.phone.tr(),
+                            error: snapshot.data,
+                          );
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height /
+                              AppPadding.p33),
+                      StreamBuilder<String?>(
+                        stream: _viewModel.outputErrorAddress,
+                        builder: (context, snapshot) {
+                          return LoZaTextFieldWidget(
+                            controller: _addressController,
+                            label: AppStrings.address.tr(),
+                            error: snapshot.data,
+                          );
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height /
+                              AppPadding.p33),
+                      StreamBuilder<String?>(
+                        stream: _viewModel.outputErrorDateOfBirth,
+                        builder: (context, snapshot) {
+                          return LoZaTextFieldWidget(
+                            controller: _dateOfBirthController,
+                            label: AppStrings.dateOfBirth.tr(),
+                            error: snapshot.data,
+                            onTap: () {
+                              showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime.parse('2024-12-31'),
+                              ).then((value) {
+                                _dateOfBirthController.text =
+                                    DateFormat.yMd().format(value!);
+                              });
+                            },
+                          );
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height /
+                              AppPadding.p7_5),
+                      StreamBuilder<bool>(
+                        stream: _viewModel.outputAreAllInputsValid,
+                        builder: (context, snapshot) {
+                          return SizedBox(
+                            width: double.infinity,
+                            height: AppSize.s38.h,
+                            child: LoZaButtonWidget(
+                              text: AppStrings.register.tr(),
+                              onPressed: (snapshot.data ?? false)
+                                  ? () {
+                                      _viewModel.register();
+                                    }
+                                  : null,
+                            ),
+                          );
+                        },
+                      ),
+                      SizedBox(
+                          height:
+                              MediaQuery.of(context).size.height / AppSize.s30),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(
+                                context, Routes.loginRoute);
+                          },
+                          child: Text(
+                            AppStrings.alreadyHaveAnAccount.tr(),
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

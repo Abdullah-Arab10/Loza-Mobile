@@ -30,9 +30,26 @@ class Authentication{
   bool isError;
   Data? data;
   Error? error;
-  String totalCount;
 
-  Authentication(this.statusCode,this.isError,this.data,this.error,this.totalCount);
+  Authentication(this.statusCode,this.isError,this.data,this.error);
+}
+
+// Newest
+
+class HomeData {
+  List<Map<String, dynamic>> newest;
+
+  HomeData(this.newest);
+}
+
+class HomeObject {
+
+  int statusCode;
+  bool isError;
+  HomeData dataResponse;
+  Error? error;
+
+  HomeObject(this.statusCode,this.isError,this.dataResponse,this.error);
 }
 
 // Filters model

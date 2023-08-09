@@ -74,12 +74,13 @@ class _CollectionViewState extends State<CollectionView> {
               childAspectRatio: 1/AppSize.s1_21.h,
               padding: EdgeInsetsDirectional.all(AppSize.s10.w),
               children: List.generate(AppConstants.itemCount, (index) {
-                return LoZaNewArrivalsCard(
-                  imageHeight: AppSize.s170.h,
-                  imageWidth: AppSize.s146.w,
-                  width: AppSize.s165.w,
-                  height: AppSize.s280.h,
-                );
+                // return LoZaNewArrivalsCard(
+                //   imageHeight: AppSize.s170.h,
+                //   imageWidth: AppSize.s146.w,
+                //   width: AppSize.s165.w,
+                //   height: AppSize.s280.h,
+                // );
+                return SizedBox();
               }),
             )
           ),
