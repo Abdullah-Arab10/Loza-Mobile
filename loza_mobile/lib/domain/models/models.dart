@@ -2,36 +2,36 @@
 
 import 'package:flutter/material.dart';
 
-class CategoriesObject{
+class CategoriesObject {
   bool isArrow;
   String imagePath;
   String text1;
   String text2;
 
-  CategoriesObject(this.isArrow,this.imagePath,this.text1,this.text2);
+  CategoriesObject(this.isArrow, this.imagePath, this.text1, this.text2);
 }
 
 // login models
 
-class Data{
+class Data {
   String token;
 
   Data(this.token);
 }
 
-class Error{
+class Error {
   String message;
 
   Error(this.message);
 }
 
-class Authentication{
+class Global {
   int statusCode;
   bool isError;
   Data? data;
   Error? error;
 
-  Authentication(this.statusCode,this.isError,this.data,this.error);
+  Global(this.statusCode, this.isError, this.data, this.error);
 }
 
 // Newest
@@ -43,32 +43,95 @@ class HomeData {
 }
 
 class HomeObject {
-
   int statusCode;
   bool isError;
   HomeData dataResponse;
   Error? error;
 
-  HomeObject(this.statusCode,this.isError,this.dataResponse,this.error);
+  HomeObject(this.statusCode, this.isError, this.dataResponse, this.error);
 }
 
 // Filters model
 
-class FiltersObject{
+class FiltersObject {
   double min;
   double max;
   RangeValues rangeValues;
 
-  FiltersObject(this.min,this.max,this.rangeValues);
+  FiltersObject(this.min, this.max, this.rangeValues);
 }
 
 // Shopping model
 
-class ShoppingCartObject{
-
+class ShoppingCartObject {
   String image;
   String text1;
   String text2;
 
-  ShoppingCartObject(this.image,this.text1,this.text2);
+  ShoppingCartObject(this.image, this.text1, this.text2);
+}
+
+// ProductDetailsModel
+
+class Product {
+  int id;
+
+  String name;
+
+  String description;
+
+  int price;
+
+  int category;
+
+  String color;
+
+  int quantity;
+
+  String productImage;
+
+  int totalRate;
+
+  List<Map<String, dynamic>> photos;
+
+  Product(
+      this.id,
+      this.name,
+      this.description,
+      this.price,
+      this.category,
+      this.color,
+      this.quantity,
+      this.productImage,
+      this.totalRate,
+      this.photos);
+}
+
+
+class ProductData {
+
+  Product product;
+
+  ProductData(this.product);
+}
+
+
+class ProductDetails{
+
+  int statusCode;
+
+  bool isError;
+
+  ProductData dataResponse;
+
+  Error? errorResponse;
+
+  ProductDetails(this.statusCode,this.isError,this.dataResponse,this.errorResponse);
+
+}
+
+class ProductObject {
+  Product product;
+
+  ProductObject(this.product);
 }

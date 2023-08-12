@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loza_mobile/app/constants.dart';
+import 'package:loza_mobile/app/di.dart';
+import 'package:loza_mobile/presentation/home_layout/viewmodel/home_layout_viewmodel.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/constants.dart';
-import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
 
 class LoZaNewArrivalsCard extends StatelessWidget {
+  final HomeLayoutViewModel _viewModel = instance<HomeLayoutViewModel>();
 
+  final int userId;
+  final int productId;
   final String image;
   final String name;
   final double price;
@@ -16,16 +21,17 @@ class LoZaNewArrivalsCard extends StatelessWidget {
   final double height;
   final double imageWidth;
   final double imageHeight;
-
-  const LoZaNewArrivalsCard({
+  LoZaNewArrivalsCard({
     Key? key,
+    required this.userId,
+    required this.productId,
     required this.image,
     required this.name,
     required this.price,
     required this.width,
     required this.height,
     required this.imageWidth,
-    required this.imageHeight
+    required this.imageHeight,
   }) : super(key: key);
 
   @override
@@ -37,31 +43,21 @@ class LoZaNewArrivalsCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              alignment: Alignment.topRight,
-                children: [
               Container(
                 width: double.infinity,
                 color: ColorManager.veryLightGrey,
                 child: Image.network(
-                  image,
+                  '${Constants.baseUrl}$image',
                   width: imageWidth,
                   height: imageHeight,
+                  fit: BoxFit.cover,
                 ),
               ),
-              Padding(
-                padding:  EdgeInsetsDirectional.only(
-                  top: AppPadding.p9.w,
-                  end: AppPadding.p9.w,
-                ),
-                child: SvgPicture.asset(ImageAssets.heart),
-              )
-            ]),
             SizedBox(
               height: MediaQuery.of(context).size.height / AppSize.s70,
             ),
             Text(
-             name,
+              name,
               maxLines: AppConstants.maxLines,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.titleSmall,

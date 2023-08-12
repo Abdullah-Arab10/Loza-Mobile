@@ -21,10 +21,11 @@ class _AppServiceClient implements AppServiceClient {
   String? baseUrl;
 
   @override
-  Future<AuthenticationResponse> login(
+  Future<GlobalResponse> login(
     String email,
     String password,
   ) async {
+
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -32,8 +33,8 @@ class _AppServiceClient implements AppServiceClient {
       'email': email,
       'password': password,
     };
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AuthenticationResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<GlobalResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -45,12 +46,12 @@ class _AppServiceClient implements AppServiceClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = AuthenticationResponse.fromJson(_result.data!);
+    final value = GlobalResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<AuthenticationResponse> register(
+  Future<GlobalResponse> register(
     String firstName,
     String lastName,
     String email,
@@ -71,8 +72,8 @@ class _AppServiceClient implements AppServiceClient {
       'address': address,
       'dateOfBirth': dateOfBirth,
     };
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AuthenticationResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<GlobalResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -84,11 +85,64 @@ class _AppServiceClient implements AppServiceClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = AuthenticationResponse.fromJson(_result.data!);
+    final value = GlobalResponse.fromJson(_result.data!);
     return value;
   }
 
-  Map<int, bool> favorites = {};
+  @override
+  Future<GlobalResponse> postFavorite(
+    int userId,
+    int productId,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<GlobalResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/Favorite/MakeFavorite/$userId/$productId',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GlobalResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<GlobalResponse> postToCart(
+    int userId,
+    String name,
+    String color,
+    int colorno,
+    int quan,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<GlobalResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/Cart?userId=$userId&name=$name&color=$color&colorno=$colorno&quan=$quan',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GlobalResponse.fromJson(_result.data!);
+    return value;
+  }
 
   @override
   Future<HomeResponse> getNewestData(int userId) async {
@@ -110,15 +164,29 @@ class _AppServiceClient implements AppServiceClient {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = HomeResponse.fromJson(_result.data!);
+    return value;
+  }
 
-    if(value.dataResponse != null && value.dataResponse?.newest != null){
-      for (var element in value.dataResponse!.newest!) {
-        favorites.addAll({
-          element['id'] : element['isFavorite'],
-        });
-      }
-    }
-
+  @override
+  Future<ProductDetailsResponse> getProductDetails(int productId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ProductDetailsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/Product/api/Product/GetProductsById/$productId',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ProductDetailsResponse.fromJson(_result.data!);
     return value;
   }
 

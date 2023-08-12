@@ -9,11 +9,11 @@ abstract class AppServiceClient {
   factory AppServiceClient(Dio dio, {String baseUrl}) = _AppServiceClient;
 
   @POST('/api/Auth/Login')
-  Future<AuthenticationResponse> login(
+  Future<GlobalResponse> login(
       @Field('email') String email, @Field('password') String password);
 
   @POST("/api/Auth/Register")
-  Future<AuthenticationResponse> register(
+  Future<GlobalResponse> register(
       @Field("firstName") String firstName,
       @Field("lastName") String lastName,
       @Field("email") String email,
@@ -22,6 +22,21 @@ abstract class AppServiceClient {
       @Field("address") String address,
       @Field("dateOfBirth") String dateOfBirth);
 
+  @POST("/api/Favorite/MakeFavorite/")
+  Future<GlobalResponse> postFavorite(int userId, int productId);
+
+  @POST("/api/Cart?userId=&name=&color=&colorno=&quan=")
+  Future<GlobalResponse> postToCart(
+     int userId,
+     String name,
+     String color,
+     int colorno,
+     int quan,
+  );
+
   @GET("/api/Product/Newest?userId=")
   Future<HomeResponse> getNewestData(int userId);
+
+  @GET("/api/Product/api/Product/GetProductsById/")
+  Future<ProductDetailsResponse> getProductDetails(int productId);
 }

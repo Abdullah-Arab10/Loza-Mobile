@@ -14,3 +14,21 @@ class HomeUseCase implements BaseUseCase<int, HomeObject> {
     return await _repository.getNewestData(userId);
   }
 }
+
+class PostFavoriteUseCase implements BaseUseCase<FavoriteUseCaseInput, Global> {
+  final Repository _repository;
+
+  PostFavoriteUseCase(this._repository);
+
+  @override
+  Future<Either<Failure, Global>> execute(FavoriteUseCaseInput input) async {
+    return await _repository.posFavorite(input.userId, input.productId);
+  }
+}
+
+class FavoriteUseCaseInput {
+  int userId;
+  int productId;
+
+  FavoriteUseCaseInput(this.userId, this.productId);
+}

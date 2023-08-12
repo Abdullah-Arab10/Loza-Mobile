@@ -5,13 +5,13 @@ import 'package:loza_mobile/domain/models/models.dart';
 import 'package:loza_mobile/domain/repository/repository.dart';
 import 'package:loza_mobile/domain/usecase/base_usecase.dart';
 
-class LoginUseCase implements BaseUseCase<LoginUseCaseInput, Authentication> {
+class LoginUseCase implements BaseUseCase<LoginUseCaseInput, Global> {
   final Repository _repository;
 
   LoginUseCase(this._repository);
 
   @override
-  Future<Either<Failure, Authentication>> execute(
+  Future<Either<Failure, Global>> execute(
       LoginUseCaseInput input) async {
     return await _repository.login(LoginRequest(input.email, input.password));
   }
