@@ -40,7 +40,7 @@ class ErrorResponse {
 }
 
 @JsonSerializable()
-class AuthenticationResponse extends BaseResponse {
+class GlobalResponse extends BaseResponse {
   @JsonKey(name: 'isError')
   bool? isError;
   @JsonKey(name: 'data')
@@ -48,69 +48,17 @@ class AuthenticationResponse extends BaseResponse {
   @JsonKey(name: 'errors')
   ErrorResponse? errorResponse;
 
-  AuthenticationResponse(this.isError, this.dataResponse, this.errorResponse);
+  GlobalResponse(this.isError, this.dataResponse, this.errorResponse);
 
   // from json
-  factory AuthenticationResponse.fromJson(Map<String, dynamic> json) =>
-      _$AuthenticationResponseFromJson(json);
+  factory GlobalResponse.fromJson(Map<String, dynamic> json) =>
+      _$GlobalResponseFromJson(json);
 
   // to json
-  Map<String, dynamic> toJson() => _$AuthenticationResponseToJson(this);
+  Map<String, dynamic> toJson() => _$GlobalResponseToJson(this);
 }
 
-// newest
-
-// @JsonSerializable()
-// class NewestResponse {
-//   @JsonKey(name: 'id')
-//   int? id;
-//
-//   @JsonKey(name: 'name')
-//   String? name;
-//
-//   @JsonKey(name: 'description')
-//   String? description;
-//
-//   @JsonKey(name: 'price')
-//   int? price;
-//
-//   @JsonKey(name: 'category')
-//   int? category;
-//
-//   @JsonKey(name: 'color')
-//   String? color;
-//
-//   @JsonKey(name: 'colorNo')
-//   int? colorNo;
-//
-//   @JsonKey(name: 'quantity')
-//   int? quantity;
-//
-//   @JsonKey(name: 'productImage')
-//   String? productImage;
-//
-//   @JsonKey(name: 'isFavorite')
-//   bool? isFavorite;
-//
-//   NewestResponse(
-//       this.id,
-//       this.name,
-//       this.description,
-//       this.price,
-//       this.category,
-//       this.color,
-//       this.colorNo,
-//       this.quantity,
-//       this.productImage,
-//       this.isFavorite);
-//
-//   // toJson
-//   Map<String, dynamic> toJson() => _$NewestResponseToJson(this);
-//
-//   //fromJson
-//   factory NewestResponse.fromJson(Map<String, dynamic> json) =>
-//       _$NewestResponseFromJson(json);
-// }
+// home
 
 @JsonSerializable()
 class HomeDataResponse {
@@ -146,3 +94,97 @@ class HomeResponse extends BaseResponse {
   factory HomeResponse.fromJson(Map<String, dynamic> json) =>
       _$HomeResponseFromJson(json);
 }
+
+// Product details
+
+@JsonSerializable()
+class ProductResponse {
+  @JsonKey(name: 'id')
+  int? id;
+
+  @JsonKey(name: 'name')
+  String? name;
+
+  @JsonKey(name: 'description')
+  String? description;
+
+  @JsonKey(name: 'price')
+  int? price;
+
+  @JsonKey(name: 'category')
+  int? category;
+
+  @JsonKey(name: 'color')
+  String? color;
+
+  @JsonKey(name: 'quantity')
+  int? quantity;
+
+  @JsonKey(name: 'productImage')
+  String? productImage;
+
+  @JsonKey(name: 'totalrate')
+  int? totalRate;
+
+  @JsonKey(name: 'photos')
+  List<Map<String, dynamic>>? photos;
+
+  ProductResponse(
+      this.id,
+      this.name,
+      this.description,
+      this.price,
+      this.category,
+      this.color,
+      this.quantity,
+      this.productImage,
+      this.totalRate,
+      this.photos
+      );
+
+
+  // toJson
+  Map<String, dynamic> toJson() => _$ProductResponseToJson(this);
+
+  //fromJson
+  factory ProductResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductResponseFromJson(json);
+}
+
+@JsonSerializable()
+class ProductDataResponse {
+  @JsonKey(name: 'Product')
+  ProductResponse? product;
+
+  ProductDataResponse(this.product);
+
+  //fromJson
+  factory ProductDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductDataResponseFromJson(json);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$ProductDataResponseToJson(this);
+
+}
+
+@JsonSerializable()
+class ProductDetailsResponse extends BaseResponse{
+  @JsonKey(name: 'isError')
+  bool? isError;
+  @JsonKey(name: 'data')
+  ProductDataResponse? dataResponse;
+  @JsonKey(name: 'errors')
+  ErrorResponse? errorResponse;
+
+  ProductDetailsResponse(this.isError,this.dataResponse,this.errorResponse);
+
+  //fromJson
+  factory ProductDetailsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductDetailsResponseFromJson(json);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$ProductDetailsResponseToJson(this);
+
+}
+
+

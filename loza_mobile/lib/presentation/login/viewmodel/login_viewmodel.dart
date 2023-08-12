@@ -35,8 +35,7 @@ class LoginViewModel extends BaseViewModel
     isUserLoggedInSuccessfullyStreamController.close();
   }
 
-  @override
-  void start() {}
+
 
   @override
   setPassword(String password) {
@@ -54,6 +53,7 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
+    print(loginObject.email);
     (await _loginUseCase.execute(
             LoginUseCaseInput(loginObject.email, loginObject.password)))
         .fold((failure) {
@@ -117,6 +117,11 @@ class LoginViewModel extends BaseViewModel
   bool _areAllInputsValid() {
     return _isPasswordValid(loginObject.password) &&
         _isUserNameValid(loginObject.email);
+  }
+
+  @override
+  void start() {
+
   }
 }
 

@@ -18,7 +18,7 @@ class RepositoryImpl implements Repository {
   );
 
   @override
-  Future<Either<Failure, Authentication>> login(
+  Future<Either<Failure, Global>> login(
       LoginRequest loginRequest) async {
     if (await _networkInfo.isConnected) {
 
@@ -43,7 +43,7 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<Either<Failure, Authentication>> register(
+  Future<Either<Failure, Global>> register(
       RegisterRequest registerRequest) async {
     if (await _networkInfo.isConnected) {
 
@@ -62,6 +62,54 @@ class RepositoryImpl implements Repository {
         return Left(ErrorHandler
             .handle(error)
             .failure);
+      }
+    } else {
+
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Global>> posFavorite(int userId, int productId) async{
+    if (await _networkInfo.isConnected) {
+
+      try {
+        final response = await _remoteDataSource.postFavorite(userId, productId);
+
+        if (response.statusCode == ApiInternalStatus.SUCCESS) {
+
+          return Right(response.toDomain());
+        } else {
+
+          return Left(Failure(ApiInternalStatus.FAILURE,
+              response.errorResponse?.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Global>> postToCart(int userId, String name, String color, int colorno, int quan) async{
+    if (await _networkInfo.isConnected) {
+
+      try {
+        final response = await _remoteDataSource.postToCart(userId, name, color, colorno, quan);
+
+        if (response.statusCode == ApiInternalStatus.SUCCESS) {
+
+          return Right(response.toDomain());
+        } else {
+
+          return Left(Failure(ApiInternalStatus.FAILURE,
+              response.errorResponse?.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
       }
     } else {
 
@@ -94,5 +142,35 @@ class RepositoryImpl implements Repository {
         return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
       }
     }
+
+  @override
+  Future<Either<Failure, ProductDetails>> getProductDetails(int productId) async{
+    if (await _networkInfo.isConnected) {
+
+      try {
+        final response = await _remoteDataSource.getProductDetails(productId);
+
+        if (response.statusCode == ApiInternalStatus.SUCCESS) {
+
+          return Right(response.toDomain());
+        } else {
+
+          return Left(Failure(ApiInternalStatus.FAILURE,
+              response.errorResponse?.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler
+            .handle(error)
+            .failure);
+      }
+    } else {
+
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+
+
+
   }
 

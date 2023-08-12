@@ -3,11 +3,23 @@ import 'package:loza_mobile/data/network/request.dart';
 import 'package:loza_mobile/data/response/responses.dart';
 
 abstract class RemoteDataSource {
-  Future<AuthenticationResponse> login(LoginRequest loginRequest);
+  Future<GlobalResponse> login(LoginRequest loginRequest);
 
-  Future<AuthenticationResponse> register(RegisterRequest registerRequest);
+  Future<GlobalResponse> register(RegisterRequest registerRequest);
+
+  Future<GlobalResponse> postFavorite(int userId, int productId);
+
+  Future<GlobalResponse> postToCart(
+    int userId,
+    String name,
+    String color,
+    int colorno,
+    int quan,
+  );
 
   Future<HomeResponse> getNewestData(int userId);
+
+  Future<ProductDetailsResponse> getProductDetails(int productId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -16,14 +28,13 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   RemoteDataSourceImpl(this._appServiceClient);
 
   @override
-  Future<AuthenticationResponse> login(LoginRequest loginRequest) async {
+  Future<GlobalResponse> login(LoginRequest loginRequest) async {
     return await _appServiceClient.login(
         loginRequest.email, loginRequest.password);
   }
 
   @override
-  Future<AuthenticationResponse> register(
-      RegisterRequest registerRequest) async {
+  Future<GlobalResponse> register(RegisterRequest registerRequest) async {
     return await _appServiceClient.register(
         registerRequest.firstName,
         registerRequest.lastName,
@@ -35,9 +46,26 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<HomeResponse> getNewestData(int userId) async{
+  Future<GlobalResponse> postFavorite(int userId, int productId) async {
+    return await _appServiceClient.postFavorite(userId, productId);
+  }
+
+  @override
+  Future<GlobalResponse> postToCart(int userId,
+      String name,
+      String color,
+      int colorno,
+      int quan,) async {
+    return await _appServiceClient.postToCart(userId, name,color,colorno,quan);
+  }
+
+  @override
+  Future<HomeResponse> getNewestData(int userId) async {
     return await _appServiceClient.getNewestData(userId);
   }
 
-
+  @override
+  Future<ProductDetailsResponse> getProductDetails(int productId) async {
+    return await _appServiceClient.getProductDetails(productId);
+  }
 }

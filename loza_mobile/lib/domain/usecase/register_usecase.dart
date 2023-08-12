@@ -7,13 +7,13 @@ import 'package:loza_mobile/domain/usecase/base_usecase.dart';
 import '../repository/repository.dart';
 
 class RegisterUseCase
-    implements BaseUseCase<RegisterUseCaseInput, Authentication> {
+    implements BaseUseCase<RegisterUseCaseInput, Global> {
   final Repository _repository;
 
   RegisterUseCase(this._repository);
 
   @override
-  Future<Either<Failure, Authentication>> execute(
+  Future<Either<Failure, Global>> execute(
       RegisterUseCaseInput input) async {
     return await _repository.register(RegisterRequest(
         input.firstName,

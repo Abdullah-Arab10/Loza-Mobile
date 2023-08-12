@@ -33,9 +33,8 @@ Map<String, dynamic> _$ErrorResponseToJson(ErrorResponse instance) =>
       'message': instance.message,
     };
 
-AuthenticationResponse _$AuthenticationResponseFromJson(
-        Map<String, dynamic> json) =>
-    AuthenticationResponse(
+GlobalResponse _$GlobalResponseFromJson(Map<String, dynamic> json) =>
+    GlobalResponse(
       json['isError'] as bool?,
       json['data'] == null
           ? null
@@ -45,8 +44,7 @@ AuthenticationResponse _$AuthenticationResponseFromJson(
           : ErrorResponse.fromJson(json['errors'] as Map<String, dynamic>),
     )..statusCode = json['statusCode'] as int?;
 
-Map<String, dynamic> _$AuthenticationResponseToJson(
-        AuthenticationResponse instance) =>
+Map<String, dynamic> _$GlobalResponseToJson(GlobalResponse instance) =>
     <String, dynamic>{
       'statusCode': instance.statusCode,
       'isError': instance.isError,
@@ -77,6 +75,70 @@ HomeResponse _$HomeResponseFromJson(Map<String, dynamic> json) => HomeResponse(
     )..statusCode = json['statusCode'] as int?;
 
 Map<String, dynamic> _$HomeResponseToJson(HomeResponse instance) =>
+    <String, dynamic>{
+      'statusCode': instance.statusCode,
+      'isError': instance.isError,
+      'data': instance.dataResponse,
+      'errors': instance.errorResponse,
+    };
+
+ProductResponse _$ProductResponseFromJson(Map<String, dynamic> json) =>
+    ProductResponse(
+      json['id'] as int?,
+      json['name'] as String?,
+      json['description'] as String?,
+      json['price'] as int?,
+      json['category'] as int?,
+      json['color'] as String?,
+      json['quantity'] as int?,
+      json['productImage'] as String?,
+      json['totalrate'] as int?,
+      (json['photos'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+    );
+
+Map<String, dynamic> _$ProductResponseToJson(ProductResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'description': instance.description,
+      'price': instance.price,
+      'category': instance.category,
+      'color': instance.color,
+      'quantity': instance.quantity,
+      'productImage': instance.productImage,
+      'totalrate': instance.totalRate,
+      'photos': instance.photos,
+    };
+
+ProductDataResponse _$ProductDataResponseFromJson(Map<String, dynamic> json) =>
+    ProductDataResponse(
+      json['Product'] == null
+          ? null
+          : ProductResponse.fromJson(json['Product'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$ProductDataResponseToJson(
+        ProductDataResponse instance) =>
+    <String, dynamic>{
+      'Product': instance.product,
+    };
+
+ProductDetailsResponse _$ProductDetailsResponseFromJson(
+        Map<String, dynamic> json) =>
+    ProductDetailsResponse(
+      json['isError'] as bool?,
+      json['data'] == null
+          ? null
+          : ProductDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+      json['errors'] == null
+          ? null
+          : ErrorResponse.fromJson(json['errors'] as Map<String, dynamic>),
+    )..statusCode = json['statusCode'] as int?;
+
+Map<String, dynamic> _$ProductDetailsResponseToJson(
+        ProductDetailsResponse instance) =>
     <String, dynamic>{
       'statusCode': instance.statusCode,
       'isError': instance.isError,

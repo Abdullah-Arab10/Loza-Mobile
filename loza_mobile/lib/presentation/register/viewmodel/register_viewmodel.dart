@@ -3,12 +3,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:loza_mobile/app/functions.dart';
 import 'package:loza_mobile/domain/usecase/register_usecase.dart';
+import 'package:loza_mobile/presentation/base/base_viewmodel.dart';
 
 import 'package:loza_mobile/presentation/common/freezed/freezed_data_classes.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 
-class RegisterViewModel extends RegisterViewModelInput
-    with RegisterViewModelOutput {
+class RegisterViewModel extends BaseViewModel with RegisterViewModelInput
+    , RegisterViewModelOutput {
   StreamController firstNameStreamController =
       StreamController<String>.broadcast();
   StreamController lastNameStreamController =

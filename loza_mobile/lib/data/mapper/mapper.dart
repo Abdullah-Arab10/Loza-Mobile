@@ -19,9 +19,9 @@ extension ErrorResponseMapper on ErrorResponse? {
   }
 }
 
-extension AuthenticationResponseMapper on AuthenticationResponse? {
-  Authentication toDomain() {
-    return Authentication(
+extension GlobalResponseMapper on GlobalResponse? {
+  Global toDomain() {
+    return Global(
       this?.statusCode?.orZero() ?? Constants.zero,
       this?.isError?.orTrue() ?? Constants.orTrue,
       this?.dataResponse?.toDomain(),
@@ -62,6 +62,41 @@ extension HomeResponseMapper on HomeResponse? {
         this?.statusCode?.orZero() ?? Constants.zero,
       this?.isError?.orTrue() ?? Constants.orTrue,
         dataResponse,
+      this?.errorResponse?.toDomain(),
+    );
+  }
+}
+
+extension PhotoMapper on Map<String, dynamic>? {
+  Map<String, dynamic> photoToDomain(){
+    return {
+      'photoUrl' : this?['photoUrl'] ?? Constants.empty,
+    };
+  }
+}
+
+extension ProductDetailsResponseMapper on ProductDetailsResponse? {
+  ProductDetails toDomain() {
+    Product productDataResponse = Product(
+      this?.dataResponse?.product?.id?.orZero() ?? Constants.zero,
+      this?.dataResponse?.product?.name?.orEmpty() ?? Constants.empty,
+      this?.dataResponse?.product?.description?.orEmpty() ?? Constants.empty,
+     this?.dataResponse?.product?.price?.orZero() ?? Constants.zero,
+      this?.dataResponse?.product?.category?.orZero() ?? Constants.zero,
+      this?.dataResponse?.product?.color?.orEmpty() ?? Constants.empty,
+      this?.dataResponse?.product?.quantity?.orZero() ?? Constants.zero,
+       this?.dataResponse?.product?.productImage?.orEmpty() ?? Constants.empty,
+      this?.dataResponse?.product?.totalRate?.orZero() ?? Constants.zero,
+     (this?.dataResponse?.product?.photos?.map((photo) => photo.photoToDomain()) ??
+    const Iterable.empty())
+        .cast<Map<String, dynamic>>()
+        .toList(),
+    );
+    var dataResponse = ProductData(productDataResponse);
+    return ProductDetails(
+      this?.statusCode?.orZero() ?? Constants.zero,
+      this?.isError?.orTrue() ?? Constants.orTrue,
+      dataResponse,
       this?.errorResponse?.toDomain(),
     );
   }
