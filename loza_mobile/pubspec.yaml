@@ -129,6 +129,8 @@ flutter:
     - assets/images/settings.svg
     - assets/images/topDeals.svg
     - assets/images/shopping_cart.png
+    - assets/images/checkIcon.svg
+    - assets/images/homeIcon.svg
     - assets/translations/ar-SA.json
     - assets/translations/en-US.json
 

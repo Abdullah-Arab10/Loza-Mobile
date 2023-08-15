@@ -9,10 +9,6 @@ import 'package:loza_mobile/presentation/resources/language_manager.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
   await initAppModule();
   runApp(EasyLocalization(
       supportedLocales: const [arabicLocale, englishLocale],
