@@ -46,6 +46,8 @@ class ImageAssets{
   static const String topDeals = '$imagePath/topDeals.svg';
   static const String newCollections = '$imagePath/newCollections.svg';
   static const String shoppingCart = '$imagePath/shopping_cart.png';
+  static const String checkIcon = '$imagePath/checkIcon.svg';
+  static const String homeIcon = '$imagePath/homeIcon.svg';
 }
 
 class JsonAssets {

@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
           locale: context.locale,
           debugShowCheckedModeBanner: false,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.invoiceRoute,
+          initialRoute: Routes.checkOutRoute,
           theme: getApplicationTheme(),
         );
       },
