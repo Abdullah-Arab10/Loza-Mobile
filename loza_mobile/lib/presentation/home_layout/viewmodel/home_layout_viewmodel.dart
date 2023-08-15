@@ -13,8 +13,7 @@ class HomeLayoutViewModel extends BaseViewModel
 
   final _dataStreamController = BehaviorSubject<HomeViewObject>();
   final _favoriteStreamController = BehaviorSubject<Map<int, bool>>();
-  final productDetailsStreamController = BehaviorSubject<ProductObject>();
-  final isGetDetailsSuccessfullyStreamController = BehaviorSubject<bool>();
+  final productDetailsStreamController = BehaviorSubject<Product>();
 
   final ProductDetailsUseCase _productDetailsUseCase;
   final HomeUseCase _homeUseCase;
@@ -48,7 +47,6 @@ class HomeLayoutViewModel extends BaseViewModel
     _dataStreamController.close();
     _favoriteStreamController.close();
     productDetailsStreamController.close();
-    isGetDetailsSuccessfullyStreamController.close();
   }
 
   @override
@@ -73,11 +71,21 @@ class HomeLayoutViewModel extends BaseViewModel
   @override
   getProductDetails(int productId) async {
     (await _productDetailsUseCase.execute(productId)).fold((failure) {},
-        (homeObject) {
-      isGetDetailsSuccessfullyStreamController.add(true);
-      productDetailsStreamController
-          .add(ProductObject(homeObject.dataResponse.product));
-    });
+            (homeObject) {
+          productDetailsStreamController.add(Product(
+            homeObject.dataResponse.id,
+            homeObject.dataResponse.name,
+            homeObject.dataResponse.description,
+            homeObject.dataResponse.price,
+            homeObject.dataResponse.category,
+            homeObject.dataResponse.color,
+            homeObject.dataResponse.quantity,
+            homeObject.dataResponse.productImage,
+            homeObject.dataResponse.totalRate,
+            homeObject.dataResponse.productDimensions,
+            homeObject.dataResponse.photos,
+          ));
+        });
   }
 
   @override

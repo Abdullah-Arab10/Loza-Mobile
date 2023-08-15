@@ -87,12 +87,13 @@ ProductResponse _$ProductResponseFromJson(Map<String, dynamic> json) =>
       json['id'] as int?,
       json['name'] as String?,
       json['description'] as String?,
-      json['price'] as int?,
+      (json['price'] as num?)?.toDouble(),
       json['category'] as int?,
       json['color'] as String?,
-      json['quantity'] as int?,
+      (json['quantity'] as num?)?.toDouble(),
       json['productImage'] as String?,
       json['totalrate'] as int?,
+      json['productDimensions'] as String?,
       (json['photos'] as List<dynamic>?)
           ?.map((e) => e as Map<String, dynamic>)
           .toList(),
@@ -109,20 +110,8 @@ Map<String, dynamic> _$ProductResponseToJson(ProductResponse instance) =>
       'quantity': instance.quantity,
       'productImage': instance.productImage,
       'totalrate': instance.totalRate,
+      'productDimensions': instance.productDimensions,
       'photos': instance.photos,
-    };
-
-ProductDataResponse _$ProductDataResponseFromJson(Map<String, dynamic> json) =>
-    ProductDataResponse(
-      json['Product'] == null
-          ? null
-          : ProductResponse.fromJson(json['Product'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$ProductDataResponseToJson(
-        ProductDataResponse instance) =>
-    <String, dynamic>{
-      'Product': instance.product,
     };
 
 ProductDetailsResponse _$ProductDetailsResponseFromJson(
@@ -131,7 +120,7 @@ ProductDetailsResponse _$ProductDetailsResponseFromJson(
       json['isError'] as bool?,
       json['data'] == null
           ? null
-          : ProductDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+          : ProductResponse.fromJson(json['data'] as Map<String, dynamic>),
       json['errors'] == null
           ? null
           : ErrorResponse.fromJson(json['errors'] as Map<String, dynamic>),

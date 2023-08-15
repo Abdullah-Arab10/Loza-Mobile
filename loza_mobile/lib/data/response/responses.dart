@@ -109,7 +109,7 @@ class ProductResponse {
   String? description;
 
   @JsonKey(name: 'price')
-  int? price;
+  double? price;
 
   @JsonKey(name: 'category')
   int? category;
@@ -118,13 +118,16 @@ class ProductResponse {
   String? color;
 
   @JsonKey(name: 'quantity')
-  int? quantity;
+  double? quantity;
 
   @JsonKey(name: 'productImage')
   String? productImage;
 
   @JsonKey(name: 'totalrate')
   int? totalRate;
+
+  @JsonKey(name: 'productDimensions')
+  String? productDimensions;
 
   @JsonKey(name: 'photos')
   List<Map<String, dynamic>>? photos;
@@ -139,6 +142,7 @@ class ProductResponse {
       this.quantity,
       this.productImage,
       this.totalRate,
+      this.productDimensions,
       this.photos
       );
 
@@ -152,27 +156,11 @@ class ProductResponse {
 }
 
 @JsonSerializable()
-class ProductDataResponse {
-  @JsonKey(name: 'Product')
-  ProductResponse? product;
-
-  ProductDataResponse(this.product);
-
-  //fromJson
-  factory ProductDataResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProductDataResponseFromJson(json);
-
-  // toJson
-  Map<String, dynamic> toJson() => _$ProductDataResponseToJson(this);
-
-}
-
-@JsonSerializable()
 class ProductDetailsResponse extends BaseResponse{
   @JsonKey(name: 'isError')
   bool? isError;
   @JsonKey(name: 'data')
-  ProductDataResponse? dataResponse;
+  ProductResponse? dataResponse;
   @JsonKey(name: 'errors')
   ErrorResponse? errorResponse;
 

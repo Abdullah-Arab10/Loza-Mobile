@@ -80,15 +80,17 @@ class Product {
 
   String description;
 
-  int price;
+  double price;
 
   int category;
 
   String color;
 
-  int quantity;
+  double quantity;
 
   String productImage;
+
+  String productDimensions;
 
   int totalRate;
 
@@ -104,17 +106,9 @@ class Product {
       this.quantity,
       this.productImage,
       this.totalRate,
+      this.productDimensions,
       this.photos);
 }
-
-
-class ProductData {
-
-  Product product;
-
-  ProductData(this.product);
-}
-
 
 class ProductDetails{
 
@@ -122,16 +116,10 @@ class ProductDetails{
 
   bool isError;
 
-  ProductData dataResponse;
+  Product dataResponse;
 
   Error? errorResponse;
 
   ProductDetails(this.statusCode,this.isError,this.dataResponse,this.errorResponse);
 
-}
-
-class ProductObject {
-  Product product;
-
-  ProductObject(this.product);
 }

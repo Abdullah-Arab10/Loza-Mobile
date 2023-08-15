@@ -52,6 +52,7 @@ dependencies:
   fluttertoast: ^8.2.2
   easy_localization: ^3.0.2
   flutter_phoenix: ^1.1.1
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -127,6 +128,7 @@ flutter:
     - assets/images/notifications.svg
     - assets/images/settings.svg
     - assets/images/topDeals.svg
+    - assets/images/shopping_cart.png
     - assets/translations/ar-SA.json
     - assets/translations/en-US.json
 

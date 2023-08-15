@@ -10,10 +10,20 @@ extension NonNullString on String? {
   }
 }
 
-extension NonNullInteger on int? {
+extension NonNullInteger on int?{
   int? orZero() {
     if (this == null) {
       return Constants.zero;
+    } else {
+      return this!;
+    }
+  }
+}
+
+extension NonNullDouble on double?{
+  double? orZeroD() {
+    if (this == null) {
+      return Constants.zeroD;
     } else {
       return this!;
     }

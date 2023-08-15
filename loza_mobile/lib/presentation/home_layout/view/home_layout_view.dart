@@ -9,10 +9,10 @@ import 'package:loza_mobile/presentation/common/widgets/loza_some_widgets.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_new_arrivals_card.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_separator_widget.dart';
 import 'package:loza_mobile/presentation/home_layout/viewmodel/home_layout_viewmodel.dart';
+import 'package:loza_mobile/presentation/product_details/view/product_details_view.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/font_manager.dart';
-import 'package:loza_mobile/presentation/resources/routes_manager.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/resources/styles_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
@@ -34,20 +34,20 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
   }
 
   _bind2() {
-    _viewModel.isGetDetailsSuccessfullyStreamController.stream.listen((isGetDetails) {
-      if(isGetDetails){
-        print(isGetDetails);
         _viewModel.productDetailsStreamController.stream.listen((product) {
-          print(product);
-          Navigator.of(context).pushNamed(Routes.loginRoute, arguments: product);
+          initProductDetailsModule();
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ProductDetailsView(product: product),
+            ),
+          );
         });
-      }
-    });
   }
 
   @override
   void initState() {
     _bind();
+    _bind2();
     super.initState();
   }
 
@@ -186,7 +186,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
               ),
             );
           } else {
-            return Container();
+            return const Center(child: CircularProgressIndicator());
           }
         });
   }
@@ -207,13 +207,12 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
                 height: MediaQuery.of(context).size.height / AppSize.s3_9,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) =>
-                      InkWell(
-                        onTap: (){
-                          //_viewModel.getProductDetails(newest[index]['id']);
-                        },
-                        child: Stack(alignment: Alignment.topRight, children: [
-                          LoZaNewArrivalsCard(
+                  itemBuilder: (context, index) => InkWell(
+                    onTap: () {
+                      _viewModel.getProductDetails(newest[index]['id']);
+                    },
+                    child: Stack(alignment: Alignment.topRight, children: [
+                      LoZaNewArrivalsCard(
                         userId: 4,
                         productId: newest[index]['id'],
                         image: newest[index]['productImage'],
@@ -223,8 +222,8 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
                         height: AppSize.s197.h,
                         imageWidth: AppSize.s112.h,
                         imageHeight: AppSize.s112.h,
-                    ),
-                          Padding(
+                      ),
+                      Padding(
                           padding: EdgeInsetsDirectional.only(
                             top: AppPadding.p10.w,
                             end: AppPadding.p10.w,
@@ -245,8 +244,8 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
                                     color: ColorManager.black,
                                   ),
                           )),
-                  ]),
-                      ),
+                    ]),
+                  ),
                   itemCount: newest.length,
                   separatorBuilder: (BuildContext context, int index) =>
                       SizedBox(
@@ -290,67 +289,3 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
     super.dispose();
   }
 }
-// width: AppSize.s140.w,
-// height: AppSize.s197.h,
-// imageWidth: AppSize.s112.h,
-// imageHeight: AppSize.s112.h,
-// SizedBox(
-// width: AppSize.s140.w,
-// height: AppSize.s197.h,
-// child: Card(
-// child: Column(
-// crossAxisAlignment: CrossAxisAlignment.start,
-// children: [
-// Stack(alignment: Alignment.topRight, children: [
-// Container(
-// width: double.infinity,
-// color: ColorManager.veryLightGrey,
-// child: Image.network(
-// '${Constants.baseUrl}${newest[index]['productImage']}',
-// width: AppSize.s112.h,
-// height: AppSize.s112.h,
-// ),
-// ),
-// Padding(
-// padding: EdgeInsetsDirectional.only(
-// top: AppPadding.p9.w,
-// end: AppPadding.p9.w,
-// ),
-// child: InkWell(
-// onTap: () {
-// _viewModel.postFavorite(
-// 4, newest[index]['id']);
-// },
-// child: favorite[newest[index]['id']] == true
-// ? Icon(
-// Icons.favorite,
-// size: AppSize.s15.w,
-// color: ColorManager.black,
-// )
-//     : Icon(
-// Icons.favorite_border,
-// size: AppSize.s15.w,
-// color: ColorManager.black,
-// ),
-// )),
-// ]),
-// SizedBox(
-// height: MediaQuery.of(context).size.height /
-// AppSize.s70,
-// ),
-// Text(
-// '${newest[index]['name']}',
-// maxLines: AppConstants.maxLines,
-// overflow: TextOverflow.ellipsis,
-// style: Theme.of(context).textTheme.titleSmall,
-// ),
-// Text(
-// '${newest[index]['price']}',
-// maxLines: AppConstants.maxLines,
-// overflow: TextOverflow.ellipsis,
-// style: Theme.of(context).textTheme.bodyLarge,
-// ),
-// ],
-// ),
-// ),
-// ),

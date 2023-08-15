@@ -1,11 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:loza_mobile/presentation/base/base_viewmodel.dart';
 
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 
-class AddDetailsViewModel extends
-     AddDetailsViewModelInputs with AddDetailsViewModelOutputs {
+class AddDetailsViewModel extends BaseViewModel
+with AddDetailsViewModelInputs , AddDetailsViewModelOutputs {
 
   final StreamController _quantityStreamController = StreamController<int>();
   final StreamController _changeColorStreamController = StreamController<String?>();
