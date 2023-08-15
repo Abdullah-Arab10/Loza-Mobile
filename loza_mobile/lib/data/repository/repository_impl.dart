@@ -151,7 +151,6 @@ class RepositoryImpl implements Repository {
         final response = await _remoteDataSource.getProductDetails(productId);
 
         if (response.statusCode == ApiInternalStatus.SUCCESS) {
-
           return Right(response.toDomain());
         } else {
 

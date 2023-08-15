@@ -69,7 +69,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                     ),
                     TextButton(
                       onPressed: (){
-                        Navigator.pushNamed(context, Routes.productDetailsRoute);
+                        // Navigator.pushNamed(context, Routes.productDetailsRoute);
                       },
                       child: Text(
                         AppStrings.edit,

@@ -6,12 +6,9 @@ import 'package:loza_mobile/data/network/app_api.dart';
 import 'package:loza_mobile/data/network/network_info.dart';
 import 'package:loza_mobile/data/data_source/remote_data_source.dart';
 import 'package:loza_mobile/data/repository/repository_impl.dart';
-import 'package:loza_mobile/domain/models/models.dart';
 import 'package:loza_mobile/domain/repository/repository.dart';
 import 'package:loza_mobile/domain/usecase/home_usecase.dart';
 import 'package:loza_mobile/domain/usecase/login_usecase.dart';
-import 'package:loza_mobile/domain/usecase/product_details&cart_usecase.dart';
-import 'package:loza_mobile/domain/usecase/product_details&cart_usecase.dart';
 import 'package:loza_mobile/domain/usecase/product_details&cart_usecase.dart';
 import 'package:loza_mobile/domain/usecase/register_usecase.dart';
 import 'package:loza_mobile/presentation/home_layout/viewmodel/home_layout_viewmodel.dart';
@@ -82,5 +79,12 @@ initHomeModule() {
     instance.registerFactory<PostFavoriteUseCase>(() => PostFavoriteUseCase(instance()));
     instance.registerFactory<ProductDetailsUseCase>(() => ProductDetailsUseCase(instance()));
     instance.registerFactory<HomeLayoutViewModel>(() => HomeLayoutViewModel(instance(), instance(),instance()));
+  }
+}
+
+initProductDetailsModule() {
+  if (!GetIt.I.isRegistered<PostToCartUseCase>()) {
+    instance.registerFactory<PostToCartUseCase>(() => PostToCartUseCase(instance()));
+    instance.registerFactory<ProductDetailsViewModel>(() => ProductDetailsViewModel(instance()));
   }
 }

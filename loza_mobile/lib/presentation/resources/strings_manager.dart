@@ -79,6 +79,7 @@ class AppStrings {
   static const edit = 'Edit';
   static const shoppingCart = 'Shopping cart';
   static const items = 'items';
+  static const order = 'order';
   static const checkout = 'Checkout';
   static const myAccount = 'My Account';
 

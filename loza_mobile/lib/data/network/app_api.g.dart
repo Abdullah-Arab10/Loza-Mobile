@@ -25,7 +25,6 @@ class _AppServiceClient implements AppServiceClient {
     String email,
     String password,
   ) async {
-
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -106,7 +105,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Favorite/MakeFavorite/$userId/$productId',
+              '/api/Favorite/MakeFavorite/',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -135,7 +134,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Cart?userId=$userId&name=$name&color=$color&colorno=$colorno&quan=$quan',
+              '/api/Cart?userId=&name=&color=&colorno=&quan=',
               queryParameters: queryParameters,
               data: _data,
             )

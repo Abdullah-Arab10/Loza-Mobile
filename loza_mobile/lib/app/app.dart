@@ -29,6 +29,8 @@ class _MyAppState extends State<MyApp> {
     super.didChangeDependencies();
   }
 
+  //static const String title = 'Invoice';
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -42,7 +44,7 @@ class _MyAppState extends State<MyApp> {
           locale: context.locale,
           debugShowCheckedModeBanner: false,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.loginRoute,
+          initialRoute: Routes.invoiceRoute,
           theme: getApplicationTheme(),
         );
       },
