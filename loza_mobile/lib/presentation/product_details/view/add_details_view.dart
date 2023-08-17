@@ -21,15 +21,23 @@ class AddDetailsView extends StatefulWidget {
 }
 
 class _AddDetailsViewState extends State<AddDetailsView> {
-  final ProductDetailsViewModel _productDetailsViewModel =
-      instance<ProductDetailsViewModel>();
-  final AddDetailsViewModel _viewModel = AddDetailsViewModel();
+
+  // final ProductDetailsViewModel _productDetailsViewModel =
+  //     instance<ProductDetailsViewModel>();
+
+  final AddDetailsViewModel _viewModel = instance<AddDetailsViewModel>();
 
   String? color;
   int? quan;
 
   _bind() {
     _viewModel.start();
+    _viewModel.isPostToCartSuccessfullyStreamController.stream.listen((isPost) {
+      if(isPost){
+        print(isPost);
+        Navigator.of(context).pop();
+      }
+    });
   }
 
   @override
@@ -158,7 +166,7 @@ class _AddDetailsViewState extends State<AddDetailsView> {
         ),
         ElevatedButton(
           onPressed: () => {
-            _productDetailsViewModel.postToCart(PostToCartObject(widget.userId,
+            _viewModel.postToCart(PostToCartObject(widget.userId,
                 widget.name, color ?? '', _viewModel.valueOfColor(color), quan ?? 0))
           },
           child: Text(AppStrings.submit,

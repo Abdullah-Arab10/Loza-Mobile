@@ -21,4 +21,6 @@ abstract class Repository {
   Future<Either<Failure, HomeObject>> getNewestData(int userId);
 
   Future<Either<Failure, ProductDetails>> getProductDetails(int productId);
+
+  Future<Either<Failure, CartObject>> getFromCart(int userId);
 }

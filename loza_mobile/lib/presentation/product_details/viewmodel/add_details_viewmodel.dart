@@ -1,15 +1,21 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:loza_mobile/domain/usecase/product_details&cart_usecase.dart';
 import 'package:loza_mobile/presentation/base/base_viewmodel.dart';
 
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
+import 'package:rxdart/rxdart.dart';
 
 class AddDetailsViewModel extends BaseViewModel
 with AddDetailsViewModelInputs , AddDetailsViewModelOutputs {
 
   final StreamController _quantityStreamController = StreamController<int>();
   final StreamController _changeColorStreamController = StreamController<String?>();
+  final isPostToCartSuccessfullyStreamController = BehaviorSubject<bool>();
+
+  final PostToCartUseCase _postToCartUseCase;
+  AddDetailsViewModel(this._postToCartUseCase);
 
   List<Color> colors = [
     ColorManager.black,
@@ -37,12 +43,27 @@ with AddDetailsViewModelInputs , AddDetailsViewModelOutputs {
   void dispose() {
     _quantityStreamController.close();
     _changeColorStreamController.close();
+    isPostToCartSuccessfullyStreamController.close();
   }
 
   @override
-  void start() {
+  void start([int? num]) {
     inputsQuantity.add(1);
     inputsChangeColor.add(nameOfColor);
+  }
+
+  @override
+  postToCart(PostToCartObject postToCartObject) async {
+    (await _postToCartUseCase.execute(PostToCartUseCaseInput(
+        postToCartObject.userId,
+        postToCartObject.name,
+        postToCartObject.color,
+        postToCartObject.colorno,
+        postToCartObject.quan)))
+        .fold((failure) {}, (data) {
+          print(data.statusCode);
+      isPostToCartSuccessfullyStreamController.add(true);
+    });
   }
 
   @override
@@ -106,7 +127,7 @@ abstract class AddDetailsViewModelInputs {
   void remove(int quantity);
   void add(int quantity);
   void changeColor(String? color);
-
+  postToCart(PostToCartObject postToCartObject);
   Sink get inputsQuantity;
   Sink get inputsChangeColor;
 
@@ -116,4 +137,14 @@ abstract class AddDetailsViewModelOutputs {
 
   Stream<int> get outputsQuantity;
   Stream<String?> get outputsChangeColor;
+}
+
+class PostToCartObject {
+  int userId;
+  String name;
+  String color;
+  int colorno;
+  int quan;
+
+  PostToCartObject(this.userId, this.name, this.color, this.colorno, this.quan);
 }

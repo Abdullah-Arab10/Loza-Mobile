@@ -25,13 +25,13 @@ abstract class AppServiceClient {
   @POST("/api/Favorite/MakeFavorite/")
   Future<GlobalResponse> postFavorite(int userId, int productId);
 
-  @POST("/api/Cart?userId=&name=&color=&colorno=&quan=")
+  @POST("/api/Cart/AddToCart")
   Future<GlobalResponse> postToCart(
-     int userId,
-     String name,
-     String color,
-     int colorno,
-     int quan,
+      @Field("userId") int userId,
+      @Field("name") String name,
+      @Field("color") String color,
+      @Field("colorno") int colorno,
+      @Field("quant") int quan,
   );
 
   @GET("/api/Product/Newest?userId=")
@@ -39,4 +39,7 @@ abstract class AppServiceClient {
 
   @GET("/api/Product/api/Product/GetProductsById/")
   Future<ProductDetailsResponse> getProductDetails(int productId);
+
+  @GET("/api/Cart/GetUserCart?userId=")
+  Future<CartResponse> getFromCart(int userId);
 }

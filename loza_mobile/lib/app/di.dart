@@ -7,14 +7,21 @@ import 'package:loza_mobile/data/network/network_info.dart';
 import 'package:loza_mobile/data/data_source/remote_data_source.dart';
 import 'package:loza_mobile/data/repository/repository_impl.dart';
 import 'package:loza_mobile/domain/repository/repository.dart';
+import 'package:loza_mobile/domain/usecase/cart_usecase.dart';
+import 'package:loza_mobile/domain/usecase/cart_usecase.dart';
+import 'package:loza_mobile/domain/usecase/cart_usecase.dart';
 import 'package:loza_mobile/domain/usecase/home_usecase.dart';
 import 'package:loza_mobile/domain/usecase/login_usecase.dart';
 import 'package:loza_mobile/domain/usecase/product_details&cart_usecase.dart';
 import 'package:loza_mobile/domain/usecase/register_usecase.dart';
 import 'package:loza_mobile/presentation/home_layout/viewmodel/home_layout_viewmodel.dart';
 import 'package:loza_mobile/presentation/login/viewmodel/login_viewmodel.dart';
+import 'package:loza_mobile/presentation/product_details/viewmodel/add_details_viewmodel.dart';
+import 'package:loza_mobile/presentation/product_details/viewmodel/add_details_viewmodel.dart';
 import 'package:loza_mobile/presentation/product_details/viewmodel/product_details_viewmodel.dart';
 import 'package:loza_mobile/presentation/register/viewmodel/register_viewmodel.dart';
+import 'package:loza_mobile/presentation/shopping_cart/viewmodel/shopping_cart_viewmodel.dart';
+import 'package:loza_mobile/presentation/shopping_cart/viewmodel/shopping_cart_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/network/dio_factory.dart';
@@ -85,6 +92,14 @@ initHomeModule() {
 initProductDetailsModule() {
   if (!GetIt.I.isRegistered<PostToCartUseCase>()) {
     instance.registerFactory<PostToCartUseCase>(() => PostToCartUseCase(instance()));
-    instance.registerFactory<ProductDetailsViewModel>(() => ProductDetailsViewModel(instance()));
+    instance.registerFactory<AddDetailsViewModel>(() => AddDetailsViewModel(instance()));
+    instance.registerFactory<ProductDetailsViewModel>(() => ProductDetailsViewModel());
+  }
+}
+
+initShoppingCartModule() {
+  if (!GetIt.I.isRegistered<CartUseCase>()) {
+    instance.registerFactory<CartUseCase>(() => CartUseCase(instance()));
+    instance.registerFactory<ShoppingCartViewModel>(() => ShoppingCartViewModel(instance()));
   }
 }

@@ -81,6 +81,7 @@ class AppStrings {
   static const items = 'items';
   static const order = 'order';
   static const checkout = 'Checkout';
+  static const payment = 'Payment';
   static const myAccount = 'My Account';
 
   // error handler

@@ -134,3 +134,33 @@ Map<String, dynamic> _$ProductDetailsResponseToJson(
       'data': instance.dataResponse,
       'errors': instance.errorResponse,
     };
+
+CartDataResponse _$CartDataResponseFromJson(Map<String, dynamic> json) =>
+    CartDataResponse(
+      (json['UserCart'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+    );
+
+Map<String, dynamic> _$CartDataResponseToJson(CartDataResponse instance) =>
+    <String, dynamic>{
+      'UserCart': instance.newest,
+    };
+
+CartResponse _$CartResponseFromJson(Map<String, dynamic> json) => CartResponse(
+      json['isError'] as bool?,
+      json['data'] == null
+          ? null
+          : CartDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+      json['errors'] == null
+          ? null
+          : ErrorResponse.fromJson(json['errors'] as Map<String, dynamic>),
+    )..statusCode = json['statusCode'] as int?;
+
+Map<String, dynamic> _$CartResponseToJson(CartResponse instance) =>
+    <String, dynamic>{
+      'statusCode': instance.statusCode,
+      'isError': instance.isError,
+      'data': instance.dataResponse,
+      'errors': instance.errorResponse,
+    };

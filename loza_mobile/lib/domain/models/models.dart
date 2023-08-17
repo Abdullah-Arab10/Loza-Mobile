@@ -123,3 +123,20 @@ class ProductDetails{
   ProductDetails(this.statusCode,this.isError,this.dataResponse,this.errorResponse);
 
 }
+
+// cart
+
+class CartData {
+  List<Map<String, dynamic>> userCart;
+
+  CartData(this.userCart);
+}
+
+class CartObject {
+  int statusCode;
+  bool isError;
+  CartData dataResponse;
+  Error? error;
+
+  CartObject(this.statusCode, this.isError, this.dataResponse, this.error);
+}

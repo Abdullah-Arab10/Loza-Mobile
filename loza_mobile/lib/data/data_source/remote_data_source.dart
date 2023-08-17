@@ -20,6 +20,8 @@ abstract class RemoteDataSource {
   Future<HomeResponse> getNewestData(int userId);
 
   Future<ProductDetailsResponse> getProductDetails(int productId);
+
+  Future<CartResponse> getFromCart(int userId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -67,5 +69,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<ProductDetailsResponse> getProductDetails(int productId) async {
     return await _appServiceClient.getProductDetails(productId);
+  }
+
+  @override
+  Future<CartResponse> getFromCart(int userId) async {
+    return await _appServiceClient.getFromCart(userId);
   }
 }

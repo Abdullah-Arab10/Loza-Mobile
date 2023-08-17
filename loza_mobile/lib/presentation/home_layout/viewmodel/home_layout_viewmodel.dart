@@ -5,12 +5,11 @@ import 'package:loza_mobile/domain/usecase/home_usecase.dart';
 import 'package:loza_mobile/domain/usecase/product_details&cart_usecase.dart';
 import 'package:loza_mobile/presentation/base/base_viewmodel.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
+import 'package:loza_mobile/presentation/resources/extensions_manager.dart';
 import 'package:rxdart/rxdart.dart';
 
 class HomeLayoutViewModel extends BaseViewModel
     with HomeLayoutViewModelInputs, HomeLayoutViewModelOutputs {
-  final AppPreferences _appPreferences = instance<AppPreferences>();
-
   final _dataStreamController = BehaviorSubject<HomeViewObject>();
   final _favoriteStreamController = BehaviorSubject<Map<int, bool>>();
   final productDetailsStreamController = BehaviorSubject<Product>();
@@ -50,14 +49,14 @@ class HomeLayoutViewModel extends BaseViewModel
   }
 
   @override
-  void start() {
+  void start([int? num]) {
     getNewestData();
   }
 
   @override
   getNewestData() async {
-    //int id = extractIdFromToken();
-    (await _homeUseCase.execute(4)).fold((failure) {}, (homeObject) {
+    int id = Extensions.extractIdFromToken();
+    (await _homeUseCase.execute(id)).fold((failure) {}, (homeObject) {
       inputHomeData.add(HomeViewObject(homeObject.dataResponse.newest));
       for (var element in homeObject.dataResponse.newest) {
         favorites.addAll({
@@ -114,14 +113,6 @@ class HomeLayoutViewModel extends BaseViewModel
   Stream<Map<int, bool>> get outputFavoriteData =>
       _favoriteStreamController.stream.map((favMap) => favMap);
 
-  // int extractIdFromToken() {
-  //   int id = 1;
-  //   _appPreferences.getToken().then((value) {
-  //     Map<String, dynamic> decodedToken = JwtDecoder.decode(value);
-  //     id = decodedToken['Id'];
-  //   });
-  //   return id;
-  // }
 }
 
 abstract class HomeLayoutViewModelInputs {

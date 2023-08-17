@@ -53,7 +53,6 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
-    print(loginObject.email);
     (await _loginUseCase.execute(
             LoginUseCaseInput(loginObject.email, loginObject.password)))
         .fold((failure) {
@@ -120,7 +119,7 @@ class LoginViewModel extends BaseViewModel
   }
 
   @override
-  void start() {
+  void start([int? num]) {
 
   }
 }

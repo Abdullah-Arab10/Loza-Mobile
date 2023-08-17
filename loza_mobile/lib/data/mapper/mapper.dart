@@ -105,3 +105,39 @@ extension ProductDetailsResponseMapper on ProductDetailsResponse? {
     );
   }
 }
+
+// cart
+
+extension CartDataResponseMapper on Map<String, dynamic>? {
+  Map<String, dynamic> cartToDomain() {
+    return {
+      'qunatity': this?['qunatity'] ?? Constants.zero,
+      'productName': this?['productName'] ?? Constants.empty,
+      'price': this?['price'] ?? Constants.zero,
+      'photo': this?['photo'] ?? Constants.empty,
+      'color': this?['color'] ?? Constants.empty,
+      'colorNo': this?['colorNo'] ?? Constants.zero,
+      'id': this?['id'] ?? Constants.zero,
+    };
+  }
+}
+
+extension CartResponseMapper on CartResponse? {
+  CartObject toDomain() {
+    List<Map<String, dynamic>> newest = (this
+        ?.dataResponse
+        ?.newest
+        ?.map((homeDataResponse) => homeDataResponse.cartToDomain()) ??
+        const Iterable.empty())
+        .cast<Map<String, dynamic>>()
+        .toList();
+
+    var dataResponse = CartData(newest);
+    return CartObject(
+      this?.statusCode?.orZero() ?? Constants.zero,
+      this?.isError?.orTrue() ?? Constants.orTrue,
+      dataResponse,
+      this?.errorResponse?.toDomain(),
+    );
+  }
+}
