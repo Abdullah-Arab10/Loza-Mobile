@@ -175,4 +175,39 @@ class ProductDetailsResponse extends BaseResponse{
 
 }
 
+// cart
 
+@JsonSerializable()
+class CartDataResponse {
+  @JsonKey(name: 'UserCart')
+  List<Map<String, dynamic>>? newest;
+
+  CartDataResponse(this.newest);
+
+  //fromJson
+  factory CartDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$CartDataResponseFromJson(json);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$CartDataResponseToJson(this);
+
+}
+
+@JsonSerializable()
+class CartResponse extends BaseResponse {
+  @JsonKey(name: 'isError')
+  bool? isError;
+  @JsonKey(name: 'data')
+  CartDataResponse? dataResponse;
+  @JsonKey(name: 'errors')
+  ErrorResponse? errorResponse;
+
+  CartResponse(this.isError,this.dataResponse, this.errorResponse);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$CartResponseToJson(this);
+
+  //fromJson
+  factory CartResponse.fromJson(Map<String, dynamic> json) =>
+      _$CartResponseFromJson(json);
+}

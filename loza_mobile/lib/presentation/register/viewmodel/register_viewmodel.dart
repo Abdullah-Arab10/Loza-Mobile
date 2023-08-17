@@ -35,7 +35,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput
 
   // inputs
   @override
-  void start() {}
+  void start([int? num]) {}
 
   @override
   void dispose() {

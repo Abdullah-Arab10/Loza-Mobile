@@ -125,7 +125,13 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    final _data = {
+      'userId': userId,
+      'name': name,
+      'color': color,
+      'colorno': colorno,
+      'quant': quan,
+    };
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<GlobalResponse>(Options(
       method: 'POST',
@@ -134,7 +140,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Cart?userId=&name=&color=&colorno=&quan=',
+              '/api/Cart/AddToCart',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -186,6 +192,29 @@ class _AppServiceClient implements AppServiceClient {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ProductDetailsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<CartResponse> getFromCart(int userId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<CartResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/Cart/GetUserCart?userId=$userId',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = CartResponse.fromJson(_result.data!);
     return value;
   }
 

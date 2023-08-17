@@ -6,7 +6,6 @@ import 'package:loza_mobile/app/di.dart';
 import 'package:loza_mobile/domain/models/models.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_button_widget.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_separator_widget.dart';
-import 'package:loza_mobile/presentation/home_layout/viewmodel/home_layout_viewmodel.dart';
 import 'package:loza_mobile/presentation/product_details/viewmodel/product_details_viewmodel.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
@@ -216,7 +215,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                           height: AppSize.s38.h,
                           child: LoZaButtonWidget(
                             onPressed: () {
-                              _viewModel.showAdditionalDetails(product.name, 4,context);
+                              _viewModel.showAdditionalDetails(product.name, 1,context);
                             },
                             text: 'add to cart',
                             toUpperCase: true,

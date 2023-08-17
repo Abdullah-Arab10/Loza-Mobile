@@ -37,7 +37,7 @@ class Routes {
   static const String ratingRoute = "rating";
   static const String orderRoute = "order";
   static const String invoiceRoute = "invoice";
-  static const String checkOutRoute = "checkOut";
+  //static const String checkOutRoute = "checkOut";
 }
 
 class RouteGenerator {
@@ -69,6 +69,7 @@ class RouteGenerator {
       case Routes.filtersRoute:
         return MaterialPageRoute(builder: (_) => const FiltersView());
       case Routes.shoppingCartRoute:
+        initShoppingCartModule();
         return MaterialPageRoute(builder: (_) => const ShoppingCartView());
       case Routes.myAccountRoute:
         return MaterialPageRoute(builder: (_) => const MyAccountView());
@@ -78,8 +79,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OrderView());
       case Routes.invoiceRoute:
         return MaterialPageRoute(builder: (_) => const InvoiceView());
-      case Routes.checkOutRoute:
-        return MaterialPageRoute(builder: (_) => const CheckOutView());
+      // case Routes.checkOutRoute:
+      //   return MaterialPageRoute(builder: (_) => const CheckOutView());
       default:
         return unDefinedRoute();
     }
