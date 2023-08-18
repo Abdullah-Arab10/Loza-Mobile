@@ -10,7 +10,17 @@ import 'package:loza_mobile/presentation/resources/styles_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
 
 class LoZaReviewCardWidget extends StatelessWidget {
-  const LoZaReviewCardWidget({Key? key}) : super(key: key);
+
+  final String name;
+  final double rate;
+  final String review;
+
+  const LoZaReviewCardWidget({
+    Key? key,
+    required this.name,
+    required this.rate,
+    required this.review
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +44,7 @@ class LoZaReviewCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Mattie Benson',
+                      name,
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     Text(
@@ -50,7 +60,7 @@ class LoZaReviewCardWidget extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '5.0',
+                          '$rate',
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         SvgPicture.asset(
@@ -59,7 +69,7 @@ class LoZaReviewCardWidget extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      'True to size and color. The front part doesn’t lay as neatly as the photo but overally I would reccomend',
+                      review,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / AppSize.s122,),

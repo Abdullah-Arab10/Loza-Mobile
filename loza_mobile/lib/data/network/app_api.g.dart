@@ -170,7 +170,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Address/addAddress?userId=$userId',
+              '/api/Address/addAddress?userId=',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -204,6 +204,39 @@ class _AppServiceClient implements AppServiceClient {
             .compose(
               _dio.options,
               '/api/Order/CreateOrder',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GlobalResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<GlobalResponse> addRate(
+    int userId,
+    int productId,
+    double rating,
+    String reviews,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = {
+      'userId': userId,
+      'productId': productId,
+      'rating': rating,
+      'reviews': reviews,
+    };
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<GlobalResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/RatingReview/AddRate',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -249,7 +282,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Product/api/Product/GetProductsById/',
+              '/api/Product/api/Product/GetProductsById/$productId',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -272,7 +305,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Cart/GetUserCart?userId=$userId',
+              '/api/Cart/GetUserCart?userId=',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -295,12 +328,58 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Address/getAddressById?userId=$userId',
+              '/api/Address/getAddressById?userId=',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = AddressResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<FavouriteResponse> getFavourite(int userId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<FavouriteResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/Favorite/GetAllFavorites/',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = FavouriteResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ReviewsResponse> getReviews(int productId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ReviewsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/AllReviews/$productId',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ReviewsResponse.fromJson(_result.data!);
     return value;
   }
 

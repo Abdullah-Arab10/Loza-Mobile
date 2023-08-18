@@ -3,7 +3,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loza_mobile/app/constants.dart';
+import 'package:loza_mobile/app/di.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_textfield_widget.dart';
+import 'package:loza_mobile/presentation/rating/viewmodel/rating_viewmodel.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/font_manager.dart';
@@ -11,7 +13,12 @@ import 'package:loza_mobile/presentation/resources/styles_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
 
 class RatingView extends StatefulWidget {
-  const RatingView({Key? key}) : super(key: key);
+
+  final String image;
+  final String name;
+  final int id;
+
+  const RatingView({Key? key, required this.image,required this.name,required this.id}) : super(key: key);
 
   @override
   State<RatingView> createState() => _RatingViewState();
@@ -19,6 +26,20 @@ class RatingView extends StatefulWidget {
 
 class _RatingViewState extends State<RatingView> {
   final TextEditingController _ratingController = TextEditingController();
+  final AddReviewViewModel _viewModel = instance<AddReviewViewModel>();
+
+  late double rating;
+
+  _bind(){
+    _ratingController
+        .addListener(() => _viewModel.setReviewName(_ratingController.text));
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +67,9 @@ class _RatingViewState extends State<RatingView> {
                         alignment: Alignment.topLeft,
                         child: Builder(builder: (context) {
                           return TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _viewModel.addReview(widget.id, rating);
+                            },
                             child: Text(
                               'post',
                               style: getHeavyStyle(
@@ -63,7 +86,7 @@ class _RatingViewState extends State<RatingView> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'name of product',
+                              widget.name,
                               style: getHeavyStyle(
                                   color: ColorManager.black,
                                   fontSize: FontSize.fs13.sp),
@@ -81,7 +104,7 @@ class _RatingViewState extends State<RatingView> {
                               MediaQuery.of(context).size.width / AppSize.s30,
                         ),
                         Image.network(
-                          '${Constants.baseUrl}${'/Uploads/a7337220-ee46-43c2-a602-10653f0e57f5.png'}',
+                          '${Constants.baseUrl}${widget.image}',
                           width: AppSize.s60.w,
                           fit: BoxFit.cover,
                         ),
@@ -90,10 +113,15 @@ class _RatingViewState extends State<RatingView> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width / AppSize.s30,
                     ),
-                    SvgPicture.asset(
-                      ImageAssets.close,
-                      width: AppSize.s26.w,
-                      height: AppSize.s26.w,
+                    InkWell(
+                      onTap: (){
+                        Navigator.of(context).pop();
+                      },
+                      child: SvgPicture.asset(
+                        ImageAssets.close,
+                        width: AppSize.s26.w,
+                        height: AppSize.s26.w,
+                      ),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width / AppSize.s30,
@@ -118,7 +146,9 @@ class _RatingViewState extends State<RatingView> {
                     Icons.star,
                     color: ColorManager.black,
                   ),
-                  onRatingUpdate: (value) {},
+                  onRatingUpdate: (value) {
+                    rating = value;
+                  },
                 ),
                 SizedBox(
                   height:
@@ -126,7 +156,7 @@ class _RatingViewState extends State<RatingView> {
                 ),
                 LoZaTextFieldWidget(
                   controller: _ratingController,
-                  label: 'rating',
+                  label: 'Rating',
                 ),
               ],
             )),

@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:loza_mobile/domain/models/models.dart';
+import 'package:loza_mobile/presentation/base/base_viewmodel.dart';
 
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 
-class CategoriesViewModel extends
-     CategoriesViewModelInputs with CategoriesViewModelOutputs {
+class CategoriesViewModel extends BaseViewModel
+with CategoriesViewModelInputs , CategoriesViewModelOutputs {
   final StreamController _categoryObjectStreamController =
       StreamController<List<CategoriesObject>>();
 

@@ -86,13 +86,15 @@ class Product {
 
   String color;
 
+  int colorNo;
+
   double quantity;
 
   String productImage;
 
-  String productDimensions;
+  double totalRate;
 
-  int totalRate;
+  String productDimensions;
 
   List<Map<String, dynamic>> photos;
 
@@ -103,6 +105,7 @@ class Product {
       this.price,
       this.category,
       this.color,
+      this.colorNo,
       this.quantity,
       this.productImage,
       this.totalRate,
@@ -154,4 +157,34 @@ class AddressObject {
   Error? error;
 
   AddressObject(this.statusCode, this.isError, this.dataResponse, this.error);
+}
+
+class FavouriteData {
+  List<Map<String, dynamic>> favoriteList;
+
+  FavouriteData(this.favoriteList);
+}
+
+class FavouriteObject {
+  int statusCode;
+  bool isError;
+  FavouriteData dataResponse;
+  Error? error;
+
+  FavouriteObject(this.statusCode, this.isError, this.dataResponse, this.error);
+}
+
+class ReviewsData {
+  List<Map<String, dynamic>> allReviews;
+
+  ReviewsData(this.allReviews);
+}
+
+class ReviewsObject {
+  int statusCode;
+  bool isError;
+  ReviewsData dataResponse;
+  Error? error;
+
+  ReviewsObject(this.statusCode, this.isError, this.dataResponse, this.error);
 }

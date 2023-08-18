@@ -36,6 +36,8 @@ class LoginViewModel extends BaseViewModel
   }
 
 
+  @override
+  void start() {}
 
   @override
   setPassword(String password) {
@@ -118,10 +120,6 @@ class LoginViewModel extends BaseViewModel
         _isUserNameValid(loginObject.email);
   }
 
-  @override
-  void start([int? num]) {
-
-  }
 }
 
 abstract class LoginViewModelInputs {

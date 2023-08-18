@@ -5,6 +5,7 @@ import 'package:loza_mobile/presentation/Add_Address/view/add_address_view.dart'
 import 'package:loza_mobile/presentation/categories/view/categories_view.dart';
 import 'package:loza_mobile/presentation/checkout/view/checkout_view.dart';
 import 'package:loza_mobile/presentation/collection/view/collection_view.dart';
+import 'package:loza_mobile/presentation/favourite/view/favourite_view.dart';
 import 'package:loza_mobile/presentation/filters/view/filters_view.dart';
 import 'package:loza_mobile/presentation/forgot_password/view/forgot_password_view.dart';
 import 'package:loza_mobile/presentation/home_layout/view/home_layout_view.dart';
@@ -35,11 +36,12 @@ class Routes {
   static const String filtersRoute = "filters";
   static const String shoppingCartRoute = "shoppingCart";
   static const String myAccountRoute = "myAccount";
-  static const String ratingRoute = "rating";
+  //static const String ratingRoute = "rating";
   static const String orderRoute = "order";
   static const String invoiceRoute = "invoice";
   //static const String checkOutRoute = "checkOut";
   static const String addAddressRoute = "addAddress";
+  static const String favouriteRoute = "favourite";
 }
 
 class RouteGenerator {
@@ -67,6 +69,7 @@ class RouteGenerator {
       case Routes.collectionRoute:
         return MaterialPageRoute(builder: (_) => const CollectionView());
       case Routes.reviewRoute:
+        initGetReviewModule();
         return MaterialPageRoute(builder: (_) => const ReviewView());
       case Routes.filtersRoute:
         return MaterialPageRoute(builder: (_) => const FiltersView());
@@ -75,8 +78,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ShoppingCartView());
       case Routes.myAccountRoute:
         return MaterialPageRoute(builder: (_) => const MyAccountView());
-      case Routes.ratingRoute:
-        return MaterialPageRoute(builder: (_) => const RatingView());
+      // case Routes.ratingRoute:
+      //   return MaterialPageRoute(builder: (_) => const RatingView());
       case Routes.orderRoute:
         return MaterialPageRoute(builder: (_) => const OrderView());
       case Routes.invoiceRoute:
@@ -86,6 +89,10 @@ class RouteGenerator {
       case Routes.addAddressRoute:
         initAddAddressModule();
         return MaterialPageRoute(builder: (_) => const AddAddressView());
+      case Routes.favouriteRoute:
+        initHomeModule();
+        initGetFavouriteModule();
+        return MaterialPageRoute(builder: (_) => const FavouriteView());
       default:
         return unDefinedRoute();
     }

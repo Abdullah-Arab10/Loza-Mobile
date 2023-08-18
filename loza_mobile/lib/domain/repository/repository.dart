@@ -22,6 +22,8 @@ abstract class Repository {
 
   Future<Either<Failure, Global>> addOrder(AddOrderRequest addAddressRequest);
 
+  Future<Either<Failure, Global>> addRating(AddRatingRequest addRatingRequest);
+
   Future<Either<Failure, HomeObject>> getNewestData(int userId);
 
   Future<Either<Failure, ProductDetails>> getProductDetails(int productId);
@@ -29,4 +31,8 @@ abstract class Repository {
   Future<Either<Failure, CartObject>> getFromCart(int userId);
 
   Future<Either<Failure, AddressObject>> getAddress(int userId);
+
+  Future<Either<Failure, FavouriteObject>> getFavourite(int userId);
+
+  Future<Either<Failure, ReviewsObject>> getReviews(int productId);
 }

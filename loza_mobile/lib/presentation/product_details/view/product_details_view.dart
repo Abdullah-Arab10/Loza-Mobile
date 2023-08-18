@@ -7,10 +7,12 @@ import 'package:loza_mobile/domain/models/models.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_button_widget.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_separator_widget.dart';
 import 'package:loza_mobile/presentation/product_details/viewmodel/product_details_viewmodel.dart';
+import 'package:loza_mobile/presentation/rating/view/rating_view.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/constants.dart';
 import 'package:loza_mobile/presentation/resources/font_manager.dart';
+import 'package:loza_mobile/presentation/resources/routes_manager.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/resources/styles_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
@@ -72,25 +74,9 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                       ),
                       Expanded(
                         child: Text(
-                          AppStrings.lamps,
+                          AppStrings.productDetails,
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
-                      ),
-                      SvgPicture.asset(
-                        ImageAssets.shopIcon,
-                        width: AppSize.s26.w,
-                        height: AppSize.s26.w,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / AppSize.s30,
-                      ),
-                      SvgPicture.asset(
-                        ImageAssets.favouriteIcon,
-                        width: AppSize.s26.w,
-                        height: AppSize.s26.w,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / AppSize.s30,
                       ),
                     ],
                   ),
@@ -197,7 +183,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                         product.category,
                       ),
                       const ReviewPage(),
-                      const AdditionalInformationPage(),
+                      AdditionalInformationPage(image: product.productImage, name: product.name, id: product.id),
                     ],
                   ),
                 ),
@@ -251,6 +237,7 @@ class DescriptionPage extends StatelessWidget {
   final String dimensions;
   final String color;
   final int category;
+
 
   const DescriptionPage(this.description, this.dimensions, this.color, this.category,
       {Key? key})
@@ -329,23 +316,61 @@ class ReviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'Review',
-        style: Theme.of(context).textTheme.bodySmall,
+      child: InkWell(
+        onTap: (){
+          Navigator.of(context).pushNamed(Routes.reviewRoute);
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppSize.s10),
+            border: Border.all(
+                color: ColorManager.black,
+                width: AppPadding.p3
+            ),
+          ),
+          padding: EdgeInsetsDirectional.all(AppPadding.p3.w),
+          child: Text(
+            'See product reviews',
+            style: getHeavyStyle(color: ColorManager.black,fontSize: FontSize.fs20.sp),
+          ),
+        ),
       ),
     );
   }
 }
 
 class AdditionalInformationPage extends StatelessWidget {
-  const AdditionalInformationPage({Key? key}) : super(key: key);
+
+  final String image;
+  final String name;
+  final int id;
+
+  const AdditionalInformationPage({Key? key,required this.image,required this.name,required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'Additional Information',
-        style: Theme.of(context).textTheme.bodySmall,
+      child: InkWell(
+        onTap: (){
+          initAddReviewModule();
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => RatingView(image: image, name: name, id: id),)
+          );
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppSize.s10),
+            border: Border.all(
+              color: ColorManager.black,
+              width: AppPadding.p3
+            ),
+          ),
+          padding: EdgeInsetsDirectional.all(AppPadding.p3.w),
+          child: Text(
+            'Add your review for this product',
+            style: getHeavyStyle(color: ColorManager.black,fontSize: FontSize.fs20.sp),
+          ),
+        ),
       ),
     );
   }
