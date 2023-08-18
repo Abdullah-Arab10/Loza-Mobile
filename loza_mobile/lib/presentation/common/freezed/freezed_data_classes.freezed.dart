@@ -389,3 +389,139 @@ abstract class _RegisterObject implements RegisterObject {
   _$$_RegisterObjectCopyWith<_$_RegisterObject> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$AddAddressObject {
+  String get location => throw _privateConstructorUsedError;
+  String get addressName => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AddAddressObjectCopyWith<AddAddressObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddAddressObjectCopyWith<$Res> {
+  factory $AddAddressObjectCopyWith(
+          AddAddressObject value, $Res Function(AddAddressObject) then) =
+      _$AddAddressObjectCopyWithImpl<$Res, AddAddressObject>;
+  @useResult
+  $Res call({String location, String addressName});
+}
+
+/// @nodoc
+class _$AddAddressObjectCopyWithImpl<$Res, $Val extends AddAddressObject>
+    implements $AddAddressObjectCopyWith<$Res> {
+  _$AddAddressObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = null,
+    Object? addressName = null,
+  }) {
+    return _then(_value.copyWith(
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String,
+      addressName: null == addressName
+          ? _value.addressName
+          : addressName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_AddAddressObjectCopyWith<$Res>
+    implements $AddAddressObjectCopyWith<$Res> {
+  factory _$$_AddAddressObjectCopyWith(
+          _$_AddAddressObject value, $Res Function(_$_AddAddressObject) then) =
+      __$$_AddAddressObjectCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String location, String addressName});
+}
+
+/// @nodoc
+class __$$_AddAddressObjectCopyWithImpl<$Res>
+    extends _$AddAddressObjectCopyWithImpl<$Res, _$_AddAddressObject>
+    implements _$$_AddAddressObjectCopyWith<$Res> {
+  __$$_AddAddressObjectCopyWithImpl(
+      _$_AddAddressObject _value, $Res Function(_$_AddAddressObject) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = null,
+    Object? addressName = null,
+  }) {
+    return _then(_$_AddAddressObject(
+      null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == addressName
+          ? _value.addressName
+          : addressName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AddAddressObject implements _AddAddressObject {
+  _$_AddAddressObject(this.location, this.addressName);
+
+  @override
+  final String location;
+  @override
+  final String addressName;
+
+  @override
+  String toString() {
+    return 'AddAddressObject(location: $location, addressName: $addressName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AddAddressObject &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.addressName, addressName) ||
+                other.addressName == addressName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, location, addressName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AddAddressObjectCopyWith<_$_AddAddressObject> get copyWith =>
+      __$$_AddAddressObjectCopyWithImpl<_$_AddAddressObject>(this, _$identity);
+}
+
+abstract class _AddAddressObject implements AddAddressObject {
+  factory _AddAddressObject(final String location, final String addressName) =
+      _$_AddAddressObject;
+
+  @override
+  String get location;
+  @override
+  String get addressName;
+  @override
+  @JsonKey(ignore: true)
+  _$$_AddAddressObjectCopyWith<_$_AddAddressObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}

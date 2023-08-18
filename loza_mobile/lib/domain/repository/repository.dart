@@ -18,9 +18,15 @@ abstract class Repository {
       int colorno,
       int quan,);
 
+  Future<Either<Failure, Global>> addAddress(AddAddressRequest addAddressRequest);
+
+  Future<Either<Failure, Global>> addOrder(AddOrderRequest addAddressRequest);
+
   Future<Either<Failure, HomeObject>> getNewestData(int userId);
 
   Future<Either<Failure, ProductDetails>> getProductDetails(int productId);
 
   Future<Either<Failure, CartObject>> getFromCart(int userId);
+
+  Future<Either<Failure, AddressObject>> getAddress(int userId);
 }

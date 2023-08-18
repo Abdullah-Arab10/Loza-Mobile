@@ -34,6 +34,19 @@ abstract class AppServiceClient {
       @Field("quant") int quan,
   );
 
+  @POST('/api/Address/addAddress?userId=')
+  Future<GlobalResponse> addAddress(
+      int userId,
+      @Field('addressName') String addressName, @Field('location') String location);
+
+  @POST("/api/Order/CreateOrder")
+  Future<GlobalResponse> addOrder(
+      @Field("userId") int userId,
+      @Field("paymentmethod") int paymentMethod,
+      @Field("addressid") int addressId,
+      @Field("total") double total,
+      );
+
   @GET("/api/Product/Newest?userId=")
   Future<HomeResponse> getNewestData(int userId);
 
@@ -42,4 +55,7 @@ abstract class AppServiceClient {
 
   @GET("/api/Cart/GetUserCart?userId=")
   Future<CartResponse> getFromCart(int userId);
+
+  @GET("/api/Address/getAddressById?userId=")
+  Future<AddressResponse> getAddress(int userId);
 }

@@ -141,3 +141,33 @@ extension CartResponseMapper on CartResponse? {
     );
   }
 }
+
+extension AddressDataResponseMapper on Map<String, dynamic>? {
+  Map<String, dynamic> addressToDomain() {
+    return {
+      'id': this?['id'] ?? Constants.zero,
+      'location': this?['location'] ?? Constants.empty,
+      'addressName': this?['addressName'] ?? Constants.empty,
+    };
+  }
+}
+
+extension AddressResponseMapper on AddressResponse? {
+  AddressObject toDomain() {
+    List<Map<String, dynamic>> newest = (this
+        ?.dataResponse
+        ?.addresses
+        ?.map((homeDataResponse) => homeDataResponse.addressToDomain()) ??
+        const Iterable.empty())
+        .cast<Map<String, dynamic>>()
+        .toList();
+
+    var dataResponse = AddressData(newest);
+    return AddressObject(
+      this?.statusCode?.orZero() ?? Constants.zero,
+      this?.isError?.orTrue() ?? Constants.orTrue,
+      dataResponse,
+      this?.errorResponse?.toDomain(),
+    );
+  }
+}

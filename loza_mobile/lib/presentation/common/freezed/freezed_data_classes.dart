@@ -17,3 +17,8 @@ class RegisterObject with _$RegisterObject {
   String address,
   String dateOfBirth,) = _RegisterObject;
 }
+
+@freezed
+class AddAddressObject with _$AddAddressObject {
+  factory AddAddressObject(String location, String addressName) = _AddAddressObject;
+}
