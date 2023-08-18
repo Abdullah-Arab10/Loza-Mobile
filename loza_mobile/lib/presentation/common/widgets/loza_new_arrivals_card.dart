@@ -10,7 +10,6 @@ import 'package:loza_mobile/presentation/resources/constants.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
 
 class LoZaNewArrivalsCard extends StatelessWidget {
-  final HomeLayoutViewModel _viewModel = instance<HomeLayoutViewModel>();
 
   final int userId;
   final int productId;
@@ -21,7 +20,7 @@ class LoZaNewArrivalsCard extends StatelessWidget {
   final double height;
   final double imageWidth;
   final double imageHeight;
-  LoZaNewArrivalsCard({
+  const LoZaNewArrivalsCard({
     Key? key,
     required this.userId,
     required this.productId,

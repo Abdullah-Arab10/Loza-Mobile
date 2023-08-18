@@ -47,6 +47,14 @@ abstract class AppServiceClient {
       @Field("total") double total,
       );
 
+  @POST("/api/RatingReview/AddRate")
+  Future<GlobalResponse> addRate(
+      @Field("userId") int userId,
+      @Field("productId") int productId,
+      @Field("rating") double rating,
+      @Field("reviews") String reviews,
+      );
+
   @GET("/api/Product/Newest?userId=")
   Future<HomeResponse> getNewestData(int userId);
 
@@ -58,4 +66,11 @@ abstract class AppServiceClient {
 
   @GET("/api/Address/getAddressById?userId=")
   Future<AddressResponse> getAddress(int userId);
+
+  @GET("/api/Favorite/GetAllFavorites/")
+  Future<FavouriteResponse> getFavourite(int userId);
+
+  @GET("/AllReviews/")
+  Future<ReviewsResponse> getReviews(int productId);
+
 }

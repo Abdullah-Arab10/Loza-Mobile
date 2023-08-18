@@ -10,17 +10,27 @@ import 'package:loza_mobile/domain/repository/repository.dart';
 import 'package:loza_mobile/domain/usecase/address_usecase.dart';
 import 'package:loza_mobile/domain/usecase/cart_usecase.dart';
 import 'package:loza_mobile/domain/usecase/checkout_usecase.dart';
+import 'package:loza_mobile/domain/usecase/favourite_usecase.dart';
+import 'package:loza_mobile/domain/usecase/favourite_usecase.dart';
+import 'package:loza_mobile/domain/usecase/favourite_usecase.dart';
 import 'package:loza_mobile/domain/usecase/home_usecase.dart';
 import 'package:loza_mobile/domain/usecase/login_usecase.dart';
 import 'package:loza_mobile/domain/usecase/product_details&cart_usecase.dart';
 import 'package:loza_mobile/domain/usecase/register_usecase.dart';
+import 'package:loza_mobile/domain/usecase/review_usecase.dart';
+import 'package:loza_mobile/domain/usecase/review_usecase.dart';
+import 'package:loza_mobile/domain/usecase/review_usecase.dart';
 import 'package:loza_mobile/presentation/Add_Address/viewmodel/add_address_view_model.dart';
 import 'package:loza_mobile/presentation/checkout/viewmodel/checkout_viewmodel.dart';
+import 'package:loza_mobile/presentation/favourite/viewmodel/favourite_viewmodel.dart';
+import 'package:loza_mobile/presentation/favourite/viewmodel/favourite_viewmodel.dart';
 import 'package:loza_mobile/presentation/home_layout/viewmodel/home_layout_viewmodel.dart';
 import 'package:loza_mobile/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:loza_mobile/presentation/product_details/viewmodel/add_details_viewmodel.dart';
 import 'package:loza_mobile/presentation/product_details/viewmodel/product_details_viewmodel.dart';
+import 'package:loza_mobile/presentation/rating/viewmodel/rating_viewmodel.dart';
 import 'package:loza_mobile/presentation/register/viewmodel/register_viewmodel.dart';
+import 'package:loza_mobile/presentation/review/viewmodel/review_viewmodel.dart';
 import 'package:loza_mobile/presentation/shopping_cart/viewmodel/shopping_cart_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -113,5 +123,26 @@ initGetAddressModule() {
     instance.registerFactory<GetAddressUseCase>(() => GetAddressUseCase(instance()));
     instance.registerFactory<CheckOutUseCase>(() => CheckOutUseCase(instance()));
     instance.registerFactory<CheckOutViewModel>(() => CheckOutViewModel(instance(),instance()));
+  }
+}
+
+initGetFavouriteModule() {
+  if (!GetIt.I.isRegistered<GetFavouriteUseCase>()) {
+    instance.registerFactory<GetFavouriteUseCase>(() => GetFavouriteUseCase(instance()));
+    instance.registerFactory<FavouriteViewModel>(() => FavouriteViewModel(instance(),instance()));
+  }
+}
+
+initAddReviewModule() {
+  if (!GetIt.I.isRegistered<PostRatingUseCase>()) {
+    instance.registerFactory<PostRatingUseCase>(() => PostRatingUseCase(instance()));
+    instance.registerFactory<AddReviewViewModel>(() => AddReviewViewModel(instance()));
+  }
+}
+
+initGetReviewModule() {
+  if (!GetIt.I.isRegistered<GetReviewsUseCase>()) {
+    instance.registerFactory<GetReviewsUseCase>(() => GetReviewsUseCase(instance()));
+    instance.registerFactory<ReviewViewModel>(() => ReviewViewModel(instance()));
   }
 }

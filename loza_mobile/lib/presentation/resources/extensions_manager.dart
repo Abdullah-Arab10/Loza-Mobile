@@ -9,7 +9,7 @@ class Extensions
     int id = 1;
     appPreferences.getToken().then((value) {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(value);
-      id = decodedToken['Id'];
+      id = decodedToken['Id'].hashCode;
     });
     return id;
   }

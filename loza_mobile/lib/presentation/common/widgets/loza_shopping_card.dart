@@ -15,7 +15,7 @@ class LoZaShoppingCardWidget extends StatefulWidget {
   final double text2;
   final String colorName;
   final int colorNum;
-  final int quan;
+  final int? quan;
 
   const LoZaShoppingCardWidget({
     Key? key,
@@ -24,7 +24,7 @@ class LoZaShoppingCardWidget extends StatefulWidget {
     required this.text2,
     required this.colorName,
     required this.colorNum,
-    required this.quan,
+    this.quan,
   }) : super(key: key);
 
   @override
@@ -56,7 +56,7 @@ class _LoZaShoppingCardWidgetState extends State<LoZaShoppingCardWidget> {
 
               ),
             ),
-                Padding(
+                widget.quan != null ? Padding(
                   padding: EdgeInsetsDirectional.only(
                     start: AppSize.s7.w,
                     top: AppSize.s7.w,
@@ -72,7 +72,7 @@ class _LoZaShoppingCardWidgetState extends State<LoZaShoppingCardWidget> {
                       ),
                     ),
                   ),
-                ),
+                ) : const SizedBox(),
           ]),
           SizedBox(
             width: MediaQuery.of(context).size.width / AppSize.s20,

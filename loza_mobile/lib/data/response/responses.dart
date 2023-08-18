@@ -117,6 +117,9 @@ class ProductResponse {
   @JsonKey(name: 'color')
   String? color;
 
+  @JsonKey(name: 'colorNo')
+  int? colorNo;
+
   @JsonKey(name: 'quantity')
   double? quantity;
 
@@ -124,7 +127,7 @@ class ProductResponse {
   String? productImage;
 
   @JsonKey(name: 'totalrate')
-  int? totalRate;
+  double? totalRate;
 
   @JsonKey(name: 'productDimensions')
   String? productDimensions;
@@ -139,6 +142,7 @@ class ProductResponse {
       this.price,
       this.category,
       this.color,
+      this.colorNo,
       this.quantity,
       this.productImage,
       this.totalRate,
@@ -245,4 +249,74 @@ class AddressResponse extends BaseResponse {
   //fromJson
   factory AddressResponse.fromJson(Map<String, dynamic> json) =>
       _$AddressResponseFromJson(json);
+}
+
+@JsonSerializable()
+class FavouriteDataResponse {
+  @JsonKey(name: 'favoriteList')
+  List<Map<String, dynamic>>? favoriteList;
+
+  FavouriteDataResponse(this.favoriteList);
+
+  //fromJson
+  factory FavouriteDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$FavouriteDataResponseFromJson(json);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$FavouriteDataResponseToJson(this);
+
+}
+
+@JsonSerializable()
+class FavouriteResponse extends BaseResponse {
+  @JsonKey(name: 'isError')
+  bool? isError;
+  @JsonKey(name: 'data')
+  FavouriteDataResponse? dataResponse;
+  @JsonKey(name: 'errors')
+  ErrorResponse? errorResponse;
+
+  FavouriteResponse(this.isError,this.dataResponse, this.errorResponse);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$FavouriteResponseToJson(this);
+
+  //fromJson
+  factory FavouriteResponse.fromJson(Map<String, dynamic> json) =>
+      _$FavouriteResponseFromJson(json);
+}
+
+@JsonSerializable()
+class ReviewsDataResponse {
+  @JsonKey(name: 'allReveiws')
+  List<Map<String, dynamic>>? allReviews;
+
+  ReviewsDataResponse(this.allReviews);
+
+  //fromJson
+  factory ReviewsDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReviewsDataResponseFromJson(json);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$ReviewsDataResponseToJson(this);
+
+}
+
+@JsonSerializable()
+class ReviewsResponse extends BaseResponse {
+  @JsonKey(name: 'isError')
+  bool? isError;
+  @JsonKey(name: 'data')
+  ReviewsDataResponse? dataResponse;
+  @JsonKey(name: 'errors')
+  ErrorResponse? errorResponse;
+
+  ReviewsResponse(this.isError,this.dataResponse, this.errorResponse);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$ReviewsResponseToJson(this);
+
+  //fromJson
+  factory ReviewsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReviewsResponseFromJson(json);
 }

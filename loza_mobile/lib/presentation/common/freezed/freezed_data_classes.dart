@@ -22,3 +22,8 @@ class RegisterObject with _$RegisterObject {
 class AddAddressObject with _$AddAddressObject {
   factory AddAddressObject(String location, String addressName) = _AddAddressObject;
 }
+
+@freezed
+class AddReviewObject with _$AddReviewObject {
+  factory AddReviewObject(String review) = _AddReviewObject;
+}

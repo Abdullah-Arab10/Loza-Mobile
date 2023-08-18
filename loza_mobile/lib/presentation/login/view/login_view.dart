@@ -123,7 +123,6 @@ class _LoginViewState extends State<LoginView> {
                       //   Map<String, dynamic> decodedToken = JwtDecoder.decode(value);
                       //   print(decodedToken['Id']);
                       // });
-                      print(newest?['id'] ?? Constants.zero);
                     },
                     child: SvgPicture.asset(
                       ImageAssets.close,

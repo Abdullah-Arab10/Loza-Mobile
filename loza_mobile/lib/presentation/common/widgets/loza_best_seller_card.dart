@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loza_mobile/app/constants.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/constants.dart';
-import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
 
 class LoZaBestSellerWidget extends StatelessWidget {
   final bool? isArrow;
   final String image;
   final String text1;
-  final String text2;
+  final double text2;
 
   const LoZaBestSellerWidget({
     Key? key,
@@ -29,13 +29,20 @@ class LoZaBestSellerWidget extends StatelessWidget {
         child: Card(
           child: Row(
             children: [
-              Image.asset(
-               image,
-                width: AppSize.s70.h,
-                height: AppSize.s70.h,
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppSize.s10),
+                ),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Image.network(
+                  '${Constants.baseUrl}$image',
+                  width: AppSize.s70.h,
+                  height: AppSize.s70.h,
+                  fit: BoxFit.cover,
+                ),
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width / AppSize.s28,
+                width: MediaQuery.of(context).size.width / AppSize.s20,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +58,7 @@ class LoZaBestSellerWidget extends StatelessWidget {
                     height: MediaQuery.of(context).size.height / AppSize.s105,
                   ),
                   Text(
-                    text2,
+                    '\$$text2',
                     maxLines: AppConstants.maxLines,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyLarge,

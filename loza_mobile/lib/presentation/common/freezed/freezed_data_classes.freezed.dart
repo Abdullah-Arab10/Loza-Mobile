@@ -525,3 +525,120 @@ abstract class _AddAddressObject implements AddAddressObject {
   _$$_AddAddressObjectCopyWith<_$_AddAddressObject> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$AddReviewObject {
+  String get review => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AddReviewObjectCopyWith<AddReviewObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddReviewObjectCopyWith<$Res> {
+  factory $AddReviewObjectCopyWith(
+          AddReviewObject value, $Res Function(AddReviewObject) then) =
+      _$AddReviewObjectCopyWithImpl<$Res, AddReviewObject>;
+  @useResult
+  $Res call({String review});
+}
+
+/// @nodoc
+class _$AddReviewObjectCopyWithImpl<$Res, $Val extends AddReviewObject>
+    implements $AddReviewObjectCopyWith<$Res> {
+  _$AddReviewObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? review = null,
+  }) {
+    return _then(_value.copyWith(
+      review: null == review
+          ? _value.review
+          : review // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_AddReviewObjectCopyWith<$Res>
+    implements $AddReviewObjectCopyWith<$Res> {
+  factory _$$_AddReviewObjectCopyWith(
+          _$_AddReviewObject value, $Res Function(_$_AddReviewObject) then) =
+      __$$_AddReviewObjectCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String review});
+}
+
+/// @nodoc
+class __$$_AddReviewObjectCopyWithImpl<$Res>
+    extends _$AddReviewObjectCopyWithImpl<$Res, _$_AddReviewObject>
+    implements _$$_AddReviewObjectCopyWith<$Res> {
+  __$$_AddReviewObjectCopyWithImpl(
+      _$_AddReviewObject _value, $Res Function(_$_AddReviewObject) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? review = null,
+  }) {
+    return _then(_$_AddReviewObject(
+      null == review
+          ? _value.review
+          : review // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AddReviewObject implements _AddReviewObject {
+  _$_AddReviewObject(this.review);
+
+  @override
+  final String review;
+
+  @override
+  String toString() {
+    return 'AddReviewObject(review: $review)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AddReviewObject &&
+            (identical(other.review, review) || other.review == review));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, review);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AddReviewObjectCopyWith<_$_AddReviewObject> get copyWith =>
+      __$$_AddReviewObjectCopyWithImpl<_$_AddReviewObject>(this, _$identity);
+}
+
+abstract class _AddReviewObject implements AddReviewObject {
+  factory _AddReviewObject(final String review) = _$_AddReviewObject;
+
+  @override
+  String get review;
+  @override
+  @JsonKey(ignore: true)
+  _$$_AddReviewObjectCopyWith<_$_AddReviewObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}

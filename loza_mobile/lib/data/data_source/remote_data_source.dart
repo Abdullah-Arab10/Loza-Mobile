@@ -17,9 +17,11 @@ abstract class RemoteDataSource {
     int quan,
   );
 
-  Future<GlobalResponse> addAddress(AddAddressRequest loginRequest);
+  Future<GlobalResponse> addAddress(AddAddressRequest addAddressRequest);
 
-  Future<GlobalResponse> addOrder(AddOrderRequest registerRequest);
+  Future<GlobalResponse> addOrder(AddOrderRequest addOrderRequest);
+
+  Future<GlobalResponse> addRating(AddRatingRequest addRatingRequest);
 
   Future<HomeResponse> getNewestData(int userId);
 
@@ -28,6 +30,10 @@ abstract class RemoteDataSource {
   Future<CartResponse> getFromCart(int userId);
 
   Future<AddressResponse> getAddress(int userId);
+
+  Future<FavouriteResponse> getFavourite(int userId);
+
+  Future<ReviewsResponse> getReviews(int productId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -85,6 +91,16 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
+  Future<GlobalResponse> addRating(AddRatingRequest addRatingRequest) async{
+    return await _appServiceClient.addRate(
+        addRatingRequest.userid,
+        addRatingRequest.productId,
+        addRatingRequest.rating,
+        addRatingRequest.reviews
+    );
+  }
+
+  @override
   Future<HomeResponse> getNewestData(int userId) async {
     return await _appServiceClient.getNewestData(userId);
   }
@@ -103,4 +119,15 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<AddressResponse> getAddress(int userId) async {
     return await _appServiceClient.getAddress(userId);
   }
+
+  @override
+  Future<FavouriteResponse> getFavourite(int userId) async{
+    return await _appServiceClient.getFavourite(userId);
+  }
+
+  @override
+  Future<ReviewsResponse> getReviews(int productId) async {
+    return await _appServiceClient.getReviews(productId);
+  }
+
 }

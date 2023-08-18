@@ -37,7 +37,7 @@ class CheckOutViewModel extends BaseViewModel
   }
 
   @override
-  void start([int? num]) {
+  void start() {
     inputSelectedRadio.add(_selectedRadio);
     inputPaymentMethodSelectedRadio.add(_paymentMethodSelectedRadio);
     getAddress();

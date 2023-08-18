@@ -33,3 +33,12 @@ class AddOrderRequest {
 
   AddOrderRequest(this.userid, this.paymentmethod, this.addressid, this.total);
 }
+
+class AddRatingRequest {
+  int userid;
+  int productId;
+  double rating;
+  String reviews;
+
+  AddRatingRequest(this.userid, this.productId, this.rating, this.reviews);
+}

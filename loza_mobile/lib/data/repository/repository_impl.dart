@@ -166,6 +166,30 @@ class RepositoryImpl implements Repository {
   }
 
   @override
+  Future<Either<Failure, Global>> addRating(AddRatingRequest addRatingRequest) async{
+    if (await _networkInfo.isConnected) {
+
+      try {
+        final response = await _remoteDataSource.addRating(addRatingRequest);
+
+        if (response.statusCode == ApiInternalStatus.SUCCESS) {
+
+          return Right(response.toDomain());
+        } else {
+
+          return Left(Failure(ApiInternalStatus.FAILURE,
+              response.errorResponse?.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
   Future<Either<Failure, HomeObject>> getNewestData(int userId) async{
       if (await _networkInfo.isConnected) {
 
@@ -248,6 +272,58 @@ class RepositoryImpl implements Repository {
 
       try {
         final response = await _remoteDataSource.getAddress(userId);
+
+        if (response.statusCode == ApiInternalStatus.SUCCESS) {
+
+          return Right(response.toDomain());
+        } else {
+
+          return Left(Failure(ApiInternalStatus.FAILURE,
+              response.errorResponse?.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler
+            .handle(error)
+            .failure);
+      }
+    } else {
+
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, FavouriteObject>> getFavourite(int userId) async{
+    if (await _networkInfo.isConnected) {
+
+      try {
+        final response = await _remoteDataSource.getFavourite(userId);
+
+        if (response.statusCode == ApiInternalStatus.SUCCESS) {
+
+          return Right(response.toDomain());
+        } else {
+
+          return Left(Failure(ApiInternalStatus.FAILURE,
+              response.errorResponse?.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler
+            .handle(error)
+            .failure);
+      }
+    } else {
+
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, ReviewsObject>> getReviews(int productId) async{
+    if (await _networkInfo.isConnected) {
+
+      try {
+        final response = await _remoteDataSource.getReviews(productId);
 
         if (response.statusCode == ApiInternalStatus.SUCCESS) {
 

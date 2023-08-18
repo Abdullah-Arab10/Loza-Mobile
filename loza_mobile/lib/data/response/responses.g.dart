@@ -90,9 +90,10 @@ ProductResponse _$ProductResponseFromJson(Map<String, dynamic> json) =>
       (json['price'] as num?)?.toDouble(),
       json['category'] as int?,
       json['color'] as String?,
+      json['colorNo'] as int?,
       (json['quantity'] as num?)?.toDouble(),
       json['productImage'] as String?,
-      json['totalrate'] as int?,
+      (json['totalrate'] as num?)?.toDouble(),
       json['productDimensions'] as String?,
       (json['photos'] as List<dynamic>?)
           ?.map((e) => e as Map<String, dynamic>)
@@ -107,6 +108,7 @@ Map<String, dynamic> _$ProductResponseToJson(ProductResponse instance) =>
       'price': instance.price,
       'category': instance.category,
       'color': instance.color,
+      'colorNo': instance.colorNo,
       'quantity': instance.quantity,
       'productImage': instance.productImage,
       'totalrate': instance.totalRate,
@@ -190,6 +192,72 @@ AddressResponse _$AddressResponseFromJson(Map<String, dynamic> json) =>
     )..statusCode = json['statusCode'] as int?;
 
 Map<String, dynamic> _$AddressResponseToJson(AddressResponse instance) =>
+    <String, dynamic>{
+      'statusCode': instance.statusCode,
+      'isError': instance.isError,
+      'data': instance.dataResponse,
+      'errors': instance.errorResponse,
+    };
+
+FavouriteDataResponse _$FavouriteDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    FavouriteDataResponse(
+      (json['favoriteList'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+    );
+
+Map<String, dynamic> _$FavouriteDataResponseToJson(
+        FavouriteDataResponse instance) =>
+    <String, dynamic>{
+      'favoriteList': instance.favoriteList,
+    };
+
+FavouriteResponse _$FavouriteResponseFromJson(Map<String, dynamic> json) =>
+    FavouriteResponse(
+      json['isError'] as bool?,
+      json['data'] == null
+          ? null
+          : FavouriteDataResponse.fromJson(
+              json['data'] as Map<String, dynamic>),
+      json['errors'] == null
+          ? null
+          : ErrorResponse.fromJson(json['errors'] as Map<String, dynamic>),
+    )..statusCode = json['statusCode'] as int?;
+
+Map<String, dynamic> _$FavouriteResponseToJson(FavouriteResponse instance) =>
+    <String, dynamic>{
+      'statusCode': instance.statusCode,
+      'isError': instance.isError,
+      'data': instance.dataResponse,
+      'errors': instance.errorResponse,
+    };
+
+ReviewsDataResponse _$ReviewsDataResponseFromJson(Map<String, dynamic> json) =>
+    ReviewsDataResponse(
+      (json['allReveiws'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+    );
+
+Map<String, dynamic> _$ReviewsDataResponseToJson(
+        ReviewsDataResponse instance) =>
+    <String, dynamic>{
+      'allReveiws': instance.allReviews,
+    };
+
+ReviewsResponse _$ReviewsResponseFromJson(Map<String, dynamic> json) =>
+    ReviewsResponse(
+      json['isError'] as bool?,
+      json['data'] == null
+          ? null
+          : ReviewsDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+      json['errors'] == null
+          ? null
+          : ErrorResponse.fromJson(json['errors'] as Map<String, dynamic>),
+    )..statusCode = json['statusCode'] as int?;
+
+Map<String, dynamic> _$ReviewsResponseToJson(ReviewsResponse instance) =>
     <String, dynamic>{
       'statusCode': instance.statusCode,
       'isError': instance.isError,

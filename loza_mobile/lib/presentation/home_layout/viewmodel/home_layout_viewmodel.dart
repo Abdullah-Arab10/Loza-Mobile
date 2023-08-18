@@ -76,6 +76,7 @@ class HomeLayoutViewModel extends BaseViewModel
             homeObject.dataResponse.price,
             homeObject.dataResponse.category,
             homeObject.dataResponse.color,
+            homeObject.dataResponse.colorNo,
             homeObject.dataResponse.quantity,
             homeObject.dataResponse.productImage,
             homeObject.dataResponse.totalRate,
@@ -86,11 +87,12 @@ class HomeLayoutViewModel extends BaseViewModel
   }
 
   @override
-  postFavorite(int userId, int productId) async {
+  postFavorite(int productId) async {
+    int id = Extensions.extractIdFromToken();
     favorites[productId] = !favorites[productId]!;
     inputFavoriteData.add(favorites);
     (await _postFavoriteUseCase
-            .execute(FavoriteUseCaseInput(userId, productId)))
+            .execute(FavoriteUseCaseInput(id, productId)))
         .fold((failure) {
       // inputFavoriteData.add(favorites);
     }, (success) {});
@@ -118,7 +120,7 @@ abstract class HomeLayoutViewModelInputs {
   Sink get inputFavoriteData;
   getNewestData();
   getProductDetails(int productId);
-  postFavorite(int userId, int productId);
+  postFavorite(int productId);
   //void start2();
 }
 

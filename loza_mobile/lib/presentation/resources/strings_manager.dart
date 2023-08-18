@@ -49,6 +49,7 @@ class AppStrings {
   static const showAll = 'show_all';
   static const houndstoothSideZipper = 'houndstooth_side_zipper';
   static const lamps = 'lamps';
+  static const productDetails = 'Product details';
   static const justoGravidaSemper = 'justo_gravida_semper';
   static const description = 'description';
   static const review = 'review';
@@ -87,6 +88,7 @@ class AppStrings {
   static const location = 'Location';
   static const addAddressError = 'Address Name must not be empty or Less than 4 characters';
   static const locationError = 'Location must not be empty or Less than 4 characters';
+  static const favouriteList = 'Favourite List';
 
   // error handler
   static const String badRequestError = "bad_request_error";

@@ -27,10 +27,8 @@ class HomeLayoutView extends StatefulWidget {
 class _HomeLayoutViewState extends State<HomeLayoutView> {
   final HomeLayoutViewModel _viewModel = instance<HomeLayoutViewModel>();
 
-  //int? userId;
   _bind() {
     _viewModel.start();
-    //userId = _viewModel.extractIdFromToken();
   }
 
   _bind2() {
@@ -181,7 +179,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
                   getSection(AppStrings.arrivals.tr()),
                   _getNewArrivalsWidget(homeViewObject.newest),
                   getSection(AppStrings.bestSellers.tr()),
-                  _getBestSellerWidget()
+                  //_getBestSellerWidget()
                 ],
               ),
             );
@@ -230,7 +228,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
                           ),
                           child: InkWell(
                             onTap: () {
-                              _viewModel.postFavorite(4, newest[index]['id']);
+                              _viewModel.postFavorite(newest[index]['id']);
                             },
                             child: favorite[newest[index]['id']] == true
                                 ? Icon(
@@ -269,7 +267,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
       itemBuilder: (context, index) => LoZaBestSellerWidget(
         image: ImageAssets.mask,
         text1: AppStrings.justoGravidaSemper.tr(),
-        text2: AppStrings.p29_00.tr(),
+        text2: 29.0,
       ),
       itemCount: 5,
       separatorBuilder: (BuildContext context, int index) => Padding(

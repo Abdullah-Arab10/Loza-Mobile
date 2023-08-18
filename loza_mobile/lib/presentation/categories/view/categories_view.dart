@@ -92,7 +92,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                           isArrow: categoriesObject[index].isArrow,
                           image: categoriesObject[index].imagePath,
                           text1: categoriesObject[index].text1,
-                          text2: categoriesObject[index].text2),
+                          text2: 29.0),
                       Padding(
                         padding: EdgeInsetsDirectional.only(
                           start: AppPadding.p5.w,
