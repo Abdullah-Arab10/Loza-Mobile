@@ -7,20 +7,20 @@ import 'package:loza_mobile/data/network/network_info.dart';
 import 'package:loza_mobile/data/data_source/remote_data_source.dart';
 import 'package:loza_mobile/data/repository/repository_impl.dart';
 import 'package:loza_mobile/domain/repository/repository.dart';
+import 'package:loza_mobile/domain/usecase/address_usecase.dart';
 import 'package:loza_mobile/domain/usecase/cart_usecase.dart';
-import 'package:loza_mobile/domain/usecase/cart_usecase.dart';
-import 'package:loza_mobile/domain/usecase/cart_usecase.dart';
+import 'package:loza_mobile/domain/usecase/checkout_usecase.dart';
 import 'package:loza_mobile/domain/usecase/home_usecase.dart';
 import 'package:loza_mobile/domain/usecase/login_usecase.dart';
 import 'package:loza_mobile/domain/usecase/product_details&cart_usecase.dart';
 import 'package:loza_mobile/domain/usecase/register_usecase.dart';
+import 'package:loza_mobile/presentation/Add_Address/viewmodel/add_address_view_model.dart';
+import 'package:loza_mobile/presentation/checkout/viewmodel/checkout_viewmodel.dart';
 import 'package:loza_mobile/presentation/home_layout/viewmodel/home_layout_viewmodel.dart';
 import 'package:loza_mobile/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:loza_mobile/presentation/product_details/viewmodel/add_details_viewmodel.dart';
-import 'package:loza_mobile/presentation/product_details/viewmodel/add_details_viewmodel.dart';
 import 'package:loza_mobile/presentation/product_details/viewmodel/product_details_viewmodel.dart';
 import 'package:loza_mobile/presentation/register/viewmodel/register_viewmodel.dart';
-import 'package:loza_mobile/presentation/shopping_cart/viewmodel/shopping_cart_viewmodel.dart';
 import 'package:loza_mobile/presentation/shopping_cart/viewmodel/shopping_cart_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -54,9 +54,6 @@ Future<void> initAppModule() async {
   // remote data source
   instance.registerLazySingleton<RemoteDataSource>(
           () => RemoteDataSourceImpl(instance<AppServiceClient>()));
-
-  // local data source
-  // instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
 
   // repository
 
@@ -101,5 +98,20 @@ initShoppingCartModule() {
   if (!GetIt.I.isRegistered<CartUseCase>()) {
     instance.registerFactory<CartUseCase>(() => CartUseCase(instance()));
     instance.registerFactory<ShoppingCartViewModel>(() => ShoppingCartViewModel(instance()));
+  }
+}
+
+initAddAddressModule() {
+  if (!GetIt.I.isRegistered<AddAddressUseCase>()) {
+    instance.registerFactory<AddAddressUseCase>(() => AddAddressUseCase(instance()));
+    instance.registerFactory<AddAddressViewModel>(() => AddAddressViewModel(instance()));
+  }
+}
+
+initGetAddressModule() {
+  if (!GetIt.I.isRegistered<GetAddressUseCase>()) {
+    instance.registerFactory<GetAddressUseCase>(() => GetAddressUseCase(instance()));
+    instance.registerFactory<CheckOutUseCase>(() => CheckOutUseCase(instance()));
+    instance.registerFactory<CheckOutViewModel>(() => CheckOutViewModel(instance(),instance()));
   }
 }

@@ -11,11 +11,15 @@ class LoZaAddressWidget extends StatelessWidget {
   final int value;
   final int groupValue;
   final ValueChanged onChanged;
+  final String address1;
+  final String address2;
 
   const LoZaAddressWidget({
     required this.value,
     required this.groupValue,
     required this.onChanged,
+    required this.address1,
+    required this.address2,
     Key? key,
   }) : super(key: key);
 
@@ -61,12 +65,12 @@ class LoZaAddressWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '658 Yost Island Apt',
+                  address1,
                   style: getHeavyStyle(
                       color: ColorManager.black, fontSize: FontSize.fs16.sp),
                 ),
                 Text(
-                  'Seattle, US',
+                  address2,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ],
@@ -94,6 +98,7 @@ class LoZaPaymentMethodWidget extends StatelessWidget {
   final int value;
   final int groupValue;
   final ValueChanged onChanged;
+  final String text2;
 
   const LoZaPaymentMethodWidget({
     Key? key,
@@ -101,6 +106,7 @@ class LoZaPaymentMethodWidget extends StatelessWidget {
     required this.value,
     required this.groupValue,
     required this.onChanged,
+    required this.text2,
   }) : super(key: key);
 
   @override
@@ -145,13 +151,9 @@ class LoZaPaymentMethodWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '658 Yost Island Apt',
+              text2,
               style: getHeavyStyle(
                   color: ColorManager.black, fontSize: FontSize.fs16.sp),
-            ),
-            Text(
-              'Seattle, US',
-              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),

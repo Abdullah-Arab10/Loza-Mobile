@@ -163,6 +163,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                                 text: AppStrings.checkout,
                                 toUpperCase: true,
                                 onPressed: () {
+                                  initGetAddressModule();
                                   Navigator.of(context).push(
                                       MaterialPageRoute(builder: (_) => CheckOutView(total: total)),
                                   );

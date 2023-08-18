@@ -211,3 +211,38 @@ class CartResponse extends BaseResponse {
   factory CartResponse.fromJson(Map<String, dynamic> json) =>
       _$CartResponseFromJson(json);
 }
+
+@JsonSerializable()
+class AddressDataResponse {
+  @JsonKey(name: 'Addresses')
+  List<Map<String, dynamic>>? addresses;
+
+  AddressDataResponse(this.addresses);
+
+  //fromJson
+  factory AddressDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$AddressDataResponseFromJson(json);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$AddressDataResponseToJson(this);
+
+}
+
+@JsonSerializable()
+class AddressResponse extends BaseResponse {
+  @JsonKey(name: 'isError')
+  bool? isError;
+  @JsonKey(name: 'data')
+  AddressDataResponse? dataResponse;
+  @JsonKey(name: 'errors')
+  ErrorResponse? errorResponse;
+
+  AddressResponse(this.isError,this.dataResponse, this.errorResponse);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$AddressResponseToJson(this);
+
+  //fromJson
+  factory AddressResponse.fromJson(Map<String, dynamic> json) =>
+      _$AddressResponseFromJson(json);
+}

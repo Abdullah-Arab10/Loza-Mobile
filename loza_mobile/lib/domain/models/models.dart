@@ -140,3 +140,18 @@ class CartObject {
 
   CartObject(this.statusCode, this.isError, this.dataResponse, this.error);
 }
+
+class AddressData {
+  List<Map<String, dynamic>> addresses;
+
+  AddressData(this.addresses);
+}
+
+class AddressObject {
+  int statusCode;
+  bool isError;
+  AddressData dataResponse;
+  Error? error;
+
+  AddressObject(this.statusCode, this.isError, this.dataResponse, this.error);
+}

@@ -1,5 +1,3 @@
-import 'package:loza_mobile/app/app_prefs.dart';
-import 'package:loza_mobile/app/di.dart';
 import 'package:loza_mobile/domain/models/models.dart';
 import 'package:loza_mobile/domain/usecase/home_usecase.dart';
 import 'package:loza_mobile/domain/usecase/product_details&cart_usecase.dart';

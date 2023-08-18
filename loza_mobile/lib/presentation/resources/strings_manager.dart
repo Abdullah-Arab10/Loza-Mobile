@@ -83,6 +83,10 @@ class AppStrings {
   static const checkout = 'Checkout';
   static const payment = 'Payment';
   static const myAccount = 'My Account';
+  static const addAddress = 'Add Address';
+  static const location = 'Location';
+  static const addAddressError = 'Address Name must not be empty or Less than 4 characters';
+  static const locationError = 'Location must not be empty or Less than 4 characters';
 
   // error handler
   static const String badRequestError = "bad_request_error";

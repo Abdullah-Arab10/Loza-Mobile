@@ -16,3 +16,20 @@ class RegisterRequest {
 
   RegisterRequest(this.firstName, this.lastName, this.email, this.password, this.phoneNumber, this.address,this.dateOfBirth);
 }
+
+class AddAddressRequest {
+  int userId;
+  String addressName;
+  String location;
+
+  AddAddressRequest(this.userId, this.addressName,this.location);
+}
+
+class AddOrderRequest {
+  int userid;
+  int paymentmethod;
+  int addressid;
+  double total;
+
+  AddOrderRequest(this.userid, this.paymentmethod, this.addressid, this.total);
+}

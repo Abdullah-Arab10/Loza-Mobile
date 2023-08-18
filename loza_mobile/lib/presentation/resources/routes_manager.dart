@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:loza_mobile/app/di.dart';
+import 'package:loza_mobile/presentation/Add_Address/view/add_address_view.dart';
 import 'package:loza_mobile/presentation/categories/view/categories_view.dart';
 import 'package:loza_mobile/presentation/checkout/view/checkout_view.dart';
 import 'package:loza_mobile/presentation/collection/view/collection_view.dart';
@@ -38,6 +39,7 @@ class Routes {
   static const String orderRoute = "order";
   static const String invoiceRoute = "invoice";
   //static const String checkOutRoute = "checkOut";
+  static const String addAddressRoute = "addAddress";
 }
 
 class RouteGenerator {
@@ -81,6 +83,9 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const InvoiceView());
       // case Routes.checkOutRoute:
       //   return MaterialPageRoute(builder: (_) => const CheckOutView());
+      case Routes.addAddressRoute:
+        initAddAddressModule();
+        return MaterialPageRoute(builder: (_) => const AddAddressView());
       default:
         return unDefinedRoute();
     }
