@@ -38,7 +38,7 @@ class Routes {
   static const String myAccountRoute = "myAccount";
   //static const String ratingRoute = "rating";
   static const String orderRoute = "order";
-  static const String invoiceRoute = "invoice";
+  //static const String invoiceRoute = "invoice";
   //static const String checkOutRoute = "checkOut";
   static const String addAddressRoute = "addAddress";
   static const String favouriteRoute = "favourite";
@@ -62,8 +62,6 @@ class RouteGenerator {
       case Routes.homeLayoutRoute:
         initHomeModule();
         return MaterialPageRoute(builder: (_) => const HomeLayoutView());
-      // case Routes.productDetailsRoute:
-      //   return MaterialPageRoute(builder: (_) => const ProductDetailsView());
       case Routes.categoriesRoute:
         return MaterialPageRoute(builder: (_) => const CategoriesView());
       case Routes.collectionRoute:
@@ -78,14 +76,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ShoppingCartView());
       case Routes.myAccountRoute:
         return MaterialPageRoute(builder: (_) => const MyAccountView());
-      // case Routes.ratingRoute:
-      //   return MaterialPageRoute(builder: (_) => const RatingView());
       case Routes.orderRoute:
+        initGetOrderModule();
         return MaterialPageRoute(builder: (_) => const OrderView());
-      case Routes.invoiceRoute:
-        return MaterialPageRoute(builder: (_) => const InvoiceView());
-      // case Routes.checkOutRoute:
-      //   return MaterialPageRoute(builder: (_) => const CheckOutView());
+      // case Routes.invoiceRoute:
+      //   return MaterialPageRoute(builder: (_) => const InvoiceView());
       case Routes.addAddressRoute:
         initAddAddressModule();
         return MaterialPageRoute(builder: (_) => const AddAddressView());

@@ -240,3 +240,72 @@ extension ReviewsResponseMapper on ReviewsResponse? {
     );
   }
 }
+
+extension OrdersDataResponseMapper on Map<String, dynamic>? {
+  Map<String, dynamic> orderToDomain() {
+    return {
+      'orderNumber': this?['orderNumber'] ?? Constants.zero,
+      'useraddress': this?['useraddress'] ?? Constants.empty,
+      'isDelivered': this?['isDelivered'] ?? Constants.orFalse,
+      'orderdate': this?['orderdate'] ?? Constants.empty,
+    };
+  }
+}
+
+extension OrdersResponseMapper on OrdersResponse? {
+  OrdersObject toDomain() {
+    List<Map<String, dynamic>> newest = (this
+        ?.dataResponse
+        ?.allOrders
+        ?.map((orderDataResponse) => orderDataResponse.orderToDomain()) ??
+        const Iterable.empty())
+        .cast<Map<String, dynamic>>()
+        .toList();
+
+    var dataResponse = OrdersData(newest);
+    return OrdersObject(
+      this?.statusCode?.orZero() ?? Constants.zero,
+      this?.isError?.orTrue() ?? Constants.orTrue,
+      dataResponse,
+      this?.errorResponse?.toDomain(),
+    );
+  }
+}
+
+extension ProductMapper on Map<String, dynamic>? {
+  Map<String, dynamic> productToDomain() {
+    return {
+      'proname': this?['proname'] ?? Constants.empty,
+      'quantinty': this?['quantinty'] ?? Constants.zero,
+      'color': this?['color'] ?? Constants.empty,
+      'price': this?['price'] ?? Constants.zeroD,
+    };
+  }
+}
+
+extension OrderDetailsResponseMapper on OrderDetailsResponse? {
+  OrderDetails toDomain() {
+    List<Map<String, dynamic>> products = (this?.dataResponse?.products?.map(
+            (productDataResponse) => productDataResponse.productToDomain()) ??
+        const Iterable.empty())
+        .cast<Map<String, dynamic>>()
+        .toList();
+
+    var product = Order(
+      this?.dataResponse?.number?.orZero() ?? Constants.zero,
+      this?.dataResponse?.shippingadress?.orEmpty() ?? Constants.empty,
+      this?.dataResponse?.paymentmethod?.orZero() ?? Constants.zero,
+      this?.dataResponse?.orderdate?.orEmpty() ?? Constants.empty,
+      this?.dataResponse?.isDelivered?.orTrue() ?? Constants.orFalse,
+      this?.dataResponse?.totalCheck?.orZeroD() ?? Constants.zeroD,
+      products,
+    );
+
+    return OrderDetails(
+      this?.statusCode?.orZero() ?? Constants.zero,
+      this?.isError?.orTrue() ?? Constants.orTrue,
+      product,
+      this?.errorResponse?.toDomain(),
+    );
+  }
+}

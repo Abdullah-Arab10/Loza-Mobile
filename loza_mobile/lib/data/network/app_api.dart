@@ -73,4 +73,10 @@ abstract class AppServiceClient {
   @GET("/AllReviews/")
   Future<ReviewsResponse> getReviews(int productId);
 
+  @GET("/api/Order/api/Order/GetUserOrders/")
+  Future<OrdersResponse> getOrders(int userId);
+
+  @GET("/api/Order/GetOrderByNumber?orderid=")
+  Future<OrderDetailsResponse> getOrdersDetails(int orderId);
+
 }

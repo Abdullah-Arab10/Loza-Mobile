@@ -264,3 +264,78 @@ Map<String, dynamic> _$ReviewsResponseToJson(ReviewsResponse instance) =>
       'data': instance.dataResponse,
       'errors': instance.errorResponse,
     };
+
+OrdersDataResponse _$OrdersDataResponseFromJson(Map<String, dynamic> json) =>
+    OrdersDataResponse(
+      (json['AllOrders'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+    );
+
+Map<String, dynamic> _$OrdersDataResponseToJson(OrdersDataResponse instance) =>
+    <String, dynamic>{
+      'AllOrders': instance.allOrders,
+    };
+
+OrdersResponse _$OrdersResponseFromJson(Map<String, dynamic> json) =>
+    OrdersResponse(
+      json['isError'] as bool?,
+      json['data'] == null
+          ? null
+          : OrdersDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+      json['errors'] == null
+          ? null
+          : ErrorResponse.fromJson(json['errors'] as Map<String, dynamic>),
+    )..statusCode = json['statusCode'] as int?;
+
+Map<String, dynamic> _$OrdersResponseToJson(OrdersResponse instance) =>
+    <String, dynamic>{
+      'statusCode': instance.statusCode,
+      'isError': instance.isError,
+      'data': instance.dataResponse,
+      'errors': instance.errorResponse,
+    };
+
+OrderResponse _$OrderResponseFromJson(Map<String, dynamic> json) =>
+    OrderResponse(
+      json['number'] as int?,
+      json['shippingadress'] as String?,
+      json['paymentmethod'] as int?,
+      json['orderdate'] as String?,
+      json['isDelivered'] as bool?,
+      (json['products'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+    )..totalCheck = (json['totalCheck'] as num?)?.toDouble();
+
+Map<String, dynamic> _$OrderResponseToJson(OrderResponse instance) =>
+    <String, dynamic>{
+      'number': instance.number,
+      'shippingadress': instance.shippingadress,
+      'paymentmethod': instance.paymentmethod,
+      'orderdate': instance.orderdate,
+      'isDelivered': instance.isDelivered,
+      'totalCheck': instance.totalCheck,
+      'products': instance.products,
+    };
+
+OrderDetailsResponse _$OrderDetailsResponseFromJson(
+        Map<String, dynamic> json) =>
+    OrderDetailsResponse(
+      json['isError'] as bool?,
+      json['data'] == null
+          ? null
+          : OrderResponse.fromJson(json['data'] as Map<String, dynamic>),
+      json['errors'] == null
+          ? null
+          : ErrorResponse.fromJson(json['errors'] as Map<String, dynamic>),
+    )..statusCode = json['statusCode'] as int?;
+
+Map<String, dynamic> _$OrderDetailsResponseToJson(
+        OrderDetailsResponse instance) =>
+    <String, dynamic>{
+      'statusCode': instance.statusCode,
+      'isError': instance.isError,
+      'data': instance.dataResponse,
+      'errors': instance.errorResponse,
+    };

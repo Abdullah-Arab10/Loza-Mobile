@@ -4,4 +4,5 @@ class Constants {
   static const int zero = 0;
   static const double zeroD = 0.0;
   static const bool orTrue = true;
+  static const bool orFalse = false;
 }
