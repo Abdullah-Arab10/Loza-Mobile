@@ -170,7 +170,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Address/addAddress?userId=',
+              '/api/Address/addAddress?userId=$userId',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -305,7 +305,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Cart/GetUserCart?userId=',
+              '/api/Cart/GetUserCart?userId=$userId',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -328,7 +328,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Address/getAddressById?userId=',
+              '/api/Address/getAddressById?userId=$userId',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -351,7 +351,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Favorite/GetAllFavorites/',
+              '/api/Favorite/GetAllFavorites/$userId',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -374,12 +374,58 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/AllReviews/$productId',
+              '/AllReviews/',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ReviewsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<OrdersResponse> getOrders(int userId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<OrdersResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/Order/api/Order/GetUserOrders/$userId',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = OrdersResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<OrderDetailsResponse> getOrdersDetails(int orderId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<OrderDetailsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/Order/GetOrderByNumber?orderid=$orderId',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = OrderDetailsResponse.fromJson(_result.data!);
     return value;
   }
 

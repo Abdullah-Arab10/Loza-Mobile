@@ -188,3 +188,59 @@ class ReviewsObject {
 
   ReviewsObject(this.statusCode, this.isError, this.dataResponse, this.error);
 }
+
+class OrdersData {
+  List<Map<String, dynamic>> allOrders;
+
+  OrdersData(this.allOrders);
+}
+
+class OrdersObject {
+  int statusCode;
+  bool isError;
+  OrdersData dataResponse;
+  Error? error;
+
+  OrdersObject(this.statusCode, this.isError, this.dataResponse, this.error);
+}
+
+class Order {
+
+  int number;
+
+  String shippingadress;
+
+  int paymentmethod;
+
+  String orderdate;
+
+  bool isDelivered;
+
+  double totalCheck;
+
+  List<Map<String, dynamic>> products;
+
+  Order(
+      this.number,
+      this.shippingadress,
+      this.paymentmethod,
+      this.orderdate,
+      this.isDelivered,
+      this.totalCheck,
+      this.products
+      );
+}
+
+class OrderDetails{
+
+  int statusCode;
+
+  bool isError;
+
+  Order data;
+
+  Error? error;
+
+  OrderDetails(this.statusCode,this.isError,this.data,this.error);
+
+}

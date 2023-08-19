@@ -320,3 +320,99 @@ class ReviewsResponse extends BaseResponse {
   factory ReviewsResponse.fromJson(Map<String, dynamic> json) =>
       _$ReviewsResponseFromJson(json);
 }
+
+@JsonSerializable()
+class OrdersDataResponse {
+  @JsonKey(name: 'AllOrders')
+  List<Map<String, dynamic>>? allOrders;
+
+  OrdersDataResponse(this.allOrders);
+
+  //fromJson
+  factory OrdersDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$OrdersDataResponseFromJson(json);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$OrdersDataResponseToJson(this);
+
+}
+
+@JsonSerializable()
+class OrdersResponse extends BaseResponse {
+  @JsonKey(name: 'isError')
+  bool? isError;
+  @JsonKey(name: 'data')
+  OrdersDataResponse? dataResponse;
+  @JsonKey(name: 'errors')
+  ErrorResponse? errorResponse;
+
+  OrdersResponse(this.isError,this.dataResponse, this.errorResponse);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$OrdersResponseToJson(this);
+
+  //fromJson
+  factory OrdersResponse.fromJson(Map<String, dynamic> json) =>
+      _$OrdersResponseFromJson(json);
+}
+
+@JsonSerializable()
+class OrderResponse {
+  @JsonKey(name: 'number')
+  int? number;
+
+  @JsonKey(name: 'shippingadress')
+  String? shippingadress;
+
+  @JsonKey(name: 'paymentmethod')
+  int? paymentmethod;
+
+  @JsonKey(name: 'orderdate')
+  String? orderdate;
+
+  @JsonKey(name: 'isDelivered')
+  bool? isDelivered;
+
+  @JsonKey(name: 'totalCheck')
+  double? totalCheck;
+
+  @JsonKey(name: 'products')
+  List<Map<String, dynamic>>? products;
+
+  OrderResponse(
+      this.number,
+      this.shippingadress,
+      this.paymentmethod,
+      this.orderdate,
+      this.isDelivered,
+      this.products,
+      );
+
+
+  // toJson
+  Map<String, dynamic> toJson() => _$OrderResponseToJson(this);
+
+  //fromJson
+  factory OrderResponse.fromJson(Map<String, dynamic> json) =>
+      _$OrderResponseFromJson(json);
+}
+
+@JsonSerializable()
+class OrderDetailsResponse extends BaseResponse{
+  @JsonKey(name: 'isError')
+  bool? isError;
+  @JsonKey(name: 'data')
+  OrderResponse? dataResponse;
+  @JsonKey(name: 'errors')
+  ErrorResponse? errorResponse;
+
+  OrderDetailsResponse(this.isError,this.dataResponse,this.errorResponse);
+
+  //fromJson
+  factory OrderDetailsResponse.fromJson(Map<String, dynamic> json) =>
+      _$OrderDetailsResponseFromJson(json);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$OrderDetailsResponseToJson(this);
+
+}

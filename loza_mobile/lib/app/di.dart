@@ -11,21 +11,18 @@ import 'package:loza_mobile/domain/usecase/address_usecase.dart';
 import 'package:loza_mobile/domain/usecase/cart_usecase.dart';
 import 'package:loza_mobile/domain/usecase/checkout_usecase.dart';
 import 'package:loza_mobile/domain/usecase/favourite_usecase.dart';
-import 'package:loza_mobile/domain/usecase/favourite_usecase.dart';
-import 'package:loza_mobile/domain/usecase/favourite_usecase.dart';
 import 'package:loza_mobile/domain/usecase/home_usecase.dart';
 import 'package:loza_mobile/domain/usecase/login_usecase.dart';
+import 'package:loza_mobile/domain/usecase/order_usecase.dart';
 import 'package:loza_mobile/domain/usecase/product_details&cart_usecase.dart';
 import 'package:loza_mobile/domain/usecase/register_usecase.dart';
-import 'package:loza_mobile/domain/usecase/review_usecase.dart';
-import 'package:loza_mobile/domain/usecase/review_usecase.dart';
 import 'package:loza_mobile/domain/usecase/review_usecase.dart';
 import 'package:loza_mobile/presentation/Add_Address/viewmodel/add_address_view_model.dart';
 import 'package:loza_mobile/presentation/checkout/viewmodel/checkout_viewmodel.dart';
 import 'package:loza_mobile/presentation/favourite/viewmodel/favourite_viewmodel.dart';
-import 'package:loza_mobile/presentation/favourite/viewmodel/favourite_viewmodel.dart';
 import 'package:loza_mobile/presentation/home_layout/viewmodel/home_layout_viewmodel.dart';
 import 'package:loza_mobile/presentation/login/viewmodel/login_viewmodel.dart';
+import 'package:loza_mobile/presentation/order/viewmodel/order_viewmodel.dart';
 import 'package:loza_mobile/presentation/product_details/viewmodel/add_details_viewmodel.dart';
 import 'package:loza_mobile/presentation/product_details/viewmodel/product_details_viewmodel.dart';
 import 'package:loza_mobile/presentation/rating/viewmodel/rating_viewmodel.dart';
@@ -144,5 +141,13 @@ initGetReviewModule() {
   if (!GetIt.I.isRegistered<GetReviewsUseCase>()) {
     instance.registerFactory<GetReviewsUseCase>(() => GetReviewsUseCase(instance()));
     instance.registerFactory<ReviewViewModel>(() => ReviewViewModel(instance()));
+  }
+}
+
+initGetOrderModule() {
+  if (!GetIt.I.isRegistered<GetOrdersUseCase>()) {
+    instance.registerFactory<GetOrdersUseCase>(() => GetOrdersUseCase(instance()));
+    instance.registerFactory<GetOrdersDetailsUseCase>(() => GetOrdersDetailsUseCase(instance()));
+    instance.registerFactory<OrderViewModel>(() => OrderViewModel(instance(),instance()));
   }
 }

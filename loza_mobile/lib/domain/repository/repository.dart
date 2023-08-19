@@ -35,4 +35,8 @@ abstract class Repository {
   Future<Either<Failure, FavouriteObject>> getFavourite(int userId);
 
   Future<Either<Failure, ReviewsObject>> getReviews(int productId);
+
+  Future<Either<Failure, OrdersObject>> getOrders(int userId);
+
+  Future<Either<Failure, OrderDetails>> getOrdersDetails(int orderId);
 }

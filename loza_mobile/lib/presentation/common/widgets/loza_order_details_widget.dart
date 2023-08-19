@@ -9,19 +9,22 @@ class LoZaOrderDetailsWidget extends StatelessWidget {
   final int? quan;
   final TextStyle? style;
   final String text;
+  final double price;
 
   const LoZaOrderDetailsWidget(
       {
         Key? key,
         this.quan,
         this.style,
-        required this.text
+        required this.text,
+        required this.price,
       })
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         quan != null
             ? Text(
@@ -43,7 +46,7 @@ class LoZaOrderDetailsWidget extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerRight,
             child: Text(
-              '\$15',
+              '\$$price',
               style: style ??
                   getRegularStyle(
                       color: ColorManager.blue, fontSize: FontSize.fs20.sp),
