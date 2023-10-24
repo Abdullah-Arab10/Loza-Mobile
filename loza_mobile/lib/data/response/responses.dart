@@ -65,7 +65,13 @@ class HomeDataResponse {
   @JsonKey(name: 'Newest')
   List<Map<String, dynamic>>? newest;
 
-  HomeDataResponse(this.newest);
+  @JsonKey(name: 'Shuffel')
+  List<Map<String, dynamic>>? shuffel;
+
+  @JsonKey(name: 'top5sales')
+  List<Map<String, dynamic>>? top5sales;
+
+  HomeDataResponse(this.newest,this.shuffel,this.top5sales);
 
   //fromJson
   factory HomeDataResponse.fromJson(Map<String, dynamic> json) =>
@@ -414,5 +420,110 @@ class OrderDetailsResponse extends BaseResponse{
 
   // toJson
   Map<String, dynamic> toJson() => _$OrderDetailsResponseToJson(this);
+
+}
+
+@JsonSerializable()
+class NotDeliveredOrdersDataResponse {
+  @JsonKey(name: 'NotDeliveredOrderes')
+  List<Map<String, dynamic>>? notDeliveredOrders;
+
+  NotDeliveredOrdersDataResponse(this.notDeliveredOrders);
+
+  //fromJson
+  factory NotDeliveredOrdersDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$NotDeliveredOrdersDataResponseFromJson(json);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$NotDeliveredOrdersDataResponseToJson(this);
+
+}
+
+@JsonSerializable()
+class NotDeliveredOrdersResponse extends BaseResponse {
+  @JsonKey(name: 'isError')
+  bool? isError;
+  @JsonKey(name: 'data')
+  NotDeliveredOrdersDataResponse? dataResponse;
+  @JsonKey(name: 'errors')
+  ErrorResponse? errorResponse;
+
+  NotDeliveredOrdersResponse(this.isError,this.dataResponse, this.errorResponse);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$NotDeliveredOrdersResponseToJson(this);
+
+  //fromJson
+  factory NotDeliveredOrdersResponse.fromJson(Map<String, dynamic> json) =>
+      _$NotDeliveredOrdersResponseFromJson(json);
+}
+
+@JsonSerializable()
+class DeliveryManResponse {
+  @JsonKey(name: 'number')
+  int? number;
+
+  @JsonKey(name: 'shippingadress')
+  String? shippingadress;
+
+  @JsonKey(name: 'paymentmethod')
+  int? paymentmethod;
+
+  @JsonKey(name: 'orderdate')
+  String? orderdate;
+
+  @JsonKey(name: 'isDelivered')
+  bool? isDelivered;
+
+  @JsonKey(name: 'phonenumber')
+  String? phonenumber;
+
+  @JsonKey(name: 'username')
+  String? username;
+
+  @JsonKey(name: 'totalCheck')
+  double? totalCheck;
+
+  @JsonKey(name: 'products')
+  List<Map<String, dynamic>>? products;
+
+  DeliveryManResponse(
+      this.number,
+      this.shippingadress,
+      this.paymentmethod,
+      this.orderdate,
+      this.isDelivered,
+      this.phonenumber,
+      this.username,
+      this.totalCheck,
+      this.products,
+      );
+
+
+  // toJson
+  Map<String, dynamic> toJson() => _$DeliveryManResponseToJson(this);
+
+  //fromJson
+  factory DeliveryManResponse.fromJson(Map<String, dynamic> json) =>
+      _$DeliveryManResponseFromJson(json);
+}
+
+@JsonSerializable()
+class DeliveryManDetailsResponse extends BaseResponse{
+  @JsonKey(name: 'isError')
+  bool? isError;
+  @JsonKey(name: 'data')
+  DeliveryManResponse? dataResponse;
+  @JsonKey(name: 'errors')
+  ErrorResponse? errorResponse;
+
+  DeliveryManDetailsResponse(this.isError,this.dataResponse,this.errorResponse);
+
+  //fromJson
+  factory DeliveryManDetailsResponse.fromJson(Map<String, dynamic> json) =>
+      _$DeliveryManDetailsResponseFromJson(json);
+
+  // toJson
+  Map<String, dynamic> toJson() => _$DeliveryManDetailsResponseToJson(this);
 
 }

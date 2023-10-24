@@ -73,16 +73,6 @@ class LoZaReviewCardWidget extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / AppSize.s122,),
-                    InkWell(
-                      onTap: (){},
-                      child: Text(
-                        AppStrings.reply,
-                        style: getBookStyle(
-                            color: ColorManager.black
-                                .withAlpha(AppConstants.withAlpha),
-                            fontSize: FontSize.fs13_5.sp),
-                      ),
-                    ),
                   ],
                 ),
               ),

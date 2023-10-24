@@ -105,7 +105,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Favorite/MakeFavorite/',
+              '/api/Favorite/MakeFavorite/$userId/$productId',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -246,6 +246,29 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<GlobalResponse> confirmOrder(int orderId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<GlobalResponse>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/DeliveryMan/ConfirmOrder?ordernumber=$orderId',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GlobalResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<HomeResponse> getNewestData(int userId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -374,7 +397,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/AllReviews/',
+              '/AllReviews/$productId',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -397,7 +420,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/api/Order/api/Order/GetUserOrders/$userId',
+              '/api/Order/GetUserOrders/$userId',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -426,6 +449,52 @@ class _AppServiceClient implements AppServiceClient {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = OrderDetailsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<NotDeliveredOrdersResponse> getNotDeliveredOrders() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<NotDeliveredOrdersResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/DeliveryMan/NotDelIveredOrders',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = NotDeliveredOrdersResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<DeliveryManDetailsResponse> getDeliVeryMansDetails(int orderId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<DeliveryManDetailsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/DeliveryMan/GetOrderDetailsForDeliveryMan?ordernumber=$orderId',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = DeliveryManDetailsResponse.fromJson(_result.data!);
     return value;
   }
 

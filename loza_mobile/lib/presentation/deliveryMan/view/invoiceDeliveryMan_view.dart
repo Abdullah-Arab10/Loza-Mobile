@@ -2,33 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:loza_mobile/app/di.dart';
 import 'package:loza_mobile/domain/models/models.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_button_widget.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_order_details_widget.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_separator_widget.dart';
+import 'package:loza_mobile/presentation/deliveryMan/viewmodel/deliveryMan_viewmodel.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/font_manager.dart';
 import 'package:loza_mobile/presentation/resources/styles_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
 
-class InvoiceView extends StatefulWidget {
+class InvoiceDeliveryManView extends StatefulWidget {
 
   final String buttonName;
-  final Order orderDetails;
+  final DeliveryMan deliveryMan;
 
-  const InvoiceView({Key? key,required this.orderDetails,required this.buttonName}) : super(key: key);
+  const InvoiceDeliveryManView({Key? key,required this.buttonName,required this.deliveryMan}) : super(key: key);
 
   @override
-  State<InvoiceView> createState() => _InvoiceViewState();
+  State<InvoiceDeliveryManView> createState() => _InvoiceDeliveryManViewState();
 }
 
-class _InvoiceViewState extends State<InvoiceView> {
+class _InvoiceDeliveryManViewState extends State<InvoiceDeliveryManView> {
+
+  final DeliVeryManViewModel _viewModel = instance<DeliVeryManViewModel>();
 
   late String orderDate;
 
   _bind(){
-    final DateTime date = DateTime.parse(widget.orderDetails.orderdate);
+    final DateTime date = DateTime.parse(widget.deliveryMan.orderdate);
     final DateFormat formatter = DateFormat('yyyy-MM-dd');
     orderDate = formatter.format(date);
   }
@@ -97,6 +101,14 @@ class _InvoiceViewState extends State<InvoiceView> {
                       'Payment Method:',
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
+                    Text(
+                      'Phone Number:',
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                    Text(
+                      'User Name:',
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
                   ],
                 ),
                 Column(
@@ -107,11 +119,19 @@ class _InvoiceViewState extends State<InvoiceView> {
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     Text(
-                      widget.orderDetails.shippingadress,
+                      widget.deliveryMan.shippingadress,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     Text(
-                      widget.orderDetails.paymentmethod == 1 ? 'pay with wallet' : 'pay cash',
+                      widget.deliveryMan.paymentmethod == 1 ? 'pay with wallet' : 'pay cash',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    Text(
+                      widget.deliveryMan.phonenumber,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    Text(
+                      widget.deliveryMan.username,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
@@ -122,7 +142,7 @@ class _InvoiceViewState extends State<InvoiceView> {
           SizedBox(
             height: MediaQuery.of(context).size.height / AppSize.s40,
           ),
-           LoZaSeparatorWidget(
+          LoZaSeparatorWidget(
             color: ColorManager.black.withAlpha(50),
           ),
           SizedBox(
@@ -149,22 +169,22 @@ class _InvoiceViewState extends State<InvoiceView> {
           SizedBox(
             height: MediaQuery.of(context).size.height / AppSize.s60,
           ),
-           Padding(
-             padding: EdgeInsetsDirectional.only(
-               start: AppPadding.p15.w,
-               end: AppPadding.p15.w,
-             ),
-             child: Align(
-              alignment: Alignment.bottomCenter,
+          Padding(
+            padding: EdgeInsetsDirectional.only(
+              start: AppPadding.p15.w,
+              end: AppPadding.p15.w,
+            ),
+            child: Align(
+                alignment: Alignment.bottomCenter,
                 child: LoZaOrderDetailsWidget(
-                  text: 'Net Total',
-                  style: getRegularStyle(
-                      color: ColorManager.black,
-                      fontSize: FontSize.fs20.sp
-                  ),
-                  price: widget.orderDetails.totalCheck
+                    text: 'Net Total',
+                    style: getRegularStyle(
+                        color: ColorManager.black,
+                        fontSize: FontSize.fs20.sp
+                    ),
+                    price: widget.deliveryMan.totalCheck
                 )),
-           ),
+          ),
           SizedBox(
             height: MediaQuery.of(context).size.height / AppSize.s60,
           ),
@@ -172,8 +192,10 @@ class _InvoiceViewState extends State<InvoiceView> {
             width: double.infinity,
             height: AppSize.s60.h,
             child: LoZaButtonWidget(
-              onPressed: (){},
-                text: widget.buttonName,
+              onPressed: (){
+                _viewModel.confirmOrder(widget.deliveryMan.number);
+              },
+              text: widget.buttonName,
             ),
           ),
         ],
@@ -193,9 +215,9 @@ class _InvoiceViewState extends State<InvoiceView> {
             bottom: AppPadding.p9.w,
           ),
           itemBuilder: (context, index) => LoZaOrderDetailsWidget(
-            text: widget.orderDetails.products[index]['proname'],
-            quan: widget.orderDetails.products[index]['quantinty'],
-            price: widget.orderDetails.products[index]['price'],
+            text: widget.deliveryMan.products[index]['proname'],
+            quan: widget.deliveryMan.products[index]['quantinty'],
+            price: widget.deliveryMan.products[index]['price'],
           ),
           separatorBuilder: (context, index) => Padding(
             padding: EdgeInsetsDirectional.only(
@@ -206,7 +228,7 @@ class _InvoiceViewState extends State<InvoiceView> {
               color: ColorManager.black.withAlpha(50),
             ),
           ),
-          itemCount: widget.orderDetails.products.length,
+          itemCount: widget.deliveryMan.products.length,
 
         ),
       ),

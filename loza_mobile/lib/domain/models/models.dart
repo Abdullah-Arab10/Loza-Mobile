@@ -39,7 +39,11 @@ class Global {
 class HomeData {
   List<Map<String, dynamic>> newest;
 
-  HomeData(this.newest);
+  List<Map<String, dynamic>> shuffel;
+
+  List<Map<String, dynamic>> top5sales;
+
+  HomeData(this.newest,this.shuffel,this.top5sales);
 }
 
 class HomeObject {
@@ -242,5 +246,67 @@ class OrderDetails{
   Error? error;
 
   OrderDetails(this.statusCode,this.isError,this.data,this.error);
+
+}
+
+class NotDeliveredOrdersData {
+  List<Map<String, dynamic>> allOrders;
+
+  NotDeliveredOrdersData(this.allOrders);
+}
+
+class NotDeliveredOrders {
+  int statusCode;
+  bool isError;
+  NotDeliveredOrdersData data;
+  Error? error;
+
+  NotDeliveredOrders(this.statusCode, this.isError, this.data, this.error);
+}
+
+class DeliveryMan {
+
+  int number;
+
+  String shippingadress;
+
+  int paymentmethod;
+
+  String orderdate;
+
+  bool isDelivered;
+
+  String phonenumber;
+
+  String username;
+
+  double totalCheck;
+
+  List<Map<String, dynamic>> products;
+
+  DeliveryMan(
+      this.number,
+      this.shippingadress,
+      this.paymentmethod,
+      this.orderdate,
+      this.isDelivered,
+      this.phonenumber,
+      this.username,
+      this.totalCheck,
+      this.products
+      );
+}
+
+class DeliveryManDetails{
+
+  int statusCode;
+
+  bool isError;
+
+  DeliveryMan data;
+
+  Error? error;
+
+  DeliveryManDetails(this.statusCode,this.isError,this.data,this.error);
 
 }

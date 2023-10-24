@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loza_mobile/app/app_prefs.dart';
+import 'package:loza_mobile/app/di.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_new_arrivals_card.dart';
 import 'package:loza_mobile/presentation/common/widgets/loza_separator_widget.dart';
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/constants.dart';
+import 'package:loza_mobile/presentation/resources/extensions_manager.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
 
@@ -17,6 +20,9 @@ class CollectionView extends StatefulWidget {
 }
 
 class _CollectionViewState extends State<CollectionView> {
+
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,10 +45,15 @@ class _CollectionViewState extends State<CollectionView> {
             ),
             child: Row(
               children: [
-                SvgPicture.asset(
-                  ImageAssets.leftArrow,
-                  width: AppSize.s26.w,
-                  height: AppSize.s26.w,
+                InkWell(
+                  onTap: () {
+                    _appPreferences.logout();
+                  },
+                  child: SvgPicture.asset(
+                    ImageAssets.leftArrow,
+                    width: AppSize.s26.w,
+                    height: AppSize.s26.w,
+                  ),
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / AppSize.s70,

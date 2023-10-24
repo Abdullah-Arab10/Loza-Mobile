@@ -55,6 +55,9 @@ abstract class AppServiceClient {
       @Field("reviews") String reviews,
       );
 
+  @PUT("/api/DeliveryMan/ConfirmOrder?ordernumber=")
+  Future<GlobalResponse> confirmOrder(int orderId);
+
   @GET("/api/Product/Newest?userId=")
   Future<HomeResponse> getNewestData(int userId);
 
@@ -73,10 +76,16 @@ abstract class AppServiceClient {
   @GET("/AllReviews/")
   Future<ReviewsResponse> getReviews(int productId);
 
-  @GET("/api/Order/api/Order/GetUserOrders/")
+  @GET("/api/Order/GetUserOrders/")
   Future<OrdersResponse> getOrders(int userId);
 
   @GET("/api/Order/GetOrderByNumber?orderid=")
   Future<OrderDetailsResponse> getOrdersDetails(int orderId);
+
+  @GET("/api/DeliveryMan/NotDelIveredOrders")
+  Future<NotDeliveredOrdersResponse> getNotDeliveredOrders();
+
+  @GET("/api/DeliveryMan/GetOrderDetailsForDeliveryMan?ordernumber=")
+  Future<DeliveryManDetailsResponse> getDeliVeryMansDetails(int orderId);
 
 }

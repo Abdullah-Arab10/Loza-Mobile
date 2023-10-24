@@ -11,7 +11,10 @@ import 'package:loza_mobile/presentation/resources/values_manager.dart';
 import 'package:loza_mobile/presentation/review/viewmodel/review_viewmodel.dart';
 
 class ReviewView extends StatefulWidget {
-  const ReviewView({Key? key}) : super(key: key);
+
+  final int productId;
+
+  const ReviewView({Key? key,required this.productId}) : super(key: key);
 
   @override
   State<ReviewView> createState() => _ReviewViewState();
@@ -21,7 +24,7 @@ class _ReviewViewState extends State<ReviewView> {
   final ReviewViewModel _viewModel = instance<ReviewViewModel>();
 
   _bind(){
-    _viewModel.start();
+    _viewModel.getReview(widget.productId);
   }
 
   @override

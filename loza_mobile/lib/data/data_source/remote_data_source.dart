@@ -23,6 +23,8 @@ abstract class RemoteDataSource {
 
   Future<GlobalResponse> addRating(AddRatingRequest addRatingRequest);
 
+  Future<GlobalResponse> confirmOrder(int orderId);
+
   Future<HomeResponse> getNewestData(int userId);
 
   Future<ProductDetailsResponse> getProductDetails(int productId);
@@ -38,6 +40,10 @@ abstract class RemoteDataSource {
   Future<OrdersResponse> getOrders(int userId);
 
   Future<OrderDetailsResponse> getOrdersDetails(int orderId);
+
+  Future<NotDeliveredOrdersResponse> getNotDeliveredOrders();
+
+  Future<DeliveryManDetailsResponse> getDeliVeryMansDetails(int orderId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -104,6 +110,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     );
   }
 
+
+  @override
+  Future<GlobalResponse> confirmOrder(int orderId) async{
+    return await _appServiceClient.confirmOrder(orderId);
+  }
+
   @override
   Future<HomeResponse> getNewestData(int userId) async {
     return await _appServiceClient.getNewestData(userId);
@@ -142,6 +154,16 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<OrderDetailsResponse> getOrdersDetails(int orderId) async {
     return await _appServiceClient.getOrdersDetails(orderId);
+  }
+
+  @override
+  Future<NotDeliveredOrdersResponse> getNotDeliveredOrders() async{
+    return await _appServiceClient.getNotDeliveredOrders();
+  }
+
+  @override
+  Future<DeliveryManDetailsResponse> getDeliVeryMansDetails(int orderId) async{
+    return await _appServiceClient.getDeliVeryMansDetails(orderId);
   }
 
 }
