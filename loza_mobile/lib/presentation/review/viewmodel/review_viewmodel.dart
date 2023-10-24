@@ -18,14 +18,11 @@ class ReviewViewModel extends BaseViewModel
   }
 
   @override
-  void start() {
-    int id = Extensions.extractIdFromToken();
-    getReview(id);
-  }
+  void start() {}
 
   @override
-  getReview(int userId) async{
-    (await _reviewUseCase.execute(userId)).fold((failure) {}, (reviewObject) {
+  getReview(int productId) async{
+    (await _reviewUseCase.execute(productId)).fold((failure) {}, (reviewObject) {
       inputReviewData.add(ReviewViewObject(reviewObject.dataResponse.allReviews));
     });
   }
@@ -42,7 +39,7 @@ class ReviewViewModel extends BaseViewModel
 abstract class ReviewViewModelInputs {
 
   Sink get inputReviewData;
-  getReview(int userId);
+  getReview(int productId);
 }
 
 abstract class ReviewViewModelOutputs {

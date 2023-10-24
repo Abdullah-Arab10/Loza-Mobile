@@ -9,6 +9,7 @@ import 'package:loza_mobile/presentation/common/widgets/loza_shopping_card.dart'
 import 'package:loza_mobile/presentation/resources/assets_manager.dart';
 import 'package:loza_mobile/presentation/resources/colors_manager.dart';
 import 'package:loza_mobile/presentation/resources/font_manager.dart';
+import 'package:loza_mobile/presentation/resources/routes_manager.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/resources/styles_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
@@ -64,11 +65,15 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SvgPicture.asset(
+                            InkWell(
+                              onTap: (){
+                                Navigator.of(context).pop();
+                              },
+                              child:SvgPicture.asset(
                               ImageAssets.close,
                               width: AppSize.s26.w,
                               height: AppSize.s26.w,
-                            ),
+                            ),),
                             TextButton(
                               onPressed: () {
                                 // Navigator.pushNamed(context, Routes.productDetailsRoute);

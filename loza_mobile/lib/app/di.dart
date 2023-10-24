@@ -13,12 +13,16 @@ import 'package:loza_mobile/domain/usecase/checkout_usecase.dart';
 import 'package:loza_mobile/domain/usecase/favourite_usecase.dart';
 import 'package:loza_mobile/domain/usecase/home_usecase.dart';
 import 'package:loza_mobile/domain/usecase/login_usecase.dart';
+import 'package:loza_mobile/domain/usecase/notDeiIveredOrders_usecase.dart';
+import 'package:loza_mobile/domain/usecase/notDeiIveredOrders_usecase.dart';
+import 'package:loza_mobile/domain/usecase/notDeiIveredOrders_usecase.dart';
 import 'package:loza_mobile/domain/usecase/order_usecase.dart';
 import 'package:loza_mobile/domain/usecase/product_details&cart_usecase.dart';
 import 'package:loza_mobile/domain/usecase/register_usecase.dart';
 import 'package:loza_mobile/domain/usecase/review_usecase.dart';
 import 'package:loza_mobile/presentation/Add_Address/viewmodel/add_address_view_model.dart';
 import 'package:loza_mobile/presentation/checkout/viewmodel/checkout_viewmodel.dart';
+import 'package:loza_mobile/presentation/deliveryMan/viewmodel/deliveryMan_viewmodel.dart';
 import 'package:loza_mobile/presentation/favourite/viewmodel/favourite_viewmodel.dart';
 import 'package:loza_mobile/presentation/home_layout/viewmodel/home_layout_viewmodel.dart';
 import 'package:loza_mobile/presentation/login/viewmodel/login_viewmodel.dart';
@@ -149,5 +153,14 @@ initGetOrderModule() {
     instance.registerFactory<GetOrdersUseCase>(() => GetOrdersUseCase(instance()));
     instance.registerFactory<GetOrdersDetailsUseCase>(() => GetOrdersDetailsUseCase(instance()));
     instance.registerFactory<OrderViewModel>(() => OrderViewModel(instance(),instance()));
+  }
+}
+
+initGetNotDeliveredOrdersModule() {
+  if (!GetIt.I.isRegistered<GetNotDeliveredOrdersUseCase>()) {
+    instance.registerFactory<GetNotDeliveredOrdersUseCase>(() => GetNotDeliveredOrdersUseCase(instance()));
+    instance.registerFactory<GetDeliveryManDetailsUseCase>(() => GetDeliveryManDetailsUseCase(instance()));
+    instance.registerFactory<ConfirmOrderUseCase>(() => ConfirmOrderUseCase(instance()));
+    instance.registerFactory<DeliVeryManViewModel>(() => DeliVeryManViewModel(instance(),instance(),instance()));
   }
 }

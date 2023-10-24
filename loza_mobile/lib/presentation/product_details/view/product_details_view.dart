@@ -16,6 +16,7 @@ import 'package:loza_mobile/presentation/resources/routes_manager.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/resources/styles_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
+import 'package:loza_mobile/presentation/review/view/review_view.dart';
 
 class ProductDetailsView extends StatefulWidget {
 
@@ -169,7 +170,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                           text: AppStrings.review,
                         ),
                         Tab(
-                          text: AppStrings.additionalInformation,
+                          text: 'rating',
                         ),
                       ]),
                 ]),
@@ -182,7 +183,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                         product.color,
                         product.category,
                       ),
-                      const ReviewPage(),
+                      ReviewPage(productId: product.id),
                       AdditionalInformationPage(image: product.productImage, name: product.name, id: product.id),
                     ],
                   ),
@@ -311,14 +312,20 @@ class DescriptionPage extends StatelessWidget {
 }
 
 class ReviewPage extends StatelessWidget {
-  const ReviewPage({Key? key}) : super(key: key);
+
+  final int productId;
+
+  const ReviewPage({Key? key,required this.productId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: InkWell(
         onTap: (){
-          Navigator.of(context).pushNamed(Routes.reviewRoute);
+          initGetReviewModule();
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => ReviewView(productId: productId),),
+          );
         },
         child: Container(
           decoration: BoxDecoration(

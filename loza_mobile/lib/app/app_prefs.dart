@@ -77,7 +77,8 @@ class AppPreferences{
   }
 
   Future<void> logout() async {
-    _sharedPreferences.remove(prefsKeyIsUserLoggedIn);
-    _sharedPreferences.remove(TOKEN);
+    // _sharedPreferences.remove(prefsKeyIsUserLoggedIn);
+    // _sharedPreferences.remove(TOKEN);
+    _sharedPreferences.clear();
   }
 }

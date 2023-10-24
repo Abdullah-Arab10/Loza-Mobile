@@ -16,6 +16,7 @@ import 'package:loza_mobile/presentation/resources/font_manager.dart';
 import 'package:loza_mobile/presentation/resources/strings_manager.dart';
 import 'package:loza_mobile/presentation/resources/styles_manager.dart';
 import 'package:loza_mobile/presentation/resources/values_manager.dart';
+import 'package:loza_mobile/presentation/resources/routes_manager.dart';
 
 class HomeLayoutView extends StatefulWidget {
   const HomeLayoutView({Key? key}) : super(key: key);
@@ -82,32 +83,57 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
                                 child: Align(
                                   alignment: Alignment.topLeft,
                                   child: Builder(builder: (context) {
-                                    return InkWell(
-                                      onTap: () {
-                                        Scaffold.of(context).openDrawer();
-                                      },
-                                      child: SvgPicture.asset(
-                                        ImageAssets.menu,
-                                        width: AppSize.s26.w,
-                                        height: AppSize.s26.w,
-                                      ),
+                                    return Row(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.of(context).pushNamed(Routes.orderRoute);
+                                          },
+                                          child: Icon(
+                                            Icons.shopping_cart,
+                                            size: AppSize.s26.w,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context).size.width / AppSize.s30,
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            _viewModel.changeLanguage(context);
+                                          },
+                                          child: Icon(
+                                            Icons.language,
+                                            size: AppSize.s26.w,
+                                          ),
+                                        ),
+                                      ],
                                     );
                                   }),
                                 ),
                               ),
-                              SvgPicture.asset(
-                                ImageAssets.shopIcon,
-                                width: AppSize.s26.w,
-                                height: AppSize.s26.w,
+                              InkWell(
+                                onTap: (){
+                                  Navigator.of(context).pushNamed(Routes.shoppingCartRoute);
+                                },
+                                child: SvgPicture.asset(
+                                  ImageAssets.shopIcon,
+                                  width: AppSize.s26.w,
+                                  height: AppSize.s26.w,
+                                ),
                               ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width /
                                     AppSize.s30,
                               ),
-                              SvgPicture.asset(
-                                ImageAssets.favouriteIcon,
-                                width: AppSize.s26.w,
-                                height: AppSize.s26.w,
+                              InkWell(
+                                onTap: (){
+                                  Navigator.of(context).pushNamed(Routes.favouriteRoute);
+                                },
+                                child: SvgPicture.asset(
+                                  ImageAssets.favouriteIcon,
+                                  width: AppSize.s26.w,
+                                  height: AppSize.s26.w,
+                                ),
                               ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width /
@@ -153,14 +179,16 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
                                         top: AppPadding.p12.h,
                                       ),
                                       child: SizedBox(
-                                        width: AppSize.s112,
-                                        height: AppSize.s34,
+                                        width: AppSize.s112.w,
+                                        height: AppSize.s34.h,
                                         child: LoZaButtonWidget(
-                                          onPressed: () {},
-                                          text: AppStrings.shopNow.tr(),
+                                          onPressed: () {
+                                            _viewModel.start();
+                                          },
+                                          text: 'Refresh Page',
                                           textStyle: getBookStyle(
                                               color: ColorManager.veryLightGrey,
-                                              fontSize: FontSize.fs15.sp),
+                                              fontSize: FontSize.fs14.sp),
                                         ),
                                       ),
                                     ),
@@ -179,7 +207,10 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
                   getSection(AppStrings.arrivals.tr()),
                   _getNewArrivalsWidget(homeViewObject.newest),
                   getSection(AppStrings.bestSellers.tr()),
-                  //_getBestSellerWidget()
+                  _getBestSellerWidget(homeViewObject.shuffel),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / AppSize.s40,
+                  ),
                 ],
               ),
             );
@@ -258,18 +289,23 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
         });
   }
 
-  Widget _getBestSellerWidget() {
+  Widget _getBestSellerWidget(List<Map<String, dynamic>> list) {
     return ListView.separated(
       padding: EdgeInsetsDirectional.only(
           start: AppPadding.p11.w, top: AppSize.s3.h),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemBuilder: (context, index) => LoZaBestSellerWidget(
-        image: ImageAssets.mask,
-        text1: AppStrings.justoGravidaSemper.tr(),
-        text2: 29.0,
+      itemBuilder: (context, index) => InkWell(
+        onTap: (){
+          _viewModel.getProductDetails(list[index]['id']);
+        },
+        child: LoZaBestSellerWidget(
+          image: list[index]['productImage'],
+          text1: list[index]['name'],
+          text2: list[index]['price'],
+        ),
       ),
-      itemCount: 5,
+      itemCount: list.length,
       separatorBuilder: (BuildContext context, int index) => Padding(
         padding: EdgeInsetsDirectional.only(
           start: AppPadding.p90.w,

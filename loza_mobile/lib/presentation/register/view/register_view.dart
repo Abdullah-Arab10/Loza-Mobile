@@ -225,8 +225,8 @@ class _RegisterViewState extends State<RegisterView> {
                             onTap: () {
                               showDatePicker(
                                 context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime.now(),
+                                initialDate: DateTime.parse('2002-10-10'),
+                                firstDate: DateTime.parse('2002-10-10'),
                                 lastDate: DateTime.parse('2024-12-31'),
                               ).then((value) {
                                 _dateOfBirthController.text =

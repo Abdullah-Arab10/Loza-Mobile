@@ -57,11 +57,19 @@ HomeDataResponse _$HomeDataResponseFromJson(Map<String, dynamic> json) =>
       (json['Newest'] as List<dynamic>?)
           ?.map((e) => e as Map<String, dynamic>)
           .toList(),
+      (json['Shuffel'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+      (json['top5sales'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
     );
 
 Map<String, dynamic> _$HomeDataResponseToJson(HomeDataResponse instance) =>
     <String, dynamic>{
       'Newest': instance.newest,
+      'Shuffel': instance.shuffel,
+      'top5sales': instance.top5sales,
     };
 
 HomeResponse _$HomeResponseFromJson(Map<String, dynamic> json) => HomeResponse(
@@ -333,6 +341,92 @@ OrderDetailsResponse _$OrderDetailsResponseFromJson(
 
 Map<String, dynamic> _$OrderDetailsResponseToJson(
         OrderDetailsResponse instance) =>
+    <String, dynamic>{
+      'statusCode': instance.statusCode,
+      'isError': instance.isError,
+      'data': instance.dataResponse,
+      'errors': instance.errorResponse,
+    };
+
+NotDeliveredOrdersDataResponse _$NotDeliveredOrdersDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    NotDeliveredOrdersDataResponse(
+      (json['NotDeliveredOrderes'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+    );
+
+Map<String, dynamic> _$NotDeliveredOrdersDataResponseToJson(
+        NotDeliveredOrdersDataResponse instance) =>
+    <String, dynamic>{
+      'NotDeliveredOrderes': instance.notDeliveredOrders,
+    };
+
+NotDeliveredOrdersResponse _$NotDeliveredOrdersResponseFromJson(
+        Map<String, dynamic> json) =>
+    NotDeliveredOrdersResponse(
+      json['isError'] as bool?,
+      json['data'] == null
+          ? null
+          : NotDeliveredOrdersDataResponse.fromJson(
+              json['data'] as Map<String, dynamic>),
+      json['errors'] == null
+          ? null
+          : ErrorResponse.fromJson(json['errors'] as Map<String, dynamic>),
+    )..statusCode = json['statusCode'] as int?;
+
+Map<String, dynamic> _$NotDeliveredOrdersResponseToJson(
+        NotDeliveredOrdersResponse instance) =>
+    <String, dynamic>{
+      'statusCode': instance.statusCode,
+      'isError': instance.isError,
+      'data': instance.dataResponse,
+      'errors': instance.errorResponse,
+    };
+
+DeliveryManResponse _$DeliveryManResponseFromJson(Map<String, dynamic> json) =>
+    DeliveryManResponse(
+      json['number'] as int?,
+      json['shippingadress'] as String?,
+      json['paymentmethod'] as int?,
+      json['orderdate'] as String?,
+      json['isDelivered'] as bool?,
+      json['phonenumber'] as String?,
+      json['username'] as String?,
+      (json['totalCheck'] as num?)?.toDouble(),
+      (json['products'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+    );
+
+Map<String, dynamic> _$DeliveryManResponseToJson(
+        DeliveryManResponse instance) =>
+    <String, dynamic>{
+      'number': instance.number,
+      'shippingadress': instance.shippingadress,
+      'paymentmethod': instance.paymentmethod,
+      'orderdate': instance.orderdate,
+      'isDelivered': instance.isDelivered,
+      'phonenumber': instance.phonenumber,
+      'username': instance.username,
+      'totalCheck': instance.totalCheck,
+      'products': instance.products,
+    };
+
+DeliveryManDetailsResponse _$DeliveryManDetailsResponseFromJson(
+        Map<String, dynamic> json) =>
+    DeliveryManDetailsResponse(
+      json['isError'] as bool?,
+      json['data'] == null
+          ? null
+          : DeliveryManResponse.fromJson(json['data'] as Map<String, dynamic>),
+      json['errors'] == null
+          ? null
+          : ErrorResponse.fromJson(json['errors'] as Map<String, dynamic>),
+    )..statusCode = json['statusCode'] as int?;
+
+Map<String, dynamic> _$DeliveryManDetailsResponseToJson(
+        DeliveryManDetailsResponse instance) =>
     <String, dynamic>{
       'statusCode': instance.statusCode,
       'isError': instance.isError,

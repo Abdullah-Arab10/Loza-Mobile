@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:loza_mobile/app/app_prefs.dart';
+import 'package:loza_mobile/app/di.dart';
 import 'package:loza_mobile/domain/models/models.dart';
 import 'package:loza_mobile/domain/usecase/home_usecase.dart';
 import 'package:loza_mobile/domain/usecase/product_details&cart_usecase.dart';
@@ -11,6 +15,7 @@ class HomeLayoutViewModel extends BaseViewModel
   final _dataStreamController = BehaviorSubject<HomeViewObject>();
   final _favoriteStreamController = BehaviorSubject<Map<int, bool>>();
   final productDetailsStreamController = BehaviorSubject<Product>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   final ProductDetailsUseCase _productDetailsUseCase;
   final HomeUseCase _homeUseCase;
@@ -55,7 +60,11 @@ class HomeLayoutViewModel extends BaseViewModel
   getNewestData() async {
     int id = Extensions.extractIdFromToken();
     (await _homeUseCase.execute(id)).fold((failure) {}, (homeObject) {
-      inputHomeData.add(HomeViewObject(homeObject.dataResponse.newest));
+      inputHomeData.add(HomeViewObject(
+          homeObject.dataResponse.newest,
+          homeObject.dataResponse.shuffel,
+          homeObject.dataResponse.top5sales
+      ));
       for (var element in homeObject.dataResponse.newest) {
         favorites.addAll({
           element['id']: element['isFavorite'],
@@ -113,6 +122,11 @@ class HomeLayoutViewModel extends BaseViewModel
   Stream<Map<int, bool>> get outputFavoriteData =>
       _favoriteStreamController.stream.map((favMap) => favMap);
 
+  changeLanguage(BuildContext context) {
+    _appPreferences.changeAppLanguage();
+    Phoenix.rebirth(context);
+  }
+
 }
 
 abstract class HomeLayoutViewModelInputs {
@@ -132,5 +146,9 @@ abstract class HomeLayoutViewModelOutputs {
 class HomeViewObject {
   List<Map<String, dynamic>> newest;
 
-  HomeViewObject(this.newest);
+  List<Map<String, dynamic>> shuffel;
+
+  List<Map<String, dynamic>> top5sales;
+
+  HomeViewObject(this.newest,this.shuffel,this.top5sales);
 }

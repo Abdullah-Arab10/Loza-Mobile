@@ -5,6 +5,7 @@ import 'package:loza_mobile/presentation/Add_Address/view/add_address_view.dart'
 import 'package:loza_mobile/presentation/categories/view/categories_view.dart';
 import 'package:loza_mobile/presentation/checkout/view/checkout_view.dart';
 import 'package:loza_mobile/presentation/collection/view/collection_view.dart';
+import 'package:loza_mobile/presentation/deliveryMan/view/deliveryMan_view.dart';
 import 'package:loza_mobile/presentation/favourite/view/favourite_view.dart';
 import 'package:loza_mobile/presentation/filters/view/filters_view.dart';
 import 'package:loza_mobile/presentation/forgot_password/view/forgot_password_view.dart';
@@ -32,7 +33,7 @@ class Routes {
   //static const String productDetailsRoute = "/productDetails";
   static const String categoriesRoute = "/categories";
   static const String collectionRoute = "/collection";
-  static const String reviewRoute = "/review";
+  //static const String reviewRoute = "/review";
   static const String filtersRoute = "filters";
   static const String shoppingCartRoute = "shoppingCart";
   static const String myAccountRoute = "myAccount";
@@ -42,6 +43,7 @@ class Routes {
   //static const String checkOutRoute = "checkOut";
   static const String addAddressRoute = "addAddress";
   static const String favouriteRoute = "favourite";
+  static const String deliveryManRoute = "deliveryMan";
 }
 
 class RouteGenerator {
@@ -66,9 +68,9 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const CategoriesView());
       case Routes.collectionRoute:
         return MaterialPageRoute(builder: (_) => const CollectionView());
-      case Routes.reviewRoute:
-        initGetReviewModule();
-        return MaterialPageRoute(builder: (_) => const ReviewView());
+      // case Routes.reviewRoute:
+      //   initGetReviewModule();
+      //   return MaterialPageRoute(builder: (_) => const ReviewView());
       case Routes.filtersRoute:
         return MaterialPageRoute(builder: (_) => const FiltersView());
       case Routes.shoppingCartRoute:
@@ -88,6 +90,9 @@ class RouteGenerator {
         initHomeModule();
         initGetFavouriteModule();
         return MaterialPageRoute(builder: (_) => const FavouriteView());
+      case Routes.deliveryManRoute:
+        initGetNotDeliveredOrdersModule();
+        return MaterialPageRoute(builder: (_) => const DeliveryManView());
       default:
         return unDefinedRoute();
     }

@@ -13,4 +13,14 @@ class Extensions
     });
     return id;
   }
+
+  static String extractRoleFromToken() {
+    final AppPreferences appPreferences = instance<AppPreferences>();
+    String role = '';
+    appPreferences.getToken().then((value) {
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(value);
+      role = decodedToken['role'];
+    });
+    return role;
+  }
 }

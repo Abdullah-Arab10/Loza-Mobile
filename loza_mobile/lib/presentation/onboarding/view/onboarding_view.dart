@@ -284,7 +284,9 @@ class OnBoardingPage4 extends StatelessWidget {
                 text: AppStrings.signUp,
                 color: ColorManager.white,
                 textStyle: Theme.of(context).textTheme.titleSmall,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed(Routes.registerRoute);
+                },
               ),
             ),
           ),

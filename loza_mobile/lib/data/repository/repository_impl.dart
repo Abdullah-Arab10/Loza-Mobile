@@ -190,6 +190,30 @@ class RepositoryImpl implements Repository {
   }
 
   @override
+  Future<Either<Failure, Global>> confirmOrder(int orderId) async{
+    if (await _networkInfo.isConnected) {
+
+      try {
+        final response = await _remoteDataSource.confirmOrder(orderId);
+
+        if (response.statusCode == ApiInternalStatus.SUCCESS) {
+
+          return Right(response.toDomain());
+        } else {
+
+          return Left(Failure(ApiInternalStatus.FAILURE,
+              response.errorResponse?.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
   Future<Either<Failure, HomeObject>> getNewestData(int userId) async{
       if (await _networkInfo.isConnected) {
 
@@ -376,6 +400,58 @@ class RepositoryImpl implements Repository {
 
       try {
         final response = await _remoteDataSource.getOrdersDetails(orderId);
+
+        if (response.statusCode == ApiInternalStatus.SUCCESS) {
+
+          return Right(response.toDomain());
+        } else {
+
+          return Left(Failure(ApiInternalStatus.FAILURE,
+              response.errorResponse?.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler
+            .handle(error)
+            .failure);
+      }
+    } else {
+
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, NotDeliveredOrders>> getNotDeliveredOrders() async{
+    if (await _networkInfo.isConnected) {
+
+      try {
+        final response = await _remoteDataSource.getNotDeliveredOrders();
+
+        if (response.statusCode == ApiInternalStatus.SUCCESS) {
+
+          return Right(response.toDomain());
+        } else {
+
+          return Left(Failure(ApiInternalStatus.FAILURE,
+              response.errorResponse?.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler
+            .handle(error)
+            .failure);
+      }
+    } else {
+
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, DeliveryManDetails>> getDeliVeryMansDetails(int orderId) async{
+    if (await _networkInfo.isConnected) {
+
+      try {
+        final response = await _remoteDataSource.getDeliVeryMansDetails(orderId);
 
         if (response.statusCode == ApiInternalStatus.SUCCESS) {
 
